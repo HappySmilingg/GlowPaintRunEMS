@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+</head>
+<body>
+    <div class="top-menu">
+        <div class="logo">
+          <img src="logo.png" alt="Logo" style="height: 40px;"> <!-- Add your logo image -->
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">Register</div>
+          <div class="menu-item">Event Route</div>
+          <div class="menu-item">Packages</div>
+          <div class="menu-item">About Us</div>
+        </div>
+        <div class="icon">
+          <img src="icon.png" alt="Icon" style="height: 30px;"> <!-- Add your icon image -->
+        </div>
+      </div>      
+      
+    <div class="container">
+        <img class="background-img" src="{{ url_for('static', filename='GlowPaintRunBkgd.jpg') }}" alt="Event Image">
+
+        <div class="title">
+            <span class="text glow">Glow</span>
+            <span class="text paint">Paint</span>
+            <span class="text run">Run</span>
+            <span class="text year">2024</span><br>
+            <span class="subtitle">Let’s have a glorious run!</span>
+        </div>
+        
+        <div class="timer">
+            <div class="time-box days">
+                <div class="time-number">10</div>
+                <div class="time-label">DAYS</div>
+            </div>
+            <div class="time-box hours">
+                <div class="time-number">10</div>
+                <div class="time-label">HOURS</div>
+            </div>
+            <div class="time-box minutes">
+                <div class="time-number">10</div>
+                <div class="time-label">MINUTES</div>
+            </div>
+            <div class="time-box seconds">
+                <div class="time-number">10</div>
+                <div class="time-label">SECONDS</div>
+            </div>
+        </div>
+
+        <div class="register-section">
+            <div class="register-text">MEDAL FOR TOP 100!</div><br>
+            <div class="register-text2">REGISTER NOW AND JOIN US!</div>
+            <div class="buttons">
+                <button class="usm-student">USM Student</button>
+                <button class="public">Public</button>
+            </div>
+            <div class="certification">MYCSD & E-CERT PROVIDED!</div>
+        </div>
+
+        <div class="info-box">
+            <div class="info-content">
+              <div class="info-item">
+                <div class="icon time-icon"></div>
+                <div class="info-text">12 DECEMBER 2024</div>
+              </div>
+              <div class="info-item">
+                <div class="icon time-icon"></div>
+                <div class="info-text">8:00 PM - 11:00 PM</div>
+              </div>
+              <div class="info-item">
+                <div class="icon location-icon"></div>
+                <div class="info-text">THE BRICKS, USM</div>
+              </div>
+              <div class="info-item">
+                <div class="icon route-icon"></div>
+                <div class="info-text">5 KM ROUTE</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="overlay">
+            <div class="past-event">PAST EVENT</div>
+            
+            <div class="white-boxes">
+                <div class="white-box"></div>
+                <div class="white-box"></div>
+                <div class="white-box"></div>
+                <div class="white-box"></div>
+            </div>
+            
+            <div class="dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+    <div class="Route">
+      <img class="Image1" src="https://via.placeholder.com/1505x847" alt="Event Route Image" />
+      <div class="EventRoute">Event Route</div>
+    </div>
+    <div class="Packages">
+      <img class="Image2" src="https://via.placeholder.com/1505x847" alt="Packages Info" />
+      <div class="EventPackage">Packages</div>
+    </div>
+  </body>
+  </html>
