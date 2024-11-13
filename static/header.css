@@ -1,5 +1,5 @@
-/* Top Menu Styling */
-.top-menu {
+/* Header Styling */
+.header {
     width: 100%;
     height: 60px;
     background: linear-gradient(90deg, #FE348B 50%, #CC06FD 100%);
@@ -9,7 +9,7 @@
     padding: 10px 20px;
   }
 
-  .menu-items {
+  .header-items {
     display: flex;
     gap: 20px; 
     flex-grow: 1; 
@@ -17,7 +17,7 @@
     flex-direction: row; 
   }
   
-  .menu-item {
+  .header-item {
     margin: 0 20px;
     font-size: 14px;
     font-weight: 800;
@@ -27,11 +27,11 @@
   }
   
   /* Hover effect for menu items */
-  .menu-item:hover {
+  .header-item:hover {
     color: #FBB6F9;
   }
   
-  .menu-item::after {
+  .header-item::after {
     content: "";
     position: absolute;
     left: 0;
@@ -43,8 +43,8 @@
     transition: transform 0.3s ease;
   }
   
-  .menu-item:hover::after {
+  .header-item:hover::after {
     transform: scaleX(1);
   }
 
-  /* end menu */
+  /* end header */
