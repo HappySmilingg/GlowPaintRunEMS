@@ -1,0 +1,102 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+nav ul {
+    background: linear-gradient(to right, #ff00cc, #3333ff);
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.map-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map {
+    width: 80%;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #111;
+    border: 2px solid #333;
+}
+
+/* Legend Container */
+.legend-container {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    text-align: center;
+    color: #ff00cc; /* Purple text color */
+    font-family: Arial, sans-serif;
+}
+
+.legend-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.legend-box {
+    border: 2px solid #00f; /* Blue border */
+    padding: 10px;
+    background-color: #000;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* Main Point Icon */
+.main-point {
+    background-color: red;
+    border-radius: 50%; /* Circle shape */
+}
+
+/* Direction Path Icon */
+.direction-path {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid yellow; /* Triangle shape */
+}
+
+/* Start/Finish Icon */
+.start-finish {
+    width: 0;
+    height: 0;
+    border-left: 8px solid limegreen; /* Green flag */
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
