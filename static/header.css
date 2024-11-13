@@ -9,7 +9,7 @@
     padding: 10px 20px;
   }
 
-  .header-items {
+  .header-structure {
     display: flex;
     gap: 20px; 
     flex-grow: 1; 
