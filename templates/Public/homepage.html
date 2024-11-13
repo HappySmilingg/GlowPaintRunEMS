@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow Paint Run</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='header.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="header">
+    <div class="top-header">
         <div class="logo">
           <img src="logo.png" alt="Logo" style="height: 40px;"> <!-- Add your logo image -->
         </div>
@@ -24,7 +25,7 @@
       </div>      
       
     <div class="container">
-        <img class="background-img" src="{{ url_for('static', filename='GlowPaintRunBkgd.jpg') }}" alt="Event Image">
+        <img class="background-img" src="{{ url_for('static', filename='Image/GlowPaintRunBkgd.jpg') }}" alt="Event Image">
 
         <div class="title">
             <span class="text glow">Glow</span>
@@ -112,4 +113,46 @@
       <div class="EventPackage">Packages</div>
     </div>
   </body>
+  <footer class="footer">
+    <div class="footer-section follow-us">
+      <h3>FOLLOW US</h3>
+      <div class="social-icons">
+        <div class="social-item">
+          <i class="fa fa-instagram"></i>
+          <p>3KPP_USM</p>
+        </div>
+        <div class="social-item">
+          <i class="fa fa-facebook"></i>
+          <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-section register-now">
+      <h3>REGISTER NOW</h3>
+      <p>USM Student</p>
+      <p>Public</p>
+    </div>
+  
+    <div class="footer-section about-event">
+      <h3>ABOUT EVENT</h3>
+      <p>Event Route</p>
+    </div>
+  
+    <div class="footer-section package">
+      <h3>PACKAGE</h3>
+      <p>View Running Kit Package</p>
+    </div>
+  
+    <div class="footer-section about-us">
+      <h3>ABOUT US</h3>
+      <p>About Us</p>
+      <p>Contact Us</p>
+    </div>
+  
+    <div class="footer-bottom">
+      <div class="line"></div>
+      <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+    </div>
+  </footer>  
   </html>
