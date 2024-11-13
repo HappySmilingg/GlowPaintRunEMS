@@ -51,23 +51,24 @@
         </div>
         
         <div class="timer">
-            <div class="time-box days">
-                <div class="time-number">10</div>
-                <div class="time-label">DAYS</div>
-            </div>
-            <div class="time-box hours">
-                <div class="time-number">10</div>
-                <div class="time-label">HOURS</div>
-            </div>
-            <div class="time-box minutes">
-                <div class="time-number">10</div>
-                <div class="time-label">MINUTES</div>
-            </div>
-            <div class="time-box seconds">
-                <div class="time-number">10</div>
-                <div class="time-label">SECONDS</div>
-            </div>
+          <div class="time-box days">
+            <div class="time-number" id="days"></div>
+            <div class="time-label">DAYS</div>
+          </div>
+          <div class="time-box hours">
+            <div class="time-number" id="hours"></div>
+            <div class="time-label">HOURS</div>
+          </div>
+          <div class="time-box minutes">
+            <div class="time-number" id="minutes"></div>
+            <div class="time-label">MINUTES</div>
+          </div>
+          <div class="time-box seconds">
+            <div class="time-number" id="seconds"></div>
+            <div class="time-label">SECONDS</div>
+          </div>
         </div>
+        
 
         <div class="register-section">
             <div class="register-text">MEDAL FOR TOP 100!</div><br>
@@ -100,31 +101,43 @@
           </div>
         </div>        
 
-          <div class="overlay">
-            <div class="past-event">PAST EVENT</div>
-            
-            <div class="white-boxes">
-                <div class="white-box"></div>
-                <div class="white-box"></div>
-                <div class="white-box"></div>
-                <div class="white-box"></div>
-            </div>
-            
-            <div class="dots">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        </div>
+        <div class="overlay">
+          <div class="past-event">PAST EVENT</div>
+          
+          <div class="white-boxes">
+              <div class="white-box">
+                  <img src="{{ url_for('static', filename='Image/past 1.png') }}" alt="Image 1" class="carousel-image" />
+              </div>
+              <div class="white-box">
+                  <img src="{{ url_for('static', filename='Image/past 2.png') }}" alt="Image 2" class="carousel-image" />
+              </div>
+              <div class="white-box">
+                  <img src="{{ url_for('static', filename='Image/past 3.png') }}" alt="Image 3" class="carousel-image" />
+              </div>
+              <div class="white-box">
+                  <img src="{{ url_for('static', filename='Image/past 4.png') }}" alt="Image 4" class="carousel-image" />
+              </div>
+              <div class="white-box">
+                  <img src="{{ url_for('static', filename='Image/past 5.png') }}" alt="Image 5" class="carousel-image" />
+              </div>
+          </div>
+          
+          <div class="dots">
+              <div class="dot active" data-index="0"></div>
+              <div class="dot" data-index="1"></div>
+              <div class="dot" data-index="2"></div>
+              <div class="dot" data-index="3"></div>
+              <div class="dot" data-index="4"></div>
+          </div>
+      </div>
+           
     </div>
     <div class="Route">
-      <img class="Image1" src="https://via.placeholder.com/1505x847" alt="Event Route Image" />
+      <img class="Image1" src="{{ url_for('static', filename='Image/bhepa.jpg') }}" alt="Event Route Image" />
       <div class="EventRoute">Event Route</div>
     </div>
     <div class="Packages">
-      <img class="Image2" src="https://via.placeholder.com/1505x847" alt="Packages Info" />
+      <img class="Image2" src="{{ url_for('static', filename='Image/bhepa.jpg') }}" alt="Packages Info" />
       <div class="EventPackage">Packages</div>
     </div>
   </body>
@@ -183,6 +196,7 @@
   </html>
 
   <script>
+    // The top menu effect function
     // Select the header
     const header = document.querySelector('.header');
   
@@ -194,4 +208,81 @@
         header.classList.remove('shrink');
       }
     });
-  </script>
+
+    // Set coutdown timer function
+    // Set the deadline date
+    const deadline = new Date("December 12, 2024 00:00:00").getTime();
+
+    // Update the countdown every second
+    const countdown = setInterval(function() {
+
+        // Get the current date and time
+        const now = new Date().getTime();
+        
+        // Calculate the difference between the deadline and now
+        const distance = deadline - now;
+        
+        // Time calculations for days, hours, minutes, and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Display the results
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+        
+        // If the countdown finishes
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("days").innerText = "0";
+            document.getElementById("hours").innerText = "0";
+            document.getElementById("minutes").innerText = "0";
+            document.getElementById("seconds").innerText = "0";
+            alert("Countdown finished!");
+        }
+    }, 1000);
+
+    // Past event photo displayed function
+    // JavaScript to handle image transitions
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    const dots = document.querySelectorAll('.dot');
+
+    // Function to show the active image based on the index
+    function showImage(index) {
+        // Remove 'active' class from all images
+        images.forEach(img => img.classList.remove('active'));
+        // Add 'active' class to the image at the current index
+        images[index].classList.add('active');
+        
+        // Remove 'active' class from all dots
+        dots.forEach(dot => dot.classList.remove('active'));
+        // Add 'active' class to the dot corresponding to the current index
+        dots[index].classList.add('active');
+    }
+
+    // Function to auto change image every 5 seconds
+    function autoSlide() {
+        currentIndex = (currentIndex + 1) % images.length; // Cycle back to the first image
+        showImage(currentIndex);
+    }
+
+    // Click event for dots
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            currentIndex = index;
+            showImage(currentIndex);
+        });
+    });
+
+    // Set an interval for auto image transition (every 5 seconds)
+    setInterval(autoSlide, 5000);
+
+    // Initially show the first image
+    showImage(currentIndex);
+
+</script>
