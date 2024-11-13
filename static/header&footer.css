@@ -78,7 +78,7 @@
   display: none;
   position: absolute;
   left: 0;
-  background-color: #FE348B;
+  background-color: #caa7f1;
   list-style-type: none;
   padding: 10px 0;
   margin-top: 10px;
@@ -90,7 +90,17 @@
 
 /* Profile icon hover effect */
 .profile-icon {
+  padding-right: 20px;
   cursor: pointer; /* Add this to show the pointer cursor */
+}
+
+.profile-icon i {
+  color: black;
+  cursor: pointer; /* Add this to show the pointer cursor */
+}
+
+.profile-icon i:hover {
+  color: white;
 }
 
 /* Menu items inside submenu */
