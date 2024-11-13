@@ -26,6 +26,10 @@ def packages():
 def about_us():
     return render_template('Public/about_us.html')
 
+@app.route('/Public/contact_us')
+def contact_us():
+    return render_template('Public/contact_us.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
