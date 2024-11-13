@@ -7,29 +7,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   </head>
+  
 <body>
     <div class="header">
         <div class="logo">
-          <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo" style="height: 60px;"> 
+          <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo"> 
         </div>
         <div class="header-structure">
           <div class="header-item">Register
+            <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
-                <li><a href="#">USM Student</a></li>
-                <li><a href="#">Public</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
             </ul>
           </div>
           <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
-          <div class="header-item">Packages</div>
+          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
           <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
             </ul>
          </div>
         </div>
-        <div class="profile-icon">
+        <div class="profile-icon" onclick="window.location.href='/Public/login'">
           <i class='fas fa-user-alt' style="font-size: 24px;"></i>
         </div>
       </div>      
@@ -68,32 +73,32 @@
             <div class="register-text">MEDAL FOR TOP 100!</div><br>
             <div class="register-text2">REGISTER NOW AND JOIN US!</div>
             <div class="buttons">
-                <button class="usm-student">USM Student</button>
-                <button class="public">Public</button>
+              <button class="usm-student" onclick="window.location.href='/Public/student_register'">USM Student</button>
+              <button class="public" onclick="window.location.href='/Public/public_register'">Public</button>
             </div>
             <div class="certification">MYCSD & E-CERT PROVIDED!</div>
         </div>
 
         <div class="info-box">
-            <div class="info-content">
-              <div class="info-item">
-                <div class="icon time-icon"></div>
-                <div class="info-text">12 DECEMBER 2024</div>
-              </div>
-              <div class="info-item">
-                <div class="icon time-icon"></div>
-                <div class="info-text">8:00 PM - 11:00 PM</div>
-              </div>
-              <div class="info-item">
-                <div class="icon location-icon"></div>
-                <div class="info-text">THE BRICKS, USM</div>
-              </div>
-              <div class="info-item">
-                <div class="icon route-icon"></div>
-                <div class="info-text">5 KM ROUTE</div>
-              </div>
+          <div class="info-content">
+            <div class="info-item">
+              <i class="fas fa-calendar-alt time-icon"></i>
+              <div class="info-text">12 DECEMBER 2024</div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock time-icon"></i>
+              <div class="info-text">8:00 PM - 11:00 PM</div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt location-icon"></i>
+              <div class="info-text">THE BRICKS, USM</div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-road route-icon"></i>
+              <div class="info-text">5 KM ROUTE</div>
             </div>
           </div>
+        </div>        
 
           <div class="overlay">
             <div class="past-event">PAST EVENT</div>
@@ -128,40 +133,46 @@
       <h3>FOLLOW US</h3>
       <div class="social-icons">
         <div class="social-item">
-          <i class="fab fa-instagram" style="font-size: 22px; margin-right: 10px;"></i>
-          <p>3KPP_USM</p>
+          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
         </div>
         <div class="social-item">
-          <i class="fab fa-tiktok" style="font-size: 22px; margin-right: 10px;"></i>
-          <p>3KPP_USM</p>
+          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
         </div>
         <div class="social-item">
-          <i class="fab fa-facebook" style="font-size: 22px; margin-right: 10px;"></i>
-          <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          </a>
         </div>
       </div>
     </div>
   
     <div class="footer-section register-now">
       <h3>REGISTER NOW</h3>
-      <p>USM Student</p>
-      <p>Public</p>
+      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+      <p onclick="window.location.href='/Public/public_register'">Public</p>
     </div>
   
     <div class="footer-section about-event">
       <h3>ABOUT EVENT</h3>
-      <p>Event Route</p>
+      <p onclick="window.location.href='/Public/route'">Event Route</p>
     </div>
   
     <div class="footer-section package">
       <h3>PACKAGE</h3>
-      <p>View Running Kit Package</p>
+      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
     </div>
   
     <div class="footer-section about-us">
       <h3>ABOUT US</h3>
-      <p>About Us</p>
-      <p>Contact Us</p>
+      <p onclick="window.location.href='/Public/about-us'">About Us</p>
+      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
     </div>
   
     <div class="footer-bottom">
@@ -170,3 +181,17 @@
     </div>
   </footer>  
   </html>
+
+  <script>
+    // Select the header
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+  </script>
