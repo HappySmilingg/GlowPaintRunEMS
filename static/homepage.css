@@ -441,13 +441,18 @@ input[type="radio"]:hover {
   width: 100%;
   height: 225px;
   position: relative;
-  background: black;
 }
 
 .Image1 {
   width: 100%;
   height: 100%;
   position: absolute;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+}
+
+.Route:hover .Image1 {
+  filter: blur(3px); 
 }
 
 .EventRoutetext1 {
@@ -487,24 +492,23 @@ input[type="radio"]:hover {
   font-weight: 400;
   letter-spacing: 4.80px;
   white-space: nowrap;
-  opacity: 0;  /* Hidden initially */
+  opacity: 0; 
 }
 
 .Route:hover .EventRoutetext2 {
-  transform: translateX(-50%) translateY(-50%); 
-  opacity: 1;  
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1; 
 }
 
 .Route:not(:hover) .EventRoutetext2 {
-  transform: translateX(-100%) translateY(-50%);
-  opacity: 0; 
+  transform: translateX(-100%) translateY(-50%); 
+  opacity: 0;  
 }
 
 .Packages {
   width: 100%;
   height: 225px;
   position: relative;
-  background: black;
   overflow: hidden; 
 }
 
@@ -513,6 +517,11 @@ input[type="radio"]:hover {
   height: 100%;
   position: absolute;
   object-fit: cover;
+  transition: filter 0.5s ease;
+}
+
+.Packages:hover .Image2 {
+  filter: blur(3px); 
 }
 
 .EventPackagetext1 {
@@ -561,7 +570,7 @@ input[type="radio"]:hover {
 }
 
 .Packages:not(:hover) .EventPackagetext2 {
-  transform: translateX(100%) translateY(-50%);
+  transform: translateX(50%) translateY(-50%);
   opacity: 0; 
 }
 
