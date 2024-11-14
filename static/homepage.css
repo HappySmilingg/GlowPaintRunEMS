@@ -29,10 +29,7 @@
 /* Glow Paint Run Text */
 .title .text {
   font-size: 90px;
-  font-family: 'Audiowide', sans-serif;
-  /* font-family: 'Bangers', cursive; */
-  /* font-family: 'Orbitron', sans-serif; */
-
+  font-family: 'Irish Grover', sans-serif;
   color: white;
   text-shadow: 0 0 5px #00FFFF, 0 0 15px #00FFFF, 0 0 30px #00FFFF, 0 0 60px #00FFFF;
   transition: text-shadow 0.3s ease;
@@ -95,11 +92,14 @@
 
 .timer {
   position: absolute;
-  top: 45%; 
+  top: 40%; 
   left: 50%; 
-  transform: translate(-50%, -45%); 
+  transform: translate(-50%, -40%); 
   padding: 10px 20px; 
   display: flex;
+  justify-content: center;  
+  align-items: center; 
+  flex-wrap: wrap;  
   gap: 20px;
 }
 
@@ -152,6 +152,14 @@ background: linear-gradient(45deg, rgba(255, 235, 59, 0.60), rgba(255, 223, 0, 0
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   margin-top: 5px;
+}
+
+.timer-text {
+  color: white;
+  font-family: 'Irish Grover', cursive;
+  margin-top: 10px;
+  font-size: 20px;
+  text-align: left;
 }
 
 /* Pulse animation */
@@ -320,50 +328,52 @@ input[type="radio"]:hover {
 /* Registration */
 .register-section {
     position: absolute;
-    top: 45%; 
-    left: 95%; 
-    transform: translate(-95%, -45%); 
-    text-align: left;
+    top: 50%; 
+    left: 80%; 
+    transform: translate(-80%, -50%); 
 }
 
 .register-text {
-    font-size: 20px;
-    font-family: 'Irish Grover', cursive;
-    color: transparent; 
-    background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
-    background-clip: text; 
-    -webkit-background-clip: text;
+  position: absolute;
+  top: 30%; 
+  left: 5%; 
+  transform: translate(-5%, -30%); 
+  font-size: 24px;
+  font-family: 'Irish Grover', cursive;
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  background-clip: text; 
+  -webkit-background-clip: text;
 }
 
 .register-text2 {
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Irish Grover', cursive;
     color: white;
 }
-
 .buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 button {
-    padding: 13px 14px;
-    background: linear-gradient(90deg, #33489c 50%, #00FFFF 100%);
-    background-size: 200%; 
-    border-radius: 10px;
-    color: white;
-    font-size: 12px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  padding: 13px 14px;
+  background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%); 
+  background-size: 300%; /* Expands for smooth transition */
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 button:hover {
-    animation: gradient-flow 2s infinite; 
-    transform: scale(1.05); 
+  animation: gradient-flow 1.2s infinite linear; 
+  transform: scale(1.05); 
 }
 
 @keyframes gradient-flow {
@@ -374,6 +384,7 @@ button:hover {
       background-position: 100% 50%;
   }
 }
+
 
 .certification {
     font-size: 18px;
@@ -386,16 +397,16 @@ button:hover {
 
 /* Main Info */
 .info-box {
-  width: 274px;
-  height: 158px;
+  width: 270px;
+  height: 220px;
   position: absolute;
-  top: 45%; 
+  top: 40%; 
   left: 5%; 
-  transform: translate(-5%, -45%); 
+  transform: translate(-5%, -40%); 
   padding: 20px;
   background-color: black;
   border-radius: 10px;
-  border: 3px solid transparent; 
+  border: 5px solid transparent; 
   border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
   display: flex;
   justify-content: center;
@@ -417,7 +428,7 @@ button:hover {
 }
 
 .info-item i {
-  font-size: 24px; 
+  font-size: 26px; 
   margin-right: 10px; 
   color: transparent; 
   background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
@@ -426,7 +437,7 @@ button:hover {
 }
 
 .info-text {
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Irish Grover', cursive;
   color: transparent; 
   background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
