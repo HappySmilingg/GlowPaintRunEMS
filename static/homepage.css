@@ -452,11 +452,11 @@ input[type="radio"]:hover {
   position: absolute;
 }
 
-.EventRoute {
+.EventRoutetext1 {
   position: absolute;
   top: 50%;
   left: 50%; 
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%); 
   transition: transform 0.5s ease, opacity 0.5s ease;
   color: white;
   font-size: 48px;
@@ -464,17 +464,42 @@ input[type="radio"]:hover {
   font-weight: 400;
   letter-spacing: 4.80px;
   white-space: nowrap;
-  opacity: 1; 
-}
-
-.Route:hover .EventRoute {
-  transform: translateX(-100%) translateY(-50%); 
   opacity: 0; 
 }
 
-.Route:not(:hover) .EventRoute {
+.Route:hover .EventRoutetext1 {
+  transform: translateX(50%) translateY(-50%); 
+  opacity: 0; 
+}
+
+.Route:not(:hover) .EventRoutetext1 {
   transform: translateX(-50%) translateY(-50%);
   opacity: 1; 
+}
+
+.EventRoutetext2 {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translateX(-100%) translateY(-50%); 
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  color: white;
+  font-size: 48px;
+  font-family: 'Irish Grover', cursive;
+  font-weight: 400;
+  letter-spacing: 4.80px;
+  white-space: nowrap;
+  opacity: 0;  /* Hidden initially */
+}
+
+.Route:hover .EventRoutetext2 {
+  transform: translateX(-50%) translateY(-50%); 
+  opacity: 1;  
+}
+
+.Route:not(:hover) .EventRoutetext2 {
+  transform: translateX(-100%) translateY(-50%);
+  opacity: 0; 
 }
 
 .Packages {
@@ -492,11 +517,11 @@ input[type="radio"]:hover {
   object-fit: cover;
 }
 
-.EventPackage {
+.EventPackagetext1 {
   position: absolute;
   top: 50%;
-  left: 50%; /* Set left to 50% to center horizontally */
-  transform: translateX(-50%) translateY(-50%); /* Use translateX(-50%) to center it properly */
+  left: 50%; 
+  transform: translateX(-50%) translateY(-50%); 
   transition: transform 0.5s ease, opacity 0.5s ease;
   color: white;
   font-size: 48px;
@@ -507,14 +532,39 @@ input[type="radio"]:hover {
   opacity: 1;
 }
 
-.Packages:hover .EventPackage {
-  transform: translateX(50%) translateY(-50%); 
+.Packages:hover .EventPackagetext1 {
+  transform: translateX(-100%) translateY(-50%); 
   opacity: 0; 
 }
 
-.Packages:not(:hover) .EventPackage {
+.Packages:not(:hover) .EventPackagetext1 {
   transform: translateX(-50%) translateY(-50%);
   opacity: 1; 
+}
+
+.EventPackagetext2 {
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translateX(-50%) translateY(-50%); 
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  color: white;
+  font-size: 48px;
+  font-family: 'Irish Grover', cursive;
+  font-weight: 400;
+  letter-spacing: 4.8px;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.Packages:hover .EventPackagetext2 {
+  transform: translateX(-50%) translateY(-50%); 
+  opacity: 1; 
+}
+
+.Packages:not(:hover) .EventPackagetext2 {
+  transform: translateX(100%) translateY(-50%);
+  opacity: 0; 
 }
 
 /* For left slide in, right slide out */
