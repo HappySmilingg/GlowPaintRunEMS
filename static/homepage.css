@@ -455,26 +455,26 @@ input[type="radio"]:hover {
 .EventRoute {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-150%, -50%);
+  left: 50%; 
+  transform: translateX(-50%) translateY(-50%);
+  transition: transform 0.5s ease, opacity 0.5s ease;
   color: white;
   font-size: 48px;
   font-family: 'Irish Grover', cursive;
   font-weight: 400;
   letter-spacing: 4.80px;
   white-space: nowrap;
-  opacity: 0; 
-  transition: opacity 0.5s ease; 
+  opacity: 1; 
 }
 
 .Route:hover .EventRoute {
-  animation: slide-in 0.5s forwards;
-  opacity: 1;
+  transform: translateX(-100%) translateY(-50%); 
+  opacity: 0; 
 }
 
 .Route:not(:hover) .EventRoute {
-  animation: slide-out 0.5s forwards;
-  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1; 
 }
 
 .Packages {
@@ -495,28 +495,26 @@ input[type="radio"]:hover {
 .EventPackage {
   position: absolute;
   top: 50%;
-  /* left: 50%;
-  transform: translate(-150%, -50%); */
-  left: 50%; 
-  transform: translateY(-150%, -50%);  
+  left: 50%; /* Set left to 50% to center horizontally */
+  transform: translateX(-50%) translateY(-50%); /* Use translateX(-50%) to center it properly */
+  transition: transform 0.5s ease, opacity 0.5s ease;
   color: white;
   font-size: 48px;
   font-family: 'Irish Grover', cursive;
   font-weight: 400;
   letter-spacing: 4.8px;
   white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.5s ease; 
-}
-
-.Packages:hover .EventPackage {
-  animation: slide-in2 0.5s forwards;
   opacity: 1;
 }
 
+.Packages:hover .EventPackage {
+  transform: translateX(50%) translateY(-50%); 
+  opacity: 0; 
+}
+
 .Packages:not(:hover) .EventPackage {
-  animation: slide-out2 0.5s forwards;
-  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1; 
 }
 
 /* For left slide in, right slide out */
