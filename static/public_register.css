@@ -147,11 +147,19 @@ button:hover {
     box-sizing: border-box; 
   }
   
+  .view {
+    text-decoration: underline;
+    width: 20%;
+  }
+
+  .view:hover {
+    color: blue;
+  }
 
   .proceed-button {
     display: flex;
     justify-content: center;
-    margin-top: 30px;   
+    margin-top: 70px;   
     margin-bottom: 20px;
   }
   
@@ -222,6 +230,7 @@ button:hover {
   .input-group2 {
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 20px;
   }
   
   .input-group2 label {
@@ -233,7 +242,7 @@ button:hover {
   }
   
   .input-group2 select {
-    width: 75%;
+    width: 90%;
     margin-right: 40px;
     padding: 12px;
     font-size: 12px;
