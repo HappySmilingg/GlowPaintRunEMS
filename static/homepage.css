@@ -311,8 +311,8 @@ button:hover {
 main#carousel {
   grid-row: 1 / 2;
   grid-column: 1 / 8;
-  width: 100vw;
-  height: 300px;
+  width: 100%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -337,8 +337,8 @@ div.item {
   border-radius: 10px;
   background-color: #fff;
   position: absolute;
-  width: 300px;
-  height: 220px;
+  width: clamp(200px, 28vw, 400px); 
+  height: clamp(150px, 38vh, 300px);
   background-color: white;
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
@@ -455,61 +455,111 @@ input[type="radio"]:hover {
 .EventRoute {
   position: absolute;
   top: 50%;
-  left: -100%; 
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-150%, -50%);
   color: white;
   font-size: 48px;
   font-family: 'Irish Grover', cursive;
   font-weight: 400;
   letter-spacing: 4.80px;
   white-space: nowrap;
-  transition: left 0.5s ease;
   opacity: 0; 
+  transition: opacity 0.5s ease; 
 }
 
 .Route:hover .EventRoute {
-  left: 50%; 
-  transform: translate(-50%, -50%);
-  opacity: 1; 
+  animation: slide-in 0.5s forwards;
+  opacity: 1;
 }
 
-  .Packages {
-    width: 100%;
-    height: 225px;
-    position: relative;
-    background: black;
-  }
+.Route:not(:hover) .EventRoute {
+  animation: slide-out 0.5s forwards;
+  opacity: 0;
+}
 
-  .Image2 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-  
-  .EventPackage {
-    position: absolute;
-    top: 50%;
-    left: -100%; 
-    transform: translateY(-50%);
-    color: white;
-    font-size: 48px;
-    font-family: 'Irish Grover', cursive;
-    font-weight: 400;
-    letter-spacing: 4.80px;
-    white-space: nowrap;
-    transition: left 0.5s ease;
-    opacity: 0; 
-  }
+.Packages {
+  width: 100%;
+  height: 225px;
+  position: relative;
+  background: black;
+  overflow: hidden; 
+}
 
-  .Packages:hover .EventPackage {
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    opacity: 1;
+.Image2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+
+.EventPackage {
+  position: absolute;
+  top: 50%;
+  /* left: 50%;
+  transform: translate(-150%, -50%); */
+  left: 50%; 
+  transform: translateY(-150%, -50%);  
+  color: white;
+  font-size: 48px;
+  font-family: 'Irish Grover', cursive;
+  font-weight: 400;
+  letter-spacing: 4.8px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.5s ease; 
+}
+
+.Packages:hover .EventPackage {
+  animation: slide-in2 0.5s forwards;
+  opacity: 1;
+}
+
+.Packages:not(:hover) .EventPackage {
+  animation: slide-out2 0.5s forwards;
+  opacity: 0;
+}
+
+/* For left slide in, right slide out */
+@keyframes slide-in {
+  0% {
+    transform: translate(-150%, -50%); 
   }
+  100% {
+    transform: translate(-50%, -50%); 
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translate(-50%, -50%); 
+  }
+  100% {
+    transform: translate(100%, -50%); 
+  }
+}
+
+/* For right slide in, left slide out */
+@keyframes slide-in2 {
+  0% {
+    transform: translateX(100%) translateY(-50%); 
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%); 
+  }
+}
+
+@keyframes slide-out2 {
+  0% {
+    transform: translateX(-50%) translateY(-50%);
+  }
+  100% {
+    transform: translateX(-250%) translateY(-50%); 
+  }
+}
 
   .Sponsors {
     width: 100%;
-    height: 245px;
+    height: 270px;
     position: relative;
     background: black;
     display: flex;
@@ -530,17 +580,19 @@ input[type="radio"]:hover {
   }
 
 .sponsor-logos {
+  width: 80%;
   display: flex;
   justify-content: space-around; 
   align-items: center;
   gap: 50px; 
   flex-wrap: wrap; 
-  padding: 55px;
+  padding: 45px;
+  margin: 0 auto; 
 }
 
 .sponsor-logos .Logo {
-  width: 100px; 
-  height: auto; 
+  width: clamp(80px, 20vw, 120px);  
+  height: auto;
   transition: transform 0.3s ease;
 }
 
