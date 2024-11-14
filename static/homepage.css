@@ -97,10 +97,18 @@
   transform: translate(-50%, -40%); 
   padding: 10px 20px; 
   display: flex;
+  flex-direction: row; 
   justify-content: center;  
   align-items: center; 
-  flex-wrap: wrap;  
-  gap: 20px;
+  gap: 10px;
+}
+
+.time-container {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
 }
 
 .time-box {
@@ -120,19 +128,19 @@
 }
 
 .days {
-background: linear-gradient(45deg, rgba(255, 105, 180, 0.60), rgba(255, 20, 147, 0.60));
+  background: linear-gradient(45deg, rgba(255, 105, 180, 0.60), rgba(255, 20, 147, 0.60));
 }
 
 .hours {
-background: linear-gradient(45deg, rgba(208, 188, 254, 0.60), rgba(123, 104, 238, 0.60));
+  background: linear-gradient(45deg, rgba(208, 188, 254, 0.60), rgba(123, 104, 238, 0.60));
 }
 
 .minutes {
-background: linear-gradient(45deg, rgba(244, 183, 67, 0.60), rgba(255, 165, 0, 0.60));
+  background: linear-gradient(45deg, rgba(244, 183, 67, 0.60), rgba(255, 165, 0, 0.60));
 }
 
 .seconds {
-background: linear-gradient(45deg, rgba(255, 235, 59, 0.60), rgba(255, 223, 0, 0.60));
+  background: linear-gradient(45deg, rgba(255, 235, 59, 0.60), rgba(255, 223, 0, 0.60));
 }
 
 .time-number {
@@ -155,12 +163,26 @@ background: linear-gradient(45deg, rgba(255, 235, 59, 0.60), rgba(255, 223, 0, 0
 }
 
 .timer-text {
+  position: absolute;
+  top: 32%; 
+  left: 50%; 
+  transform: translate(-50%, -32%); 
   color: white;
   font-family: 'Irish Grover', cursive;
-  margin-top: 10px;
-  font-size: 20px;
-  text-align: left;
+  font-size: 26px;
 }
+
+.timer-text2 {
+  position: absolute;
+  top: 52%; 
+  left: 50%; 
+  transform: translate(-50%, -52%); 
+  color: white;
+  font-family: 'Irish Grover', cursive;
+  font-size: 26px;
+}
+
+
 
 /* Pulse animation */
 @keyframes pulse {
@@ -327,30 +349,25 @@ input[type="radio"]:hover {
 
 /* Registration */
 .register-section {
-    position: absolute;
-    top: 50%; 
-    left: 67%; 
-    transform: translate(-67%, -50%); 
+  position: absolute;
+  top: 40%; 
+  left: 95%; 
+  transform: translate(-95%, -40%); 
+  text-align: left;
 }
 
 .register-text {
-  position: absolute;
-  top: 30%; 
-  left: 5%; 
-  transform: translate(-5%, -30%); 
-  font-size: 24px;
+  font-size: 22px;
   font-family: 'Irish Grover', cursive;
-  color: transparent; 
-  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
-  background-clip: text; 
-  -webkit-background-clip: text;
+  color: white;
 }
 
 .register-text2 {
-    font-size: 20px;
-    font-family: 'Irish Grover', cursive;
-    color: white;
+  font-size: 18px;
+  font-family: 'Irish Grover', cursive;
+  color: white;
 }
+
 .buttons {
   display: flex;
   gap: 10px;
@@ -359,11 +376,11 @@ input[type="radio"]:hover {
 
 button {
   padding: 13px 14px;
-  background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%); 
-  background-size: 300%; 
+  background: linear-gradient(90deg, #33489c 50%, #00FFFF 100%);
+  background-size: 200%; 
   border-radius: 10px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   border: none;
@@ -371,29 +388,30 @@ button {
   transition: transform 0.3s ease;
 }
 
+
 button:hover {
-  animation: gradient-flow 1.2s infinite linear; 
+  animation: gradient-flow 2s infinite; 
   transform: scale(1.05); 
 }
 
 @keyframes gradient-flow {
-  0% {
-      background-position: 0% 50%;
-  }
-  100% {
-      background-position: 100% 50%;
-  }
+0% {
+    background-position: 0% 50%;
+}
+100% {
+    background-position: 100% 50%;
+}
 }
 
-
 .certification {
-    font-size: 18px;
-    font-family: 'Irish Grover', cursive;
-    color: white;
-    margin-top: 15px;
+  font-size: 18px;
+  font-family: 'Irish Grover', cursive;
+  color: white;
+  margin-top: 15px;
 }
 
 /* Registration End */
+
 
 /* Main Info */
 .info-box {
@@ -420,6 +438,20 @@ button:hover {
   flex-direction: column;
   gap: 10px;
 }
+
+.info-text2 {
+  position: absolute;
+  top: 29%; 
+  left: 5%; 
+  transform: translate(-5%, -29%); 
+  font-size: 20px;
+  font-family: 'Irish Grover', cursive;
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  background-clip: text; 
+  -webkit-background-clip: text;
+}
+
 
 .info-item {
   display: flex;
