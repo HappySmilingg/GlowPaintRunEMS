@@ -147,11 +147,19 @@ button:hover {
     box-sizing: border-box; 
   }
   
+  .view {
+    text-decoration: underline;
+    width: 20%;
+  }
+
+  .view:hover {
+    color: blue;
+  }
 
   .proceed-button {
     display: flex;
     justify-content: center;
-    margin-top: 30px;   
+    margin-top: 70px;   
     margin-bottom: 20px;
   }
   
@@ -219,6 +227,7 @@ button:hover {
     word-wrap: break-word;
   }
 
+  /* For t-shirt size selection */
   .input-group2 {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -234,7 +243,7 @@ button:hover {
   }
   
   .input-group2 select {
-    width: 75%;
+    width: 90%;
     margin-right: 40px;
     padding: 12px;
     font-size: 12px;
@@ -244,5 +253,34 @@ button:hover {
     border-radius: 5px;
     color: black
   }
+
+/* End */
   
+/* For the school, campus and packages selection */
+  .input-group3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+  }
+  
+  .input-group3 label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .input-group3 select {
+    width: 80%;
+    padding: 12px;
+    font-size: 12px;
+    background-color: white;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+    border-radius: 5px;
+    color: black;
+    margin-bottom: 20px;
+  }
+
+  /* End */
   

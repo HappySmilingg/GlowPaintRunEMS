@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='student_register.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <!-- Icon lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Irish Grover (for title) -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- Inter text (for content) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+  
+<body>
+    <div class="header">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo"> 
+        </div>
+        <div class="header-structure">
+          <div class="header-item">Register
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
+            </ul>
+          </div>
+          <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
+          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
+          <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+            </ul>
+         </div>
+        </div>
+        <div class="profile-icon" onclick="window.location.href='/Public/login'">
+          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+        </div>
+      </div>  
+      <div class="top-bar">
+            <div class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>  
+            </div>        
+            <div class="bar-text">REGISTER AS USM STUDENT</div>
+            <button class="bar-button" onclick="window.location.href='/Public/public_register'">REGISTER AS PUBLIC</button>
+       </div>
+       
+       <div class="form-container">
+        <div class="form-row">
+          <!-- Left Column (Personal Details) -->
+          <div class="column-left">
+            <div class="input-group">
+              <label for="full-name">FULL NAME (AS IN NRIC / PASSPORT)</label>
+              <input type="text" id="full-name" name="full-name" placeholder="Enter Full Name" />
+            </div>
+      
+            <div class="input-group">
+              <label for="ic-passport-number">MATRIC NUMBER (XXXXXX)</label>
+              <input type="text" id="ic-passport-number" name="ic-passport-number" placeholder="Enter IC/Passport Number" />
+            </div>
+      
+            <div class="input-group">
+              <label for="phone-number">PHONE NUMBER (XXX-XXXXXXX)</label>
+              <input type="tel" id="phone-number" name="phone-number" placeholder="Enter Phone Number" />
+            </div>
+
+            <div class="input-group">
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email" />
+              </div>
+
+              <div class="input-group3">
+                <label for="school">SCHOOL</label>
+                <select id="school" name="school">
+                    <option value="arts">School of Arts</option>
+                  <option value="computer-science">School of Computer Science</option>
+                  <option value="management">School of Management</option>
+                  <option value="educational">School of Educational</option>
+                  <option value="mathematics">School of Mathematics</option>
+                </select>
+              </div>
+              
+              <div class="input-group3">
+                <label for="campus">CAMPUS</label>
+                <select id="campus" name="campus">
+                  <option value="main-campus">Main Campus</option>
+                  <option value="health-campus">Health Campus</option>
+                  <option value="engineering-campus">Engineering Campus</option>
+                </select>
+              </div>
+              
+              <div class="input-group3">
+                <label for="package-details">PACKAGE DETAILS</label>
+                <select id="package-details" name="package-details">
+                  <option value="pro">Glow-rious Pro (RM50)</option>
+                  <option value="lite">Glow-rious Lite (RM35)</option>
+                  <option value="starter">Glow-rious Starter (RM15)</option>
+                </select>
+                <div class="view">
+                  <label for="view-details">VIEW PACKAGE</label>
+                </div>
+              </div>
+              
+          </div>
+      
+          <!-- Right Column (T-shirt Size) -->
+          <div class="column-right">
+
+            <p class="t-shirt-text">T-SHIRT SIZE</p>
+            <div class="size-selection-images">
+              <img class="shirt-size" src="{{ url_for('static', filename='Image/shirt front.png') }}" alt="Shirt Front" />
+              <img class="shirt-size-chart" src="{{ url_for('static', filename='Image/shirt back.png') }}" alt="Shirt Back" />
+            </div>
+      
+            <div class="additional-info">
+              <p class="small-text">PLEASE BE INFORMED THAT THERE ARE ADDITIONAL FEES CHARGED FOR T-SHIRT SIZES BEYOND 3XL</p>
+            </div>
+            
+            <div class="size-selection-images2">
+                <img class="ShirtSize" src="{{ url_for('static', filename='Image/shirt size.jpg') }}" alt="Shirt Size"/>
+                <div class="size-selection-images3">
+                  <img class="ShirtSizeChart" src="{{ url_for('static', filename='Image/shirt size chart.png') }}" alt="Shirt Size Chart"/>
+                  <div class="MeasurementArea">
+                    *MEASUREMENT ARE PRESENTED IN INCH <br>
+                    *ALL MEASUREMENT ABOVE SUBJECT TO +/- 1 INCHES TOLERANCES
+                  </div>
+                  <div class="input-group2">
+                    <label for="t-shirt-size">SIZE SELECTION</label>
+                    <select id="t-shirt-size" name="t-shirt-size">
+                      <option value="s">S</option>
+                      <option value="m">M</option>
+                      <option value="l">L</option>
+                      <option value="xl">XL</option>
+                      <option value="xxl">2XL</option>
+                      <option value="xxxl">3XL + (RM 3)</option>
+                      <option value="xxxxl">4XL + (RM 5)</option>
+                      <option value="xxxxxl">5XL + (RM 7)</option>
+                      <option value="xxxxxxl">6XL + (RM 9)</option>
+                      <option value="xxxxxxxl">7XL + (RM 11)</option>
+                    </select>
+                </div>
+                </div>
+              </div>      
+
+
+          </div>
+        </div>
+      
+        <div class="proceed-button">
+          <button type="submit" class="btn-proceed">Proceed to Payment</button>
+        </div>
+      </div>      
+    
+</body>
+<footer class="footer">
+    <div class="footer-section follow-us">
+      <h3>FOLLOW US</h3>
+      <div class="social-icons">
+        <div class="social-item">
+          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-section register-now">
+      <h3>REGISTER NOW</h3>
+      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+      <p onclick="window.location.href='/Public/public_register'">Public</p>
+    </div>
+  
+    <div class="footer-section about-event">
+      <h3>ABOUT EVENT</h3>
+      <p onclick="window.location.href='/Public/route'">Event Route</p>
+    </div>
+  
+    <div class="footer-section package">
+      <h3>PACKAGE</h3>
+      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+    </div>
+  
+    <div class="footer-section about-us">
+      <h3>ABOUT US</h3>
+      <p onclick="window.location.href='/Public/about-us'">About Us</p>
+      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+    </div>
+  
+    <div class="footer-bottom">
+      <div class="line"></div>
+      <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+    </div>
+  </footer> 
+
+</html>
+
+<script>
+    function goBack() {
+      window.history.back(); 
+    }
+  </script>
