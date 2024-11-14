@@ -6,9 +6,16 @@
     <title>Glow Paint Run</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <!-- Icon lib -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Irish Grover (for title) -->
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Text for main glow paint text -->
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <!-- Inter text (for content) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
   
 <body>
@@ -39,9 +46,8 @@
         </div>
       </div>      
       
-    <div class="container">
-        <img class="background-img" src="{{ url_for('static', filename='Image/GlowPaintRunBkgd.jpg') }}" alt="Event Image">
-
+    <div class="content">
+        <img class="background-img" src="{{ url_for('static', filename='Image/background.png') }}" alt="Background Image">
         <div class="title">
             <span class="text glow">Glow</span>
             <span class="text paint">Paint</span>
@@ -101,8 +107,8 @@
           </div>
         </div>        
 
-        <div class="overlay">
-          <div class="past-event">PAST EVENT</div>
+        <div class="Past-Event">
+          <div class="past-event-text">PAST EVENT</div>
         
           <main id="carousel">               
             <div class="item">
@@ -137,17 +143,17 @@
       <div class="EventRoutetext2">View Event Route</div>
     </div>
     <div class="Packages">
-      <img class="Image2" src="{{ url_for('static', filename='Image/GlowPaintRunBkgd.jpg') }}" alt="Packages Info" />
+      <img class="Image2" src="{{ url_for('static', filename='Image/background.png') }}" alt="Packages Info" />
       <div class="EventPackagetext1">Packages</div>
       <div class="EventPackagetext2">View Running Kits & Collection Details</div>
     </div>
     <div class="Sponsors">
       <div class="sponsor-text">SPONSORS & ORGANISERS</div>
       <div class="sponsor-logos">
-        <img class="Logo" src="{{ url_for('static', filename='Image/sponsor1.jpg') }}" alt="Sponsor 1" />
-        <img class="Logo" src="{{ url_for('static', filename='Image/sponsor2.png') }}" alt="Sponsor 2" />    
-        <img class="Logo" src="{{ url_for('static', filename='Image/sponsor3.png') }}" alt="Sponsor 3" />
-        <img class="Logo" src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Sponsor 4" />
+        <img class="Logo1" src="{{ url_for('static', filename='Image/sponsor1.jpg') }}" alt="Sponsor 1" />
+        <img class="Logo2" src="{{ url_for('static', filename='Image/sponsor2.png') }}" alt="Sponsor 2" />    
+        <img class="Logo3" src="{{ url_for('static', filename='Image/sponsor3.png') }}" alt="Sponsor 3" />
+        <img class="Logo4" src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Sponsor 4" />
       </div>
     </div>    
     

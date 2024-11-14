@@ -1,106 +1,104 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Merriweather', serif;
-  }
-
-  .container {
-    width: 100%;
-    height: 100%;    
-    position: relative;
-    background-color: black;
-    overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .container {
-      background-color: #333; /* Change background color on smaller screens */
-  }
+/* Event Content */
+.content {
+  width: 100%;
+  height: 100%;    
+  position: relative;
+  background-color: black;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .background-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    object-position: 340px center;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .title {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4);
   position: absolute;
-  font-family: 'Irish Grover', cursive;
-  left: 50%;
-  top: 45px;  
-  transform: translateX(-50%); 
+  top: 15%; 
+  left: 50%; 
+  transform: translate(-50%, -15%); 
+  padding: 10px 20px; 
+  font-size: 20px; 
   text-align: center;
-  white-space: nowrap; 
-  max-width: 100%;  
+  font-family: 'Irish Grover', cursive;
 }
 
 /* Glow Paint Run Text */
 .title .text {
-  font-size: 80px;
-  font-family: 'Irish Grover', cursive; 
-  text-align: center; 
-  display: inline-block; 
-  gap: 10px;
+  font-size: 90px;
+  font-family: 'Audiowide', sans-serif;
+  /* font-family: 'Bangers', cursive; */
+  /* font-family: 'Orbitron', sans-serif; */
+
+  color: white;
+  text-shadow: 0 0 5px #00FFFF, 0 0 15px #00FFFF, 0 0 30px #00FFFF, 0 0 60px #00FFFF;
+  transition: text-shadow 0.3s ease;
 }
 
-/* Glow effect */
+/* LED Glow Effect */
 .glow {
-  color: #FF69B4; 
-  -webkit-text-stroke: 1px #ffffff;
-  /* text-shadow: 0 0 10px #FF69B4, 0 0 10px #FF69B4; */
-  animation: pulseGlow 1.5s infinite ease-in-out; 
+  color: #00FFFF; /* Cyan Blue */
+  -webkit-text-stroke: 2px #FFFFFF;
+  animation: ledGlow 1.5s infinite ease-in-out;
 }
 
 .paint {
-  color: #AD8AED; 
-  -webkit-text-stroke: 1px #ffffff;
-  animation: pulseGlow 1.5s infinite ease-in-out; 
+  color: #00FF00; /* Green */
+  -webkit-text-stroke: 2px #FFFFFF;
+  animation: ledGlow 1.7s infinite ease-in-out;
 }
 
 .run {
-  color: #F4B743;
-  -webkit-text-stroke: 1px #ffffff;
-  animation: pulseGlow 1.5s infinite ease-in-out; 
+  color: #FF1493; /* Deep Pink */
+  -webkit-text-stroke: 2px #FFFFFF;
+  animation: ledGlow 1.9s infinite ease-in-out;
 }
 
 .year {
-  color: #FFEB3B; 
-  -webkit-text-stroke: 1px #ffffff;
-  animation: pulseGlow 1.5s infinite ease-in-out; 
+  color: #FFEB3B; /* Yellow */
+  -webkit-text-stroke: 2px #FFFFFF;
+  animation: ledGlow 2.1s infinite ease-in-out;
 }
 
-@keyframes pulseGlow {
+/* Keyframe Animation for LED Glow with Multiple Colors */
+@keyframes ledGlow {
   0% {
-      text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
-      opacity: 1;
+    text-shadow: 0 0 5px #FF1493, 0 0 10px #FF1493, 0 0 15px #FF1493, 0 0 20px #FF1493; /* Deep Pink */
+    opacity: 1;
+  }
+  25% {
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00, 0 0 20px #00FF00; /* Green */
+    opacity: 1;
   }
   50% {
-      text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff, 0 0 35px #ffffff, 0 0 45px #ffffff;
-      opacity: 0.8;
+    text-shadow: 0 0 5px #FFEB3B, 0 0 10px #FFEB3B, 0 0 15px #FFEB3B, 0 0 20px #FFEB3B; /* Yellow */
+    opacity: 0.8;
+  }
+  75% {
+    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF, 0 0 20px #FF00FF; /* Magenta */
+    opacity: 1;
   }
   100% {
-      text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
-      opacity: 1;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF, 0 0 20px #00FFFF; /* Cyan Blue */
+    opacity: 1;
   }
 }
 
 .subtitle {
     color: white;
-    font-size: 30px;
+    font-size: 50px;
     font-family: 'Irish Grover', cursive;
 }
 
 .timer {
-  height: 220px;
   position: absolute;
-  top: 220px;
-  left: 387px;
+  top: 45%; 
+  left: 50%; 
+  transform: translate(-50%, -45%); 
+  padding: 10px 20px; 
   display: flex;
   gap: 20px;
 }
@@ -169,139 +167,22 @@ background: linear-gradient(45deg, rgba(255, 235, 59, 0.60), rgba(255, 223, 0, 0
   }
 }
 
-
-.register-section {
-    position: absolute;
-    top: 220px;
-    left: 1000px;
-    text-align: left;
-}
-
-.register-text {
-    font-size: 20px;
-    font-family: 'Irish Grover', cursive;
-    color: transparent; 
-    background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
-    background-clip: text; 
-    -webkit-background-clip: text;
-}
-
-
-.register-text2 {
-    font-size: 18px;
-    font-family: 'Irish Grover', cursive;
-    color: white;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-button {
-    padding: 13px 14px;
-    background: linear-gradient(90deg, #33489c 50%, #00FFFF 100%);
-    background-size: 200%; 
-    border-radius: 10px;
-    color: white;
-    font-size: 12px;
-    font-family: 'Merriweather', serif;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-button:hover {
-    animation: gradient-flow 2s infinite; 
-    transform: scale(1.05); 
-}
-
-@keyframes gradient-flow {
-  0% {
-      background-position: 0% 50%;
-  }
-  100% {
-      background-position: 100% 50%;
-  }
-}
-
-.certification {
-    font-size: 18px;
-    font-family: 'Irish Grover', cursive;
-    color: white;
-    margin-top: 15px;
-}
-
-.info-box {
-  width: 274px;
-  height: 158px;
-  position: absolute;
-  top: 235px;
-  left: 65px;
-  padding: 20px;
-  background-color: black;
-  border-radius: 10px;
-  border: 3px solid transparent; 
-  border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.info-item i {
-  font-size: 24px; 
-  margin-right: 10px; 
-  color: transparent; 
-  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
-  -webkit-background-clip: text; 
-  background-clip: text; 
-}
-
-.info-text {
-  font-size: 16px;
-  font-family: 'Irish Grover', cursive;
-  color: transparent; 
-  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
-  background-clip: text; 
-  -webkit-background-clip: text;
-}
-
-/* General Overlay Styling */
-.overlay {
+.Past-Event {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 410px;
-  background: rgba(255, 255, 255, 0.30);
+  position: relative;
   display: grid;
-  grid-template-rows: 360px 100px;
+  grid-template-rows: 380px 40px;
   grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
   align-items: center;
   justify-items: center;
 }
 
 /* Past Event Title */
-.past-event {
+.past-event-text {
   position: absolute;
-  left: 50%;
-  top: 10px;
-  transform: translateX(-50%);
+  align-items: center;
+  bottom: 360px;
   color: white;
   font-size: 32px;
   font-family: 'Irish Grover', cursive;
@@ -312,7 +193,9 @@ main#carousel {
   grid-row: 1 / 2;
   grid-column: 1 / 8;
   width: 100%;
-  height: 80%;
+  height: 100%;
+  position: relative;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -325,20 +208,18 @@ main#carousel {
   pointer-events: none;
 }
 
-/* Make the images take full space inside their container */
 .carousel-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: relative;
 }
 
 div.item {
   border-radius: 10px;
   background-color: #fff;
   position: absolute;
-  width: clamp(200px, 28vw, 400px); 
-  height: clamp(150px, 38vh, 300px);
+  width: clamp(200px, 50vw, 400px); 
+  height: clamp(150px, 55vh, 300px);
   background-color: white;
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
@@ -404,15 +285,12 @@ input:nth-of-type(5):checked ~ main#carousel {
   --position: 5;
 }
 
-/* Adjust the Radio Button Styling */
 .radio-buttons {
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
   grid-row: 2 / 3;
   grid-column: 1 / 8;
-  margin-bottom: 210px;
+  justify-content: center;
+  gap: 10px;
 }
 
 input[type="radio"] {
@@ -436,7 +314,128 @@ input[type="radio"]:hover {
   background-color: #D8A0F0;
   transform: scale(1.1);
 }
+
+/* End Event Content */
+
+/* Registration */
+.register-section {
+    position: absolute;
+    top: 45%; 
+    left: 95%; 
+    transform: translate(-95%, -45%); 
+    text-align: left;
+}
+
+.register-text {
+    font-size: 20px;
+    font-family: 'Irish Grover', cursive;
+    color: transparent; 
+    background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+    background-clip: text; 
+    -webkit-background-clip: text;
+}
+
+.register-text2 {
+    font-size: 18px;
+    font-family: 'Irish Grover', cursive;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 13px 14px;
+    background: linear-gradient(90deg, #33489c 50%, #00FFFF 100%);
+    background-size: 200%; 
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    animation: gradient-flow 2s infinite; 
+    transform: scale(1.05); 
+}
+
+@keyframes gradient-flow {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+
+.certification {
+    font-size: 18px;
+    font-family: 'Irish Grover', cursive;
+    color: white;
+    margin-top: 15px;
+}
+
+/* Registration End */
+
+/* Main Info */
+.info-box {
+  width: 274px;
+  height: 158px;
+  position: absolute;
+  top: 45%; 
+  left: 5%; 
+  transform: translate(-5%, -45%); 
+  padding: 20px;
+  background-color: black;
+  border-radius: 10px;
+  border: 3px solid transparent; 
+  border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-item i {
+  font-size: 24px; 
+  margin-right: 10px; 
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  -webkit-background-clip: text; 
+  background-clip: text; 
+}
+
+.info-text {
+  font-size: 16px;
+  font-family: 'Irish Grover', cursive;
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  background-clip: text; 
+  -webkit-background-clip: text;
+}
+/* Main Info End */
  
+/* Route */
 .Route {
   width: 100%;
   height: 225px;
@@ -505,6 +504,9 @@ input[type="radio"]:hover {
   opacity: 0;  
 }
 
+/* Route End */
+
+/* Packages */
 .Packages {
   width: 100%;
   height: 225px;
@@ -612,9 +614,12 @@ input[type="radio"]:hover {
   }
 }
 
+/* Packages End */
+
+/* Sponsor */
   .Sponsors {
     width: 100%;
-    height: 270px;
+    height: 300px;
     position: relative;
     background: black;
     display: flex;
@@ -639,18 +644,28 @@ input[type="radio"]:hover {
   display: flex;
   justify-content: space-around; 
   align-items: center;
-  gap: 50px; 
+  gap: 45px; 
   flex-wrap: wrap; 
-  padding: 45px;
-  margin: 0 auto; 
+  padding: 65px;
 }
 
-.sponsor-logos .Logo {
-  width: clamp(80px, 20vw, 120px);  
+.sponsor-logos .Logo1, 
+.sponsor-logos .Logo3, 
+.sponsor-logos .Logo4 {
+  width: clamp(100px, 25vw, 150px);  
   height: auto;
   transition: transform 0.3s ease;
 }
 
-.sponsor-logos .Logo:hover {
+.sponsor-logos .Logo2 {
+  width: clamp(70px, 15vw, 100px);  
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.sponsor-logos .Logo1, 
+.sponsor-logos .Logo2, 
+.sponsor-logos .Logo3, 
+.sponsor-logos .Logo4:hover {
   transform: scale(1.1); 
 }
