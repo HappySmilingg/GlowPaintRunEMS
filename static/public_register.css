@@ -1,0 +1,247 @@
+/* Top Bar */
+.top-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between items */
+    padding: 0 10px; /* Adjust padding for spacing */
+    background-color: black;
+    width: 100%; /* Ensure the top bar spans the full width */
+}
+
+.back-button {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px; /* Add a bit of margin to avoid touching the edges */
+}
+
+.bar-text {
+    font-size: 24px;
+    font-family: 'Irish Grover', cursive;
+    color: white;
+    margin-left: 210px;
+}
+
+button {
+    padding: 13px 14px;
+    background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%);
+    background-size: 300%;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    white-space: nowrap; /* Prevent text from wrapping in the button */
+    min-width: 180px; /* Set a minimum width for the button */
+    margin-left: 10px; /* Adds space between button and text */
+}
+
+button:hover {
+    animation: gradient-flow 1.2s infinite linear;
+    transform: scale(1.05);
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Top Bar End */
+
+/* Registration Form */
+.form-container {
+    width: 100%;
+    background-color: rgb(14, 14, 14);
+    padding: 20px;
+    color: white;
+    font-family: 'Irish Grover', cursive;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .column-left,
+  .column-right {
+    width: 50%;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    margin-left: 40px;
+    font-weight: 500;
+  }
+  
+  .input-group input {
+    width: 75%;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    padding: 12px;
+    font-size: 12px;
+    background-color: white;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+    border-radius: 5px;
+    color: black
+  }
+  
+  .input-group input::placeholder {
+    color: rgb(14, 14, 14);
+  }
+  
+  .input-group input[readonly] {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .t-shirt-text {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .size-selection-images {
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  .shirt-size,
+  .shirt-size-chart {
+    width: 30%;
+    border-radius: 5px;
+    margin-right: 40px;
+  }
+  
+  .additional-info {
+    font-size: 12px;
+    color: white;
+    font-family: 'Irish Grover', cursive;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
+    width: 100%; 
+    box-sizing: border-box; 
+  }
+  
+
+  .proceed-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;   
+    margin-bottom: 20px;
+  }
+  
+  .btn-proceed {
+    padding: 13px 14px;
+    background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%); 
+    background-size: 300%; 
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-proceed:hover {
+    animation: gradient-flow 1.2s infinite linear; 
+    transform: scale(1.05); 
+  }
+  
+  @keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+  }
+  
+  .size-selection-images2 {
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  .ShirtSize {
+    width: 30%;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .ShirtSizeChart {
+    width: 100%;
+    border-radius: 5px;
+    margin-right: 40px;
+  }
+
+  .size-selection-images3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+  
+  .MeasurementArea {
+    color: white;
+    font-size: 10px;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-align: left; /* Align text to the left */
+    word-wrap: break-word;
+  }
+
+  .input-group2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group2 label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-right: 40px;
+    font-weight: 500;
+  }
+  
+  .input-group2 select {
+    width: 75%;
+    margin-right: 40px;
+    padding: 12px;
+    font-size: 12px;
+    background-color: white;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+    border-radius: 5px;
+    color: black
+  }
+  
+  
