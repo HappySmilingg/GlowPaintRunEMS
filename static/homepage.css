@@ -329,8 +329,8 @@ input[type="radio"]:hover {
 .register-section {
     position: absolute;
     top: 50%; 
-    left: 80%; 
-    transform: translate(-80%, -50%); 
+    left: 67%; 
+    transform: translate(-67%, -50%); 
 }
 
 .register-text {
@@ -360,7 +360,7 @@ input[type="radio"]:hover {
 button {
   padding: 13px 14px;
   background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%); 
-  background-size: 300%; /* Expands for smooth transition */
+  background-size: 300%; 
   border-radius: 10px;
   color: white;
   font-size: 14px;
