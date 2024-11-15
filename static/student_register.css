@@ -3,17 +3,17 @@
     height: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Distribute space between items */
-    padding: 0 10px; /* Adjust padding for spacing */
+    justify-content: space-between; 
+    padding: 0 10px; 
     background-color: black;
-    width: 100%; /* Ensure the top bar spans the full width */
+    width: 100%; 
 }
 
 .back-button {
     font-size: 20px;
     cursor: pointer;
     color: white;
-    margin-right: 10px; /* Add a bit of margin to avoid touching the edges */
+    margin-right: 10px; 
 }
 
 .bar-text {
@@ -24,34 +24,34 @@
 }
 
 button {
-    padding: 13px 14px;
-    background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%);
-    background-size: 300%;
-    border-radius: 10px;
-    color: white;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    white-space: nowrap; /* Prevent text from wrapping in the button */
-    min-width: 180px; /* Set a minimum width for the button */
-    margin-left: 10px; /* Adds space between button and text */
+  padding: 13px 14px;
+  background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%);
+  background-size: 300%;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+  min-width: 180px; 
+  margin-left: 10px; 
 }
 
 button:hover {
-    animation: gradient-flow 1.2s infinite linear;
-    transform: scale(1.05);
+  animation: gradient-flow 1.2s infinite linear;
+  transform: scale(1.05);
 }
 
 @keyframes gradient-flow {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
 }
 
 /* Top Bar End */

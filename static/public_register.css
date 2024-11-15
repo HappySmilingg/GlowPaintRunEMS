@@ -35,9 +35,9 @@ button {
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease;
-    white-space: nowrap; /* Prevent text from wrapping in the button */
-    min-width: 180px; /* Set a minimum width for the button */
-    margin-left: 10px; /* Adds space between button and text */
+    white-space: nowrap;
+    min-width: 180px; 
+    margin-left: 10px; 
 }
 
 button:hover {
