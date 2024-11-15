@@ -1,0 +1,145 @@
+/* Top Bar */
+.top-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 10px; 
+    background-color: black;
+    width: 100%; 
+}
+
+.back-button {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px; 
+}
+
+.bar-text {
+    font-size: 24px;
+    font-family: 'Irish Grover', cursive;
+    color: white;
+    margin-left: 210px;
+}
+
+button {
+  padding: 13px 14px;
+  background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%);
+  background-size: 300%;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;  white-space: nowrap;
+  min-width: 180px; 
+  margin-left: 10px; 
+}
+
+button:hover {
+  animation: gradient-flow 1.2s infinite linear;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(255, 39, 93, 0.5);
+}
+
+@keyframes gradient-flow {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+
+/* Top Bar End */
+
+/* Search Function */
+.search-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#search {
+    flex: 2;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.filters select {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Search Function End */
+
+/* Participant Table */
+.participant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.participant-table th, .participant-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Font size adjustments */
+th {
+    font-size: 18px; /* Adjust title column (header) font size */
+    font-weight: bold;
+}
+
+td {
+    font-size: 14px; /* Adjust row value font size */
+}
+
+.participant-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+.participant-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+th:nth-child(1), td:nth-child(1) {
+    width: 60px;
+}
+
+/* Adjust width of specific columns */
+th:nth-child(3), td:nth-child(3), /* Matric Number */
+th:nth-child(4), td:nth-child(4),
+th:nth-child(5), td:nth-child(5), 
+th:nth-child(6), td:nth-child(6), 
+th:nth-child(7), td:nth-child(7) { /* T-Shirt Size */
+    width: 120px; /* Adjust this width as needed */
+}
+
+/* Style the action column */
+th:nth-child(8), td:nth-child(8) {
+    width: 150px;
+}
+
+/* Optional: Style for the checkboxes */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+/* Participant Table End */
