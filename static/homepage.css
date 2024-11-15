@@ -167,9 +167,12 @@
   top: 31%; 
   left: 50%; 
   transform: translate(-50%, -32%); 
-  color: white;
   font-family: 'Irish Grover', cursive;
   font-size: 50px;
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  background-clip: text; 
+  -webkit-background-clip: text;
 }
 
 .timer-text2 {
@@ -177,9 +180,12 @@
   top: 52%; 
   left: 50%; 
   transform: translate(-50%, -52%); 
-  color: white;
   font-family: 'Irish Grover', cursive;
   font-size: 50px;
+  color: transparent; 
+  background-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%);
+  background-clip: text; 
+  -webkit-background-clip: text;
 }
 
 
