@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <!-- Icon lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Irish Grover (for title) -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- Inter text (for content) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+  
+<body>
+    <div class="header">
+        <div class="logo">
+          <a href="/">
+              <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
+          </a>
+        </div> 
+        <div class="header-structure">
+          <div class="header-item">Participants
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+            </ul>
+          </div>
+          <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Information</div>
+          <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+          <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+            </ul>
+         </div>
+        </div>
+        <div class="profile-icon" onclick="window.location.href='/Organiser/login'">
+          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+        </div>
+      </div>  
+      <div class="content">
+        <img class="background-img" src="{{ url_for('static', filename='Image/background.png') }}" alt="Background Image">
+        <div class="title">
+            <span class="text glow">Glow</span>
+            <span class="text paint">Paint</span>
+            <span class="text run">Run</span>
+            <span class="text year">2024</span><br>
+            <span class="subtitle">Let’s have a glorious run!</span>
+        </div>
+
+        <div class="timer-text">ONLY</div>
+        
+        <div class="timer">
+          <div class="time-box days">
+            <div class="time-number" id="days"></div>
+            <div class="time-label">DAYS</div>
+          </div>
+          <div class="time-box hours">
+            <div class="time-number" id="hours"></div>
+            <div class="time-label">HOURS</div>
+          </div>
+          <div class="time-box minutes">
+            <div class="time-number" id="minutes"></div>
+            <div class="time-label">MINUTES</div>
+          </div>
+          <div class="time-box seconds">
+            <div class="time-number" id="seconds"></div>
+            <div class="time-label">SECONDS</div>
+          </div>
+        </div>
+
+        <div class="timer-text2">LEFT !!</div>  
+     
+    </div>
+</body>
+<footer class="footer">
+    <div class="footer-section follow-us">
+      <h3>FOLLOW US</h3>
+      <div class="social-icons">
+        <div class="social-item">
+          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-section register-now">
+      <h3>REGISTER NOW</h3>
+      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+      <p onclick="window.location.href='/Public/public_register'">Public</p>
+    </div>
+  
+    <div class="footer-section about-event">
+      <h3>ABOUT EVENT</h3>
+      <p onclick="window.location.href='/Public/route'">Event Route</p>
+    </div>
+  
+    <div class="footer-section package">
+      <h3>PACKAGE</h3>
+      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+    </div>
+  
+    <div class="footer-section about-us">
+      <h3>ABOUT US</h3>
+      <p onclick="window.location.href='/Public/about-us'">About Us</p>
+      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+    </div>
+  
+    <div class="footer-bottom">
+      <div class="line"></div>
+      <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+    </div>
+  </footer>  
+</html>
+</html>
+
+<script>
+    // Select the header
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+</script>

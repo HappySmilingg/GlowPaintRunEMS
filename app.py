@@ -91,9 +91,13 @@ def login():
 def admin_homepage():
     return render_template('Organiser/homepage.html')
 
-@app.route('/Organiser/participant_list')
-def participant_list():
-    return render_template('Organiser/participant_list.html')
+@app.route('/Organiser/student_participant_list')
+def student_participant_list():
+    return render_template('Organiser/student_participant_list.html')
+
+@app.route('/Organiser/public_participant_list')
+def public_participant_list():
+    return render_template('Organiser/public_participant_list.html')
 
 @app.route('/Organiser/info_list')
 def info_list():
