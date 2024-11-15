@@ -164,12 +164,12 @@
 
 .timer-text {
   position: absolute;
-  top: 32%; 
+  top: 31%; 
   left: 50%; 
   transform: translate(-50%, -32%); 
   color: white;
   font-family: 'Irish Grover', cursive;
-  font-size: 26px;
+  font-size: 50px;
 }
 
 .timer-text2 {
@@ -179,7 +179,7 @@
   transform: translate(-50%, -52%); 
   color: white;
   font-family: 'Irish Grover', cursive;
-  font-size: 26px;
+  font-size: 50px;
 }
 
 
@@ -357,7 +357,7 @@ input[type="radio"]:hover {
 }
 
 .register-text {
-  font-size: 22px;
+  font-size: 43px;
   font-family: 'Irish Grover', cursive;
   color: white;
 }
