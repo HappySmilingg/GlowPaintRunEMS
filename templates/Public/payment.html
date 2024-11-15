@@ -95,7 +95,7 @@
             <div class="bank-details">
                 <p class="details-title">Bank Account Details:</p>
                 <p class="details-content">
-                    <strong>Name:</strong> TAN KAI XIN<br>
+                    <strong>Name:</strong> 3KPP<br>
                     <strong>Bank:</strong> MAYBANK<br>
                     <strong>Account Number:</strong> 157438084281
                 </p>
@@ -132,10 +132,10 @@
       </div>
     </div>  
         
-      <div class="terms-and-conditions">
-        <p>You will receive an email confirmation after the submission of your registration.</p>
-        <p><input type="checkbox" id="terms" name="terms"> Yes, I confirm that I have read, understood and agree to the all <a href="#" class="terms-link">terms and conditions </a>mentioned above.</p>
-      </div>
+    <div class="terms-and-conditions">
+      <p>You will receive an email confirmation after the submission of your registration.</p>
+      <p><input type="checkbox" id="terms" name="terms"> Yes, I confirm that I have read, understood and agree to the all <a href="#" class="terms-link">terms and conditions</a> mentioned above.</p>
+    </div>
 
       <div class="popup-window" id="termsPopup">
         <div class="popup-content">
@@ -194,8 +194,8 @@
     
      <!-- Submit Button -->
      <div class="submit-section">
-        <button class="submit-btn" onclick="showSuccess()">Submit Payment</button>
-      </div>
+      <button class="submit-btn" id="submitBtn" onclick="showSuccess()" disabled>Submit Payment</button>
+     </div>
 
       <!-- Success Window (Initially hidden) -->
       <div id="success-window" class="success-window">
@@ -366,7 +366,21 @@
         if (event.target === popup) {
             popup.style.display = "none"; // Hide the popup if clicking outside
         }
+        });
     });
-});
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const termsCheckbox = document.getElementById("terms");
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Function to toggle the submit button's enabled/disabled state
+        termsCheckbox.addEventListener("change", function() {
+            if (termsCheckbox.checked) {
+                submitBtn.disabled = false; 
+            } else {
+                submitBtn.disabled = true; 
+            }
+        });
+    });
 
 </script>

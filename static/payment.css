@@ -352,6 +352,14 @@ input[type="file"] {
   margin-bottom: 20px;
 }
 
+.submit-btn:disabled {
+  background: #d3d3d3; 
+    cursor: not-allowed !important; 
+    box-shadow: none !important; 
+    transform: none !important; 
+    transition: none !important;
+}
+
 .submit-btn:hover {
   animation: gradient-flow 1.2s infinite linear;
   transform: scale(1.05);
