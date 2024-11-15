@@ -74,6 +74,31 @@ def about_us():
 def contact_us():
     return render_template('Public/contact_us.html')
 
+@app.route('/Organiser/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+       email = request.form['email']
+       password = request.form['password']
+       
+       if email == '123@gmail.com' and password == '123':
+          return redirect(url_for('admin_homepage')) 
+       else:
+          flash('Invalid email or password.', 'error')
+          return redirect(url_for('login'))
+    return render_template('Organiser/login.html')
+
+@app.route('/Organiser/homepage')
+def admin_homepage():
+    return render_template('Organiser/homepage.html')
+
+@app.route('/Organiser/participant_list')
+def participant_list():
+    return render_template('Organiser/participant_list.html')
+
+@app.route('/Organiser/info_list')
+def info_list():
+    return render_template('Organiser/info_list.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 

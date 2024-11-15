@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <!-- Icon lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Irish Grover (for title) -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- Inter text (for content) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+  
+<body>
+    <div class="header">
+      <div class="logo">
+        <a href="/">
+            <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
+        </a>
+      </div>
+        <div class="header-structure">
+          <div class="header-item">Register
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
+            </ul>
+          </div>
+          <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
+          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
+          <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+            </ul>
+         </div>
+        </div>
+        <div class="profile-icon" onclick="window.location.href='/Public/login'">
+          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+        </div>
+      </div>  
+      <div class="top-bar">       
+            <div class="bar-text">LOGIN</div>
+       </div>
+       <div class="content-wrapper">
+        <div class="login-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            {% if loop.index == 1 %}
+                                <div class="flash {{ category }}">
+                                    {% if category == 'error' %}
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    {% endif %}
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                        <i class="eye-icon fas fa-eye-slash" alt="Show Password" onclick="togglePassword()"></i>
+                    </div>
+                </div>
+                
+                <div class="button-container">
+                    <button type="button" class="btn back-btn" onclick="window.location.href='/'">Back</button>
+                    <button type="submit" class="btn login-btn">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+    
+</body>
+<footer class="footer">
+    <div class="footer-section follow-us">
+      <h3>FOLLOW US</h3>
+      <div class="social-icons">
+        <div class="social-item">
+          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-section register-now">
+      <h3>REGISTER NOW</h3>
+      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+      <p onclick="window.location.href='/Public/public_register'">Public</p>
+    </div>
+  
+    <div class="footer-section about-event">
+      <h3>ABOUT EVENT</h3>
+      <p onclick="window.location.href='/Public/route'">Event Route</p>
+    </div>
+  
+    <div class="footer-section package">
+      <h3>PACKAGE</h3>
+      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+    </div>
+  
+    <div class="footer-section about-us">
+      <h3>ABOUT US</h3>
+      <p onclick="window.location.href='/Public/about-us'">About Us</p>
+      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+    </div>
+  
+    <div class="footer-bottom">
+      <div class="line"></div>
+      <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+    </div>
+  </footer> 
+
+</html>
+
+<script>
+    // Select the header
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+
+    function togglePassword() {
+    var passwordField = document.getElementById('password');
+    var eyeIcon = document.querySelector('.eye-icon');
+    
+    if (passwordField.type === "password") {
+        passwordField.type = "text";  
+        eyeIcon.classList.remove('fa-eye-slash');  
+        eyeIcon.classList.add('fa-eye');  
+    } else {
+        passwordField.type = "password";  
+        eyeIcon.classList.remove('fa-eye');  
+        eyeIcon.classList.add('fa-eye-slash');  
+        }
+    }
+
+</script>
