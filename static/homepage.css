@@ -376,11 +376,11 @@ input[type="radio"]:hover {
 
 button {
   padding: 13px 14px;
-  background: linear-gradient(90deg, #33489c 50%, #00FFFF 100%);
-  background-size: 200%; 
+  background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%); 
+  background-size: 300%; 
   border-radius: 10px;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   border: none;
@@ -390,7 +390,7 @@ button {
 
 
 button:hover {
-  animation: gradient-flow 2s infinite; 
+  animation: gradient-flow 1.2s infinite; 
   transform: scale(1.05); 
 }
 
