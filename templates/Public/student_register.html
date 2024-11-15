@@ -50,7 +50,8 @@
             <div class="bar-text">REGISTER AS USM STUDENT</div>
             <button class="bar-button" onclick="window.location.href='/Public/public_register'">REGISTER AS PUBLIC</button>
        </div>
-       
+
+      <form method="POST" action="/submit-form">
        <div class="form-container">
         <div class="form-row">
           <!-- Left Column (Personal Details) -->
@@ -94,13 +95,12 @@
                   <option value="engineering-campus">Engineering Campus</option>
                 </select>
               </div>
-              
               <div class="input-group3">
                 <label for="package-details">PACKAGE DETAILS</label>
                 <select id="package-details" name="package-details">
-                  <option value="pro">Glow-rious Pro (RM50)</option>
-                  <option value="lite">Glow-rious Lite (RM35)</option>
-                  <option value="starter">Glow-rious Starter (RM15)</option>
+                  <option value="Glowrious Pro">Glow-rious Pro (RM50)</option>
+                  <option value="Glowrious Lite">Glow-rious Lite (RM35)</option>
+                  <option value="Glowrious Starter">Glow-rious Starter (RM15)</option>
                 </select>
                 <div class="view">
                   <label for="view-details">VIEW PACKAGE</label>
@@ -133,16 +133,16 @@
                   <div class="input-group2">
                     <label for="t-shirt-size">SIZE SELECTION</label>
                     <select id="t-shirt-size" name="t-shirt-size">
-                      <option value="s">S</option>
-                      <option value="m">M</option>
-                      <option value="l">L</option>
-                      <option value="xl">XL</option>
-                      <option value="xxl">2XL</option>
-                      <option value="xxxl">3XL + (RM 3)</option>
-                      <option value="xxxxl">4XL + (RM 5)</option>
-                      <option value="xxxxxl">5XL + (RM 7)</option>
-                      <option value="xxxxxxl">6XL + (RM 9)</option>
-                      <option value="xxxxxxxl">7XL + (RM 11)</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="2XL">2XL</option>
+                      <option value="3XL">3XL + (RM 3)</option>
+                      <option value="4XL">4XL + (RM 5)</option>
+                      <option value="5XL">5XL + (RM 7)</option>
+                      <option value="6XL">6XL + (RM 9)</option>
+                      <option value="7XL">7XL + (RM 11)</option>
                     </select>
                 </div>
                 </div>
@@ -156,7 +156,7 @@
           <button class="btn-proceed" onclick="window.location.href='/Public/payment'">Proceed to Payment</button>
         </div>
       </div>      
-    
+    </form>
 </body>
 <footer class="footer">
     <div class="footer-section follow-us">
