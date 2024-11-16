@@ -148,6 +148,16 @@ button:hover {
     box-sizing: border-box; 
   }
   
+  .view {
+    color: white;
+    text-decoration: underline;
+    width: 20%;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .view:hover {
+    color: blue;
+  }
 
   .proceed-button {
     display: flex;
