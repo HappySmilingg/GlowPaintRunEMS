@@ -63,7 +63,16 @@
                 <td>#123456</td>
               </tr>
               <td><strong>Selected Package:</strong></td>
-                <td>{{ package }}</td>
+                <td>{% if package == 'Pro' %}
+                        Glowrious Pro
+                    {% elif package == 'Lite' %}
+                        Glowrious Lite
+                    {% elif package == 'Starter' %}
+                        Glowrious Starter
+                    {% else %}
+                        {{ package }}  
+                    {% endif %}
+                </td>
               <tr>
                 <td><strong>Selected Size:</strong></td>
                 <td>{{ t_shirt_size }}</td>
@@ -285,34 +294,6 @@
       window.history.back(); 
     }
 
-    // Function to calculate final price based on package and size
-// function calculatePrice(packageName, size) {
-//     let packagePrices = {
-//         "Glow-rious Pro": 50.00,
-//         "Glow-rious Lite": 35.00,
-//         "Glow-rious Starter": 15.00
-//     };
-
-//     let sizeSurcharge = 0;
-//     if (size === "3XL") sizeSurcharge = 3;
-//     else if (size === "4XL") sizeSurcharge = 5;
-//     else if (size === "5XL") sizeSurcharge = 7;
-//     else if (size === "6XL") sizeSurcharge = 9;
-
-//     let basePrice = packagePrices[packageName] || 0;
-//     let finalPrice = basePrice + sizeSurcharge;
-
-//     // Displaying updated values in the Order Details section
-//     document.querySelector('.order-details-content').innerHTML = `
-//         <p>Order Number: <strong>#123456</strong></p>
-//         <p>Selected Package: <strong>${packageName}</strong> - RM ${basePrice.toFixed(2)}</p>
-//         <p>Selected Size: <strong>${size}</strong> (Additional RM ${sizeSurcharge.toFixed(2)})</p>
-//         <p>Total Amount: <strong>RM ${finalPrice.toFixed(2)}</strong></p>
-//     `;
-// }
-
-//   // Example usage with values from the registration form (pass these values dynamically)
-//   calculatePrice("Glow-rious Lite", "3XL");
     function showFileName() {
     
     // Get the selected file(s)

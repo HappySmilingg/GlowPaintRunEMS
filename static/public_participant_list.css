@@ -63,8 +63,8 @@ button:hover {
     gap: 10px;
     margin-bottom: 20px;
     margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #search {
@@ -87,9 +87,10 @@ button:hover {
 
 /* Participant Table */
 .participant-table {
-    width: 100%;
     border-collapse: collapse;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .participant-table th, .participant-table td {
@@ -99,14 +100,13 @@ button:hover {
     font-family: 'Inter', sans-serif;
 }
 
-/* Font size adjustments */
 th {
-    font-size: 18px; /* Adjust title column (header) font size */
+    font-size: 16px;
     font-weight: bold;
 }
 
 td {
-    font-size: 14px; /* Adjust row value font size */
+    font-size: 14px; 
 }
 
 .participant-table th {
@@ -114,29 +114,41 @@ td {
     color: #fff;
 }
 
+.hidden-column {
+    display: none;
+}
+
 .participant-table tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
 
 th:nth-child(1), td:nth-child(1) {
-    width: 60px;
+    width: 50px;
 }
 
-/* Adjust width of specific columns */
-th:nth-child(3), td:nth-child(3), /* Matric Number */
-th:nth-child(4), td:nth-child(4),
-th:nth-child(5), td:nth-child(5), 
-th:nth-child(6), td:nth-child(6), 
+th:nth-child(2), td:nth-child(2) {/* Name */
+    width: 250px; 
+}
+
+th:nth-child(3), td:nth-child(3), /* Unique Number */
+th:nth-child(4), td:nth-child(4) { /* Phone */
+    width: 160px; 
+}
+
+th:nth-child(5), td:nth-child(5) {/* Email */
+    width: 200px; 
+}
+
+th:nth-child(6), td:nth-child(6), /* Packages*/
 th:nth-child(7), td:nth-child(7) { /* T-Shirt Size */
-    width: 120px; /* Adjust this width as needed */
+    width: 130px;
 }
 
-/* Style the action column */
-th:nth-child(8), td:nth-child(8) {
-    width: 150px;
+th:nth-child(8), td:nth-child(8), /* Kit and attend checbox*/
+th:nth-child(5), td:nth-child(9) {
+    width: 85px;
 }
 
-/* Optional: Style for the checkboxes */
 input[type="checkbox"] {
     width: 20px;
     height: 20px;

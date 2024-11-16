@@ -226,3 +226,66 @@ margin-top: 10px;
 }
 
 /* end footer */
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .header {
+    height: auto; /* Allow flexible height */
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .header-item {
+    margin: 5px 0;
+  }
+
+  .footer-section {
+    margin: 10px 0; /* Add spacing between sections */
+  }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+  .header {
+    height: auto; /* Ensure header adapts for mobile */
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+  }
+
+  .header-structure {
+    flex-direction: column;
+    gap: 10px; /* Reduce gaps for compact layout */
+  }
+
+  .header-item {
+    margin: 5px 0;
+    font-size: 12px; /* Adjust font size for smaller devices */
+  }
+
+  .footer {
+    padding: 15px 5px;
+    text-align: center;
+  }
+
+  .footer-section {
+    max-width: 100%; /* Make sections full-width */
+    margin: 10px 0;
+  }
+}
+
+/* Prevent submenu from being cut off when header shrinks */
+.header-subitem {
+  z-index: 1500;
+}
+
+/* Make submenu clickable on touch devices */
+.header-item:hover .header-subitem {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .header-subitem {
+    position: static; /* Allow submenu to stack */
+    width: 100%; /* Full-width submenu */
+  }
+}
+
