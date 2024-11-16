@@ -66,6 +66,8 @@
               <th>Email</th>
               <th>Package</th>
               <th>T-Shirt Size</th>
+              <th>Total Amount</th>
+              <th>Proof Payment</th>
               <th>Kit</th>
               <th>Attend</th>
             </tr>
@@ -90,6 +92,8 @@
                 {% endif %}
               </td>            
               <td>{{ public.tShirtSize }}</td>
+              <td>{{ public.phone }}</td>
+              <td>{{ public.email }}</td>
               <td>
                 <input type="checkbox" id="kit-{{ public.ICNumber }}" class="kit-checkbox" 
                        {% if public.status == 'check-in1' or public.status == 'check-in3' %} checked {% endif %}>

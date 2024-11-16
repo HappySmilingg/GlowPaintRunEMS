@@ -78,6 +78,8 @@
                 <th>Email</th>
                 <th>Package</th>
                 <th>T-Shirt Size</th>
+                <th>Total Amount</th>
+                <th>Proof Payment</th>
                 <th>Kit</th>
                 <th>Attend</th>
                 <th class="hidden-column">Campus</th>
@@ -104,6 +106,8 @@
                 {% endif %}
               </td>            
               <td>{{ student.tShirtSize }}</td>
+              <td>{{ student.phone }}</td>
+              <td>{{ student.email }}</td>
               <td>
                 <input type="checkbox" id="kit-{{ student.matricNumber }}" class="kit-checkbox" 
                        {% if student.status == 'check-in1' or student.status == 'check-in3' %} checked {% endif %}>
@@ -269,8 +273,8 @@
         participants.forEach(participant => {
             const name = participant.querySelector("td:nth-child(2)").textContent.toLowerCase();
             const matricNumber = participant.querySelector("td:nth-child(3)").textContent.toLowerCase();
-            const campus = participant.querySelector("td:nth-child(10)").textContent.toLowerCase();
-            const school = participant.querySelector("td:nth-child(11)").textContent.toLowerCase();
+            const campus = participant.querySelector("td:nth-child(12)").textContent.toLowerCase();
+            const school = participant.querySelector("td:nth-child(13)").textContent.toLowerCase();
 
             const matchesSearch = name.includes(searchValue) || matricNumber.includes(searchValue);
             const matchesCampus = selectedCampus ? campus === selectedCampus : true;

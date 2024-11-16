@@ -144,8 +144,13 @@ th:nth-child(7), td:nth-child(7) { /* T-Shirt Size */
     width: 130px;
 }
 
-th:nth-child(8), td:nth-child(8), /* Kit and attend checbox*/
-th:nth-child(5), td:nth-child(9) {
+th:nth-child(8), td:nth-child(8), /* Total Amount and File Upload*/
+th:nth-child(9), td:nth-child(9) {
+    width: 80px;
+}
+
+th:nth-child(10), td:nth-child(10), /* Kit and attend checbox*/
+th:nth-child(11), td:nth-child(11) {
     width: 85px;
 }
 
