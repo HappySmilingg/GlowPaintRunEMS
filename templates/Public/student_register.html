@@ -89,7 +89,7 @@
             <div class="input-group3">
                 <label for="school">SCHOOL</label>
                 <select id="school" name="school" disabled>
-                    <option value="">Select School</option>
+                    <option value="">--Select School--</option>
                 </select>
             </div>
             
@@ -315,7 +315,7 @@
         const selectedCampus = campusDropdown.value;
 
         // Clear and disable School dropdown
-        schoolDropdown.innerHTML = '<option value="">Select School</option>';
+        schoolDropdown.innerHTML = '<option value="">--Select School--</option>';
         schoolDropdown.disabled = true;
 
         // Populate School dropdown if a valid campus is selected
