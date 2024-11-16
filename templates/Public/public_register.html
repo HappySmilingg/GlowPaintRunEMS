@@ -226,4 +226,25 @@
     function goBack() {
       window.history.back(); 
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const packageLink = document.querySelector(".package-link");
+    const popup = document.getElementById("packagePopup");
+
+    packageLink.addEventListener("click", function (event) {
+        event.preventDefault(); 
+        popup.style.display = "flex"; 
+    });
+
+    closePopup.addEventListener("click", function () {
+        popup.style.display = "none"; 
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            popup.style.display = "none"; 
+        }
+        });
+    });
+
   </script>
