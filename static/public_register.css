@@ -162,7 +162,7 @@ button:hover {
   .proceed-button {
     display: flex;
     justify-content: center;
-    margin-top: 30px;   
+    margin-top: 80px;   
     margin-bottom: 20px;
   }
   
@@ -246,7 +246,7 @@ button:hover {
   }
   
   .input-group2 select {
-    width: 75%;
+    width: 90%;
     margin-right: 40px;
     padding: 12px;
     font-size: 12px;
@@ -255,6 +255,22 @@ button:hover {
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
     border-radius: 5px;
     color: black
+  }
+
+  #full-name::placeholder {
+    color: gray;
+  }
+
+  #ic-passport-number::placeholder {
+    color: gray;
+  }
+
+  #phone-number::placeholder {
+    color: gray;
+  }
+
+  #email::placeholder {
+    color: gray;
   }
   
   /* Popup Window */
@@ -272,6 +288,7 @@ button:hover {
   }
   
   .popup-content {
+    font-family: 'Inter', cursive;
     position: relative;
     background: white;
     border-radius: 10px;

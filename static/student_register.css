@@ -161,7 +161,7 @@ button:hover {
   .proceed-button {
     display: flex;
     justify-content: center;
-    margin-top: 70px;   
+    margin-top: 50px;   
     margin-bottom: 20px;
   }
   
@@ -257,6 +257,21 @@ button:hover {
     color: black
   }
 
+  #full-name::placeholder {
+    color: gray;
+  }
+
+  #matric-number::placeholder {
+    color: gray;
+  }
+
+  #phone-number::placeholder {
+    color: gray;
+  }
+
+  #email::placeholder {
+    color: gray;
+  }
 /* End */
   
 /* For the school, campus and packages selection */
@@ -303,6 +318,7 @@ button:hover {
   
   .popup-content {
     position: relative;
+    font-family: 'Inter', cursive;
     background: white;
     border-radius: 10px;
     padding: 30px;
