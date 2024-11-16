@@ -62,8 +62,8 @@
             </div>
       
             <div class="input-group">
-              <label for="ic-passport-number">MATRIC NUMBER (XXXXXX)</label>
-              <input type="text" id="ic-passport-number" name="ic-passport-number" placeholder="Enter IC/Passport Number" />
+              <label for="matric-number">MATRIC NUMBER (XXXXXX)</label>
+              <input type="text" id="matric-number" name="matric-number" placeholder="Enter Matric Number" />
             </div>
       
             <div class="input-group">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="input-group">
-                <label for="email">EMAIL</label>
+                <label for="email">EMAIL (XXX@student.usm.my)</label>
                 <input type="email" id="email" name="email" placeholder="Enter Email" />
               </div>
 
@@ -80,9 +80,9 @@
                 <label for="campus">CAMPUS</label>
                 <select id="campus" name="campus">
                     <option value="">Select Campus</option>
-                    <option value="main-campus">Main Campus</option>
-                    <option value="health-campus">Health Campus</option>
-                    <option value="engineering-campus">Engineering Campus</option>
+                    <option value="main">Main Campus</option>
+                    <option value="health">Health Campus</option>
+                    <option value="engineering">Engineering Campus</option>
                 </select>
             </div>
             
@@ -97,15 +97,16 @@
               <div class="input-group3">
                 <label for="package-details">PACKAGE DETAILS</label>
                 <select id="package-details" name="package-details">
-                  <option value="Glowrious Pro">Glow-rious Pro (RM50)</option>
-                  <option value="Glowrious Lite">Glow-rious Lite (RM35)</option>
-                  <option value="Glowrious Starter">Glow-rious Starter (RM15)</option>
+                  <option value="Pro">Glow-rious Pro (RM50)</option>
+                  <option value="Lite">Glow-rious Lite (RM35)</option>
+                  <option value="Starter">Glow-rious Starter (RM15)</option>
                 </select>
               </div>
 
-                <div class="view">
-                    <a href="#" class=package-link>VIEW PACKAGES</a>
-                </div>
+              <div class="view">
+                <a href="#" class=package-link>VIEW PACKAGES</a>
+              </div>
+
 
                 <div class="popup-window" id="packagePopup">
                   <div class="popup-content">
@@ -186,8 +187,6 @@
                 </div>
                 </div>
               </div>      
-
-
           </div>
         </div>
       
@@ -275,7 +274,7 @@
 
     // Mapping campuses to their respective schools
     const schoolOptions = {
-        "main-campus": [
+        "main": [
             { value: "hbp", text: "School of Housing, Building and Planning" },
             { value: "it", text: "School of Industrial Technology" },
             { value: "pharm", text: "School of Pharmaceutical Science" },
@@ -295,12 +294,12 @@
             { value: "dedu", text: "School of Distance Education" },
             { value: "post", text: "Institute of Postgraduate Studies" },
         ],
-        "health-campus": [
+        "health": [
             { value: "health", text: "School of Health Sciences" },
             { value: "medical", text: "School of Medical Sciences" },
             { value: "dental", text: "School of Dental Sciences" },
         ],
-        "engineering-campus": [
+        "engineering": [
             { value: "ee", text: "School of Electrical and Electronic Engineering" },
             { value: "mmre", text: "School of Materials and Mineral Resources Engineering" },
             { value: "ae", text: "School of Aerospace Engineering" },
