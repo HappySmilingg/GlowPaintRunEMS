@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow Paint Run</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='route.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   </head>
 <body>
   <div class="header">
     <div class="logo">
-      <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo"> 
-    </div>
+      <a href="/">
+          <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
+      </a>
+    </div> 
     <div class="header-structure">
       <div class="header-item">Register
         <i class="fa fa-caret-down"></i>
@@ -32,15 +34,15 @@
         </ul>
      </div>
     </div>
-    <div class="profile-icon" onclick="window.location.href='/Public/login'">
+    <div class="profile-icon" onclick="window.location.href='/Organiser/login'">
       <i class='fas fa-user-alt' style="font-size: 24px;"></i>
     </div>
-  </div>     
+  </div>    
 
       <!--Route-->
       <!-- Map Section -->
     <section class="map-container">
-      <h1>Running Route</h1>
+      <h1>RUNNING ROUTE</h1>
       <div class="map">
         <svg width="1192" height="1100" viewBox="0 0 1192 1064" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M515.572 490.823L443.856 461.795C443.856 461.795 443.856 442.04 451.426 410.996C458.766 380.898 451.426 340.04 451.426 340.04C455.012 316.656 462.184 296.095 451.426 263.439C446.345 248.013 423.139 215.06 391.265 208.609C375.727 208.609 293.653 189.66 282.098 340.04C184.231 526.769 152.867 643.959 55 830.688C93.5868 897.287 116.815 931.401 155.401 998C178.908 946.798 391.265 954.459 376.922 884.711C491.904 913.681 675.736 972.198 704.023 946.798L732.71 843.589C835.9 862.134 876.14 874.799 974.151 843.589C1031.12 825.447 1017.18 793.597 1031.12 734.333C1036.85 710.016 1056.23 678.696 1017.18 649.668C978.135 620.64 959.808 611.771 941.481 601.692C928.878 594.762 868.57 619.834 862.195 601.692C850.215 588.939 900.842 569.036 847.454 546.862C837.095 508.561 862.195 535.17 876.14 499.692C847.454 473.083 882.913 461.795 847.454 410.996C865.814 362.031 857.78 345.463 876.14 296.498C906.42 263.439 851.438 182.806 991.681 174.743C1017.18 174.743 1017.18 131.605 991.681 78.7907C1012.69 39.7444 996.175 66.2322 1017.18 27.186C1045.87 -1.84173 890.483 -7.08277 862.195 18.3165C817.573 25.9766 775.739 109.028 798.05 118.301C808.807 152.569 845.86 149.344 862.195 174.743C878.531 200.143 893.272 263.439 862.195 285.613C825.541 291.257 814.116 347.534 783.309 387.21C752.63 399.304 704.023 394.063 704.023 340.04C713.187 311.012 676.977 288.606 643.065 311.012C575.334 355.763 541.469 407.368 515.572 490.823ZM515.572 490.823C535.891 528.72 547.843 550.894 547.843 569.036C522.482 610.916 503.88 646.089 478.519 687.969" stroke="#FA0EBF" stroke-width="4"/> 
@@ -178,21 +180,93 @@
       <div class="legend-container">
         <h2>5 KM ROUTE</h2>
         <div class="legend-box">
-            <div class="legend-item">
-                <span class="icon main-point"></span>
-                <span>MAIN POINT</span>
+            <div class="mainpoint-icon">
+                <span class="icon"><i class="fas fa-location-dot"></i></span>
+                <div class="text1">
+                  <span>MAIN POINT</span>
+                </div>
             </div>
-            <div class="legend-item">
-                <span class="icon direction-path"></span>
+            <div class="directionpath-icon">
+              <span class="icon direction-path"></span>
+              <div class="text2">
                 <span>DIRECTION PATH</span>
-            </div>
-            <div class="legend-item">
-                <span class="icon start-finish"></span>
-                <span>START / FINISH</span>
+              </div>
+          </div>
+            <div class="startfinish-icon">
+                <span class="icon"><i class="fas fa-flag flag"></i></span>
+                <div class="text3">
+                  <span>START / FINISH</span>
+                </div>
             </div>
         </div>
     </div>
+    </div>
   </section>
-
 </body>
+<!--
+<footer class="footer">
+  <div class="footer-section follow-us">
+    <h3>FOLLOW US</h3>
+    <div class="social-icons">
+      <div class="social-item">
+        <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+          <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+          <p>3KPP_USM</p>
+        </a>
+      </div>
+      <div class="social-item">
+        <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+          <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+          <p>3KPP_USM</p>
+        </a>
+      </div>
+      <div class="social-item">
+        <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+          <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+          <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-section register-now">
+    <h3>REGISTER NOW</h3>
+    <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+    <p onclick="window.location.href='/Public/public_register'">Public</p>
+  </div>
+
+  <div class="footer-section about-event">
+    <h3>ABOUT EVENT</h3>
+    <p onclick="window.location.href='/Public/route'">Event Route</p>
+  </div>
+
+  <div class="footer-section package">
+    <h3>PACKAGE</h3>
+    <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+  </div>
+
+  <div class="footer-section about-us">
+    <h3>ABOUT US</h3>
+    <p onclick="window.location.href='/Public/about-us'">About Us</p>
+    <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="line"></div>
+    <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+  </div>
+</footer> -->
 </html>
+<script>
+  // Select the header
+  const header = document.querySelector('.header');
+
+  // Add scroll event listener
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      header.classList.add('shrink');
+    } else {
+      header.classList.remove('shrink');
+    }
+  });
+</script>

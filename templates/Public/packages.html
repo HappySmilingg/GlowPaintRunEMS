@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow Paint Run</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='packages.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="header">
-      <div class="logo">
-        <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo"> 
-      </div>
-      <div class="header-structure">
-        <div class="header-item">Register
-          <i class="fa fa-caret-down"></i>
-          <ul class="header-subitem">
-              <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
-              <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
-          </ul>
+        <div class="logo">
+          <a href="/">
+              <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
+          </a>
+        </div> 
+        <div class="header-structure">
+          <div class="header-item">Register
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
+            </ul>
+          </div>
+          <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
+          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
+          <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+            </ul>
+         </div>
         </div>
-        <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
-        <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
-        <div class="header-item">About Us
-          <i class="fa fa-caret-down"></i>
-          <ul class="header-subitem">
-            <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-            <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
-          </ul>
-       </div>
-      </div>
-      <div class="profile-icon" onclick="window.location.href='/Public/login'">
-        <i class='fas fa-user-alt' style="font-size: 24px;"></i>
-      </div>
-    </div>     
+        <div class="profile-icon" onclick="window.location.href='/Organiser/login'">
+          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+        </div>
+      </div> 
 
     <div class="kit-package-container">
-        <h1 class="title">KIT PACKAGE</h1>
+        <h1 class="title">KIT PACKAGES</h1>
         <div class="package-cards">
             <!-- Package Card 1 -->
             <div class="card">
@@ -67,6 +70,7 @@
                     <li>FACE PAINT SERVICE</li>
                     <li>LUCKY DRAW TICKET</li>
                     <li>WRISTBAND</li>
+                    <li><li>
                 </ul>
                 <button class="price-button">RM 35</button>
                 <p class="student-note">#Only for USM Student</p>
@@ -81,6 +85,8 @@
                     <li>FACE PAINT SERVICE</li>
                     <li>LUCKY DRAW TICKET</li>
                     <li>WRISTBAND</li>
+                    <li><li>
+                    <li><li>
                 </ul>
                 <button class="price-button">RM 15</button>
                 <p class="student-note">#Only for USM Student</p>
@@ -92,12 +98,73 @@
     <div class="running-kit-details">
         <h2 class="details-title">RUNNING KIT COLLECTION DETAILS</h2>
         <p class="details-note">Dear participants, please collect your running kits at the following venue based on the following date & time</p>
-        <div class="collection-info">
-            <input type="text" placeholder="Date & Time">
-            <input type="text" placeholder="Location">
-            <input type="text" placeholder="Date & Time">
-            <input type="text" placeholder="Location">
-        </div>
+
     </div>
 </body>
+<footer class="footer">
+    <div class="footer-section follow-us">
+      <h3>FOLLOW US</h3>
+      <div class="social-icons">
+        <div class="social-item">
+          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>3KPP_USM</p>
+          </a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
+            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer-section register-now">
+      <h3>REGISTER NOW</h3>
+      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+      <p onclick="window.location.href='/Public/public_register'">Public</p>
+    </div>
+  
+    <div class="footer-section about-event">
+      <h3>ABOUT EVENT</h3>
+      <p onclick="window.location.href='/Public/route'">Event Route</p>
+    </div>
+  
+    <div class="footer-section package">
+      <h3>PACKAGE</h3>
+      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+    </div>
+  
+    <div class="footer-section about-us">
+      <h3>ABOUT US</h3>
+      <p onclick="window.location.href='/Public/about-us'">About Us</p>
+      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+    </div>
+  
+    <div class="footer-bottom">
+      <div class="line"></div>
+      <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
+    </div>
+  </footer>  
 </html>
+
+<script>
+    // Select the header
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+</script>
