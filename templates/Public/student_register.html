@@ -77,48 +77,23 @@
               </div>
 
               <div class="input-group3">
-                <label for="school">SCHOOL</label>
-                <select id="school" name="school">
-                  <option value="hbp">School of Housing, Building and Planning</option>
-                  <option value="it">School of Industrial Technology</option>
-                  <option value="pharm">School of Pharmaceutical Science</option>
-                  <option value="computer-science">School of Computer Science</option>
-                  <option value="educational">School of Educational Studies</option>
-                  <option value="management">School of Management</option>
-                  <option value="gsb">Graduate School of Business (GSB)</option>
-                  <option value="comm">School of Communication</option>
-                  <option value="arts">School of the Art</option>
-                  <option value="sollat">School of Language, Literacies and Translation</option>
-                  <option value="human">School of Humanities</option>
-                  <option value="social">School of Social Sciences</option>
-                  <option value="bio">School of Biological Sciences</option>
-                  <option value="chem">School of Chemical Sciences</option>
-                  <option value="mathematics">School of Mathematical Sciences</option>
-                  <option value="phy">School of Physics</option>
-                  <option value="dedu">School of Distance Education</option>
-                  <option value="post">Institute of Postgraduate Studies</option>
-                  <!--Engineering-->
-                  <option value="ee">School of Electrical and Electronic Engineering</option>
-                  <option value="mmre">School of Materials and Mineral Resources Engineering</option>
-                  <option value="ae">School of Aerospace Engineering</option>
-                  <option value="che">School of Chemical Engineering</option>
-                  <option value="ce">School of Civil Engineering</option>
-                  <option value="me">School of Mechanical Engineering</option>
-                  <!--Health-->
-                  <option value="health">School of Health Sciences</option>
-                  <option value="medical">School of Medical Sciences</option>
-                  <option value="dental">School of Dental Sciences</option>       
-                </select>
-              </div>
-              
-              <div class="input-group3">
                 <label for="campus">CAMPUS</label>
                 <select id="campus" name="campus">
-                  <option value="main-campus">Main Campus</option>
-                  <option value="health-campus">Health Campus</option>
-                  <option value="engineering-campus">Engineering Campus</option>
+                    <option value="">Select Campus</option>
+                    <option value="main-campus">Main Campus</option>
+                    <option value="health-campus">Health Campus</option>
+                    <option value="engineering-campus">Engineering Campus</option>
                 </select>
-              </div>
+            </div>
+            
+            <div class="input-group3">
+                <label for="school">SCHOOL</label>
+                <select id="school" name="school" disabled>
+                    <option value="">Select School</option>
+                </select>
+            </div>
+            
+  
               <div class="input-group3">
                 <label for="package-details">PACKAGE DETAILS</label>
                 <select id="package-details" name="package-details">
@@ -253,4 +228,69 @@
     function goBack() {
       window.history.back(); 
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const campusDropdown = document.getElementById("campus");
+    const schoolDropdown = document.getElementById("school");
+
+    // Mapping campuses to their respective schools
+    const schoolOptions = {
+        "main-campus": [
+            { value: "hbp", text: "School of Housing, Building and Planning" },
+            { value: "it", text: "School of Industrial Technology" },
+            { value: "pharm", text: "School of Pharmaceutical Science" },
+            { value: "computer-science", text: "School of Computer Science" },
+            { value: "educational", text: "School of Educational Studies" },
+            { value: "management", text: "School of Management" },
+            { value: "gsb", text: "Graduate School of Business (GSB)" },
+            { value: "comm", text: "School of Communication" },
+            { value: "arts", text: "School of the Art" },
+            { value: "sollat", text: "School of Language, Literacies and Translation" },
+            { value: "human", text: "School of Humanities" },
+            { value: "social", text: "School of Social Sciences" },
+            { value: "bio", text: "School of Biological Sciences" },
+            { value: "chem", text: "School of Chemical Sciences" },
+            { value: "mathematics", text: "School of Mathematical Sciences" },
+            { value: "phy", text: "School of Physics" },
+            { value: "dedu", text: "School of Distance Education" },
+            { value: "post", text: "Institute of Postgraduate Studies" },
+        ],
+        "health-campus": [
+            { value: "health", text: "School of Health Sciences" },
+            { value: "medical", text: "School of Medical Sciences" },
+            { value: "dental", text: "School of Dental Sciences" },
+        ],
+        "engineering-campus": [
+            { value: "ee", text: "School of Electrical and Electronic Engineering" },
+            { value: "mmre", text: "School of Materials and Mineral Resources Engineering" },
+            { value: "ae", text: "School of Aerospace Engineering" },
+            { value: "che", text: "School of Chemical Engineering" },
+            { value: "ce", text: "School of Civil Engineering" },
+            { value: "me", text: "School of Mechanical Engineering" },
+        ],
+    };
+
+    // Event listener for Campus dropdown change
+    campusDropdown.addEventListener("change", () => {
+        const selectedCampus = campusDropdown.value;
+
+        // Clear and disable School dropdown
+        schoolDropdown.innerHTML = '<option value="">Select School</option>';
+        schoolDropdown.disabled = true;
+
+        // Populate School dropdown if a valid campus is selected
+        if (selectedCampus && schoolOptions[selectedCampus]) {
+            schoolOptions[selectedCampus].forEach(school => {
+                const option = document.createElement("option");
+                option.value = school.value;
+                option.textContent = school.text;
+                schoolDropdown.appendChild(option);
+            });
+
+            // Enable School dropdown
+            schoolDropdown.disabled = false;
+            }
+        });
+    });
+
 </script>
