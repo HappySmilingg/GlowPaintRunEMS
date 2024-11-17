@@ -191,6 +191,33 @@ LOCK TABLES `payment` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `transaction`
+--
+
+DROP TABLE IF EXISTS `transaction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transaction` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `userNumber` varchar(20) DEFAULT NULL,
+  `totalAmount` decimal(10,2) DEFAULT NULL,
+  `fileUploaded` longblob,
+  `fileName` varchar(255) DEFAULT NULL,
+  `createdDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transaction`
+--
+
+LOCK TABLES `transaction` WRITE;
+/*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -210,7 +237,7 @@ CREATE TABLE `users` (
   `checkInTime` datetime DEFAULT NULL,
   `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,13 +246,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','123@gmail.com','012-3456789',NULL,'123','admin','active','2024-11-16 12:27:18',NULL,'2024-11-16 04:27:18'),(2,'Kenny Ooi Yun Shuen','kenny@student.usm.my','016-4153366','{\"campus\": \"main\", \"school\": \"computer-science\", \"package\": \"Lite\", \"tShirtSize\": \"XL\", \"matricNumber\": \"157866\"}',NULL,'student','registered','2024-11-16 17:29:32',NULL,'2024-11-16 09:32:30'),(3,'John Doe','john@gmail.com','016-4155555','{\"package\": \"Pro\", \"ICNumber\": \"020810020388\", \"tShirtSize\": \"3XL\"}',NULL,'public','registered','2024-11-16 17:30:58',NULL,'2024-11-16 09:32:50'),(4,'Tan Tien Ping','tienpingtan@student.usm.my','016-2348888','{\"campus\": \"engineering\", \"school\": \"ee\", \"package\": \"Pro\", \"tShirtSize\": \"M\", \"matricNumber\": \"159235\"}',NULL,'student','registered','2024-11-16 18:05:51',NULL,'2024-11-16 10:05:50'),(5,'Muhammad Bin Alif','alif98@gmail.com','016-9253323','{\"package\": \"Pro\", \"ICNumber\": \"980308060723\", \"tShirtSize\": \"3XL\"}',NULL,'public','registered','2024-11-16 18:07:12',NULL,'2024-11-16 10:17:01'),(6,'Khoo Jia Jin','jiajin@student.usm.my','012-4325423','{\"campus\": \"main\", \"school\": \"pharm\", \"package\": \"Lite\", \"tShirtSize\": \"S\", \"matricNumber\": \"158876\"}',NULL,'student','registered','2024-11-16 18:08:21',NULL,'2024-11-16 10:08:20'),(7,'Ahmad bin Ismail','ismail02@student.usm.my','012-3324352','{\"campus\": \"health\", \"school\": \"health\", \"package\": \"Starter\", \"tShirtSize\": \"S\", \"matricNumber\": \"157562\"}',NULL,'student','registered','2024-11-16 18:11:53',NULL,'2024-11-16 10:11:52'),(8,'Muhammad Binti Siti','siti@gmail.com','016-4154225','{\"package\": \"Pro\", \"ICNumber\": \"990606062932\", \"tShirtSize\": \"M\"}',NULL,'public','registered','2024-11-16 18:18:12',NULL,'2024-11-16 10:18:12'),(9,'Jonathan Yap Jia Sheng','jonathan@gmail.com','012-3065006','{\"package\": \"Pro\", \"ICNumber\": \"020920072933\", \"tShirtSize\": \"L\"}',NULL,'public','registered','2024-11-16 18:20:19',NULL,'2024-11-16 10:20:19');
+INSERT INTO `users` VALUES (1,'admin','123@gmail.com','012-3456789',NULL,'123','admin','active','2024-11-16 12:27:18',NULL,'2024-11-16 04:27:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'gprems'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -236,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-16 18:28:56
+-- Dump completed on 2024-11-17 17:21:08

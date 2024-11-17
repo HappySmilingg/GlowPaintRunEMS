@@ -106,8 +106,16 @@
                 {% endif %}
               </td>            
               <td>{{ student.tShirtSize }}</td>
-              <td>{{ student.phone }}</td>
-              <td>{{ student.email }}</td>
+              <td>{{ student.totalAmount }}</td>
+              <td>
+                {% if student.fileName %} 
+                  <a href="{{ url_for('download_file', number=student.matricNumber) }}" class="download-link">
+                    Download {{ student.fileName }}
+                  </a>
+                {% else %}
+                  No File
+                {% endif %}
+              </td>              
               <td>
                 <input type="checkbox" id="kit-{{ student.matricNumber }}" class="kit-checkbox" 
                        {% if student.status == 'check-in1' or student.status == 'check-in3' %} checked {% endif %}>

@@ -50,6 +50,10 @@
             </div>        
             <div class="bar-text">MAKE PAYMENT</div>
        </div>
+      <form method="POST" id="payment-form" action="/submit_payment" enctype="multipart/form-data">
+        <input type="hidden" id="total_amount" name="total_amount" value="{{ total_amount }}">
+        <input type="hidden" id= "number" name="number" value="{{ number }}">
+
       <div class="payment-container">
         <div class="section order-details">
           <div class="order-details-title">
@@ -131,10 +135,10 @@
                   <p>• Upload up to 5 supported files: PDF or image.</p>
                   <p>• Max 100 MB per file.</p>
               </div>
-              <label for="receipt-upload" class="upload-btn">
+              <label for="receipt_upload" class="upload-btn">
                 <i class="fas fa-upload"></i> Upload File
               </label>
-              <input type="file" id="receipt-upload" name="receipt" accept="image/png, image/jpeg, application/pdf" multiple onchange="showFileName()">
+              <input type="file" id="receipt_upload" name="receipt_upload" accept="image/png, image/jpeg, application/pdf" multiple onchange="showFileName()">
               
               <div id="file-name-display"></div>
           </div>
@@ -222,6 +226,7 @@
       </div>
 
     </div>
+    </form>
 </body>
 <footer class="footer">
     <div class="footer-section follow-us">
@@ -297,7 +302,7 @@
     function showFileName() {
     
     // Get the selected file(s)
-    var input = document.getElementById("receipt-upload");
+    var input = document.getElementById("receipt_upload");
     var fileNameDisplay = document.getElementById("file-name-display");
     
     // Display the file name(s)
@@ -361,6 +366,33 @@
             } else {
                 submitBtn.disabled = true; 
             }
+        });
+    });
+
+    // Handle the form submission via AJAX
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const formData = new FormData(this); // Gather form data
+
+        fetch('/submit_payment', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // If payment was successful, show the success window
+                document.getElementById('success-window').style.display = 'block';
+                document.getElementById('payment-form').reset();
+            } else {
+                // If there was an error, show the error message
+                
+            }
+        })
+        .catch(error => {
+            // Handle any errors with the request
+            console.error("Error submitting form:", error);
         });
     });
 

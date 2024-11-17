@@ -1,12 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from flask import jsonify, json
 from datetime import datetime
 from flask_migrate import Migrate
-
+import base64
+import mimetypes
+from flask import Response
+import os
 
 app = Flask(__name__)
 
+secret_key = os.urandom(24)
+
+app.config['SECRET_KEY'] = secret_key
 app.config['MYSQL_HOST'] = 'localhost'  
 app.config['MYSQL_USER'] = 'root' 
 app.config['MYSQL_PASSWORD'] = '1234'  
@@ -84,7 +90,7 @@ def submit_form():
         finally:
             db.close()
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size))
+        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, matric_number=matric_number, type='student'))
     
     return render_template('Public/student_register.html')
 
@@ -138,7 +144,7 @@ def submit_form2():
         finally:
             db.close()
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size))
+        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, ic_number=ic_number, type='public'))
     
     return render_template('Public/public_register.html')
 
@@ -146,6 +152,17 @@ def submit_form2():
 def payment():
     package = request.args.get('package')
     t_shirt_size = request.args.get('t_shirt_size')
+    user_type = request.args.get('type')
+    ic_number = request.args.get('ic_number')
+    martic_number = request.args.get('matric_number')
+    number = 0
+
+    if user_type == 'public':
+        number = ic_number
+    elif user_type == 'student':
+        number = martic_number
+
+    print(f"Number: {number}")
 
     package_price = {
         'Pro': 50,
@@ -166,8 +183,76 @@ def payment():
     
     total_amount = package_price + additional_price
 
-    return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, package_price=package_price, additional_price=additional_price, total_amount=total_amount)
+    return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, 
+                       package_price=package_price, additional_price=additional_price, 
+                       total_amount=total_amount, number=number)
 
+@app.route('/submit_payment', methods=['POST'])
+def submit_payment():
+    if request.method == 'POST':
+        number = request.form.get('number')
+        total_amount = request.form.get('total_amount')
+        uploaded_file = request.files.get('receipt_upload')  
+        print(f"Number2: {number}")
+            
+        if uploaded_file and uploaded_file.filename: 
+            try:
+                # Read the file content and filename
+                file_content = uploaded_file.read()
+                file_name = uploaded_file.filename
+
+                # Insert file data into the database
+                db = mysql.connection.cursor()
+                query = """
+                    INSERT INTO transaction (userNumber, totalAmount, fileUploaded, fileName)
+                    VALUES (%s, %s, %s, %s)
+                """
+                db.execute(query, (number, total_amount, file_content, file_name))
+                mysql.connection.commit()
+                db.close()
+                print(f"Number3: {number}")
+                print(f"File: {file_name}")
+
+                return jsonify({"success": True}), 200
+
+            except Exception as e:
+                 print(f"Number4: {number}")
+                 print(f"Error: {str(e)}")  # Add this for better visibility of errors
+                 return jsonify({"success": False, "error": str(e)}), 500
+
+        else:
+            print(f"Number5: {number}")
+            return jsonify({"success": False, "error": "No file uploaded"}), 400
+
+@app.route('/download_file/<string:number>')
+def download_file(number):
+    db = mysql.connection.cursor()
+    query = '''
+        SELECT T.fileUploaded, T.fileName 
+        FROM transaction T
+        WHERE T.userNumber = %s
+    '''
+    db.execute(query, (number,))
+    result = db.fetchone()
+    db.close()
+
+    if result:
+        file_data, file_name = result
+
+        # Determine MIME type based on the file name extension
+        mime_type, _ = mimetypes.guess_type(file_name)
+        if not mime_type:
+            mime_type = 'application/octet-stream'  # Fallback for unknown file types
+
+        # Return the file as a downloadable response
+        return Response(
+            file_data,
+            mimetype=mime_type,
+            headers={"Content-Disposition": f"attachment;filename={file_name}"}
+        )
+    else:
+        return "File not found", 404
+        
 @app.route('/Public/packages')
 def packages():
     return render_template('Public/packages.html')
@@ -202,17 +287,21 @@ def student_participant_list():
     db = mysql.connection.cursor()
     query = '''
         SELECT 
-            userName,
-            userEmail,
-            userPhone,
-            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.matricNumber')) AS matricNumber,
-            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
-            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
-            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.campus')) AS campus,
-            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.school')) AS school,
-            userStatus
-        FROM Users
-        WHERE userType = 'student';
+            U.userName,
+            U.userEmail,
+            U.userPhone,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber')) AS matricNumber,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.package')) AS package,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.tShirtSize')) AS tShirtSize,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.campus')) AS campus,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.school')) AS school,
+            U.userStatus,
+            T.totalAmount, 
+            T.fileUploaded,
+            T.fileName
+        FROM Users U
+        LEFT JOIN transaction T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber'))
+        WHERE U.userType = 'student';
     '''
     db.execute(query)
     students = db.fetchall()  
@@ -228,7 +317,10 @@ def student_participant_list():
             'tShirtSize': student[5],
             'campus': student[6],
             'school': student[7],
-            'status': student[8]
+            'status': student[8],
+            'totalAmount': student[9],
+            'fileUploaded': student[10],
+            'fileName': student[11]
         }
         for student in students
     ]
@@ -259,9 +351,13 @@ def public_participant_list():
             JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.ICNumber')) AS ICNumber,
             JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
             JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
-            userStatus
-        FROM Users
-        WHERE userType = 'public';  
+            userStatus,
+            T.totalAmount, 
+            T.fileUploaded,
+            T.fileName
+        FROM Users U
+        LEFT JOIN transaction T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.ICNumber'))
+        WHERE U.userType = 'public'; 
     '''
     db.execute(query)
     publics = db.fetchall()  
@@ -275,7 +371,10 @@ def public_participant_list():
             'ICNumber': public[3],
             'package': public[4],
             'tShirtSize': public[5],
-            'status': public[6]
+            'status': public[6],
+            'totalAmount': public[7],
+            'fileUploaded': public[8],
+            'fileName': public[9]
         }
         for public in publics
     ]

@@ -159,4 +159,13 @@ input[type="checkbox"] {
     height: 20px;
 }
 
+.download-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
 /* Participant Table End */
