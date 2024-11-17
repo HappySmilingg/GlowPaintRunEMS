@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact_us.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+          <a href="/">
+              <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
+          </a>
+        </div> 
+        <div class="header-structure">
+          <div class="header-item">Register
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
+            </ul>
+          </div>
+          <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
+          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
+          <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+            </ul>
+         </div>
+        </div>
+        <div class="profile-icon" onclick="window.location.href='/Organiser/login'">
+          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+        </div>
+      </div> 
+        
+    <div class="container">
+        <h1 class="title">CONTACT US</h1> 
+    </div>
+
+    <div class="desc">
+        <span>For any inquiries, please contact our committees.</span>
+    </div>
+
+    <div class="contact-card">
+        <div class="sponsor">
+            <h2>Want to sponsor our event?</h2>
+            <div class="s_pic">
+                <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="sponsor_pic">
+            </div>
+            <div class="position">
+                <span>Head of Sponsorship Department</span>
+            </div>
+            <div class="name">
+                <span>Pavitra</span>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)" target="blank">
+                <div class="sponsor-button">
+                    <div class="sponsor-button-text">Contact for Sponsorship</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="project-director">
+            <h2>Any inquiries about this event?</h2>
+            <div class="pd_pic">
+                <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="pd_pic">
+            </div>
+            <div class="position">
+                <span>Project Director</span>
+            </div>
+            <div class="name">
+                <span>Azfar</span>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)" target="blank">
+                <div class="pd-button">
+                    <div class="pd-button-text">Message</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<script>
+    // Select the header
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+</script>
