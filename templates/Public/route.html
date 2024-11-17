@@ -70,27 +70,35 @@
       <div class="content">
         <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
       </div>
-      <div class="location-icon1">
+      <div class="location-icon1" id="location-icon1" data-img="{{ url_for('static', filename='Image/bumblesees.jpg') }}">
         <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon2">
+    </div>
+    <div class="location-icon2" id="location-icon2" data-img="{{ url_for('static', filename='Image/muzium.jpg') }}">
         <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon3">
+    </div>
+    <div class="location-icon3" id="location-icon3" data-img="{{ url_for('static', filename='Image/bukit cinta.jpg') }}">
         <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon4">
+    </div>
+    <div class="location-icon4" id="location-icon4" data-img="{{ url_for('static', filename='Image/hbp.jpg') }}">
+      <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+    <div class="location-icon5" id="location-icon5" data-img="{{ url_for('static', filename='Image/fajar.jpg') }}">
         <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon5">
+    </div>
+    <div class="location-icon6" id="location-icon6" data-img="{{ url_for('static', filename='Image/bhepa.jpg') }}">
         <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon6">
-        <i class="fas fa-location-dot fa-2x"></i>
-      </div>
-      <div class="location-icon7">
-        <i class="fas fa-location-dot fa-2x"></i>
-      </div>
+    </div>
+    <div class="location-icon7" id="location-icon7" data-img="{{ url_for('static', filename='Image/koko.jpg') }}">
+      <i class="fas fa-location-dot fa-2x"></i>
+  </div>
+
+  <!-- Popup Window -->
+<div id="popup-window" class="popup-window">
+  <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <img id="popup-img" src="" alt="Popup Image">
+  </div>
+</div>
 
       <div class="label-1">
         <span>BUMBLEDEES</span>
@@ -115,9 +123,9 @@
       </div>
 
       <!--FLAG-->
-      <div class="start-end-icon">
+      <div class="start-end-icon" id="start-end-icon" data-img="{{ url_for('static', filename='Image/the bricks.jpg') }}">
         <i class="fas fa-flag flag fa-3x"></i>
-      </div>
+    </div>    
       <div class="start-end-label">
         <span>START / END POINT</span>
    </div>
@@ -176,17 +184,39 @@
 </footer>
 </html>
 
-<!--
 <script>
-  // Select the header
-  const header = document.querySelector('.header');
+  // // Select the header
+  // const header = document.querySelector('.header');
 
-  // Add scroll event listener
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-      header.classList.add('shrink');
-    } else {
-      header.classList.remove('shrink');
+  // // Add scroll event listener
+  // window.addEventListener('scroll', () => {
+  //   if (window.scrollY > 0) {
+  //     header.classList.add('shrink');
+  //   } else {
+  //     header.classList.remove('shrink');
+  //   }
+  // });
+
+ // Function to open the popup window with the selected image
+ function showPopup(imgSrc) {
+        const popupWindow = document.getElementById("popup-window");
+        const popupImg = document.getElementById("popup-img");
+
+        popupImg.src = imgSrc;
+        popupWindow.style.display = "flex"; // Make the popup visible
     }
-  });
+
+    // Function to close the popup window
+    function closePopup() {
+        const popupWindow = document.getElementById("popup-window");
+        popupWindow.style.display = "none"; // Hide the popup
+    }
+
+    // Attach click event listeners to each location icon
+    document.querySelectorAll('[id^="location-icon"], .start-end-icon').forEach(icon => {
+        icon.addEventListener('click', function () {
+            const imgSrc = this.getAttribute('data-img'); // Get the image source from the data attribute
+            showPopup(imgSrc); // Show the popup with the selected image
+        });
+    });
 </script>
