@@ -146,6 +146,8 @@ body {
 /* Footer Styles */
 .footer {
 width: 100%;
+position: fixed;
+bottom: 0;
 padding: 20px 0;
 background: linear-gradient(90deg, #F508C2 40%, #F12346 100%);
 color: white;
