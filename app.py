@@ -1,12 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_mysqldb import MySQL
-from flask import jsonify, json
+import os
+import random
 from datetime import datetime
 from flask_migrate import Migrate
-import base64
 import mimetypes
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import jsonify, json
 from flask import Response
-import os
+from flask_mysqldb import MySQL
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
@@ -17,6 +18,13 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root' 
 app.config['MYSQL_PASSWORD'] = '1234'  
 app.config['MYSQL_DB'] = 'gprems'  
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'tankaixin02@gmail.com' 
+app.config['MAIL_PASSWORD'] = 'tiat nhzn imzd jnpi'          
+mail = Mail(app)
 
 mysql = MySQL(app)
 migrate = Migrate(app, mysql)
@@ -90,7 +98,7 @@ def submit_form():
         finally:
             db.close()
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, matric_number=matric_number, type='student'))
+        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, matric_number=matric_number, type='student', email=email))
     
     return render_template('Public/student_register.html')
 
@@ -144,7 +152,7 @@ def submit_form2():
         finally:
             db.close()
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, ic_number=ic_number, type='public'))
+        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, ic_number=ic_number, type='public', email=email))
     
     return render_template('Public/public_register.html')
 
@@ -155,14 +163,13 @@ def payment():
     user_type = request.args.get('type')
     ic_number = request.args.get('ic_number')
     martic_number = request.args.get('matric_number')
+    email = request.args.get('email')
     number = 0
 
     if user_type == 'public':
         number = ic_number
     elif user_type == 'student':
         number = martic_number
-
-    print(f"Number: {number}")
 
     package_price = {
         'Pro': 50,
@@ -185,7 +192,7 @@ def payment():
 
     return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, 
                        package_price=package_price, additional_price=additional_price, 
-                       total_amount=total_amount, number=number)
+                       total_amount=total_amount, number=number, email=email)
 
 @app.route('/submit_payment', methods=['POST'])
 def submit_payment():
@@ -193,7 +200,52 @@ def submit_payment():
         number = request.form.get('number')
         total_amount = request.form.get('total_amount')
         uploaded_file = request.files.get('receipt_upload')  
-        print(f"Number2: {number}")
+        email = request.form.get('email')
+        package = request.form.get('package')
+        t_shirt_size = request.form.get('t_shirt_size')
+        package_price = request.form.get('package_price')
+        additional_price = request.form.get('additional_price')
+
+        print(f"Email: {email}")
+        subject = "Order Confirmation - Glow Paint Run 3KPP"
+        message_body = f"""
+        <html>
+            <body>
+                <p>Dear Participant,</p>
+
+                <p>Thank you for your payment of <strong>RM {total_amount}</strong>!</p>
+
+                <p>Here are the details of your order:</p>
+
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Order Number:</strong> #123456</p>
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Selected Package:</strong> {package}</p>
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Selected T-Shirt Size:</strong> {t_shirt_size}</p>
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Package Amount:</strong> RM {package_price}</p>
+                """
+        if float(additional_price) > 0:
+            message_body += f"""
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Additional Price for {t_shirt_size} size:</strong> RM {additional_price}</p>
+            """
+        message_body += f"""
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Total Amount:</strong> RM {total_amount}</p>
+
+                <p>We have received your payment receipt. Please stay tuned for our notifications on when to collect your package.</p>
+
+                <p>Thank you for your participation, and we look forward to seeing you soon!</p>
+
+                <p>Best regards,<br>3KPP Team</p>
+            </body>
+        </html>
+        """
+        try:
+            msg = Message(subject, sender='tankaixin02@gmail.com', recipients=[email])
+            msg.html = message_body 
+            mail.send(msg)
+            print(f"Email2: {email}")
+        except Exception as e:
+            print(f"Email3: {email}")
+            return redirect(request.url)
+
             
         if uploaded_file and uploaded_file.filename: 
             try:
@@ -210,18 +262,14 @@ def submit_payment():
                 db.execute(query, (number, total_amount, file_content, file_name))
                 mysql.connection.commit()
                 db.close()
-                print(f"Number3: {number}")
-                print(f"File: {file_name}")
 
                 return jsonify({"success": True}), 200
 
             except Exception as e:
-                 print(f"Number4: {number}")
-                 print(f"Error: {str(e)}")  # Add this for better visibility of errors
+                 print(f"Error: {str(e)}")  
                  return jsonify({"success": False, "error": str(e)}), 500
 
         else:
-            print(f"Number5: {number}")
             return jsonify({"success": False, "error": "No file uploaded"}), 400
 
 @app.route('/download_file/<string:number>')

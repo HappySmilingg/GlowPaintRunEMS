@@ -52,7 +52,21 @@
        </div>
       <form method="POST" id="payment-form" action="/submit_payment" enctype="multipart/form-data">
         <input type="hidden" id="total_amount" name="total_amount" value="{{ total_amount }}">
-        <input type="hidden" id= "number" name="number" value="{{ number }}">
+        <input type="hidden" id="number" name="number" value="{{ number }}">
+        <input type="hidden" id="email" name="email" value="{{ email }}">
+        <input type="hidden" id="package" name="package" 
+              value="{% if package == 'Pro' %}
+                        Glowrious Pro
+                    {% elif package == 'Lite' %}
+                        Glowrious Lite
+                    {% elif package == 'Starter' %}
+                        Glowrious Starter
+                    {% else %}
+                        {{ package }}
+                    {% endif %}">
+         <input type="hidden" id="t_shirt_size" name="t_shirt_size" value="{{ t_shirt_size }}">
+        <input type="hidden" id="package_price" name="package_price" value="{{ package_price }}">
+        <input type="hidden" id="additional_price" name="additional_price" value="{{ additional_price }}">
 
       <div class="payment-container">
         <div class="section order-details">
