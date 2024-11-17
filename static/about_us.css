@@ -1,0 +1,498 @@
+body {
+    font-family: 'Irish Grover', cursive;
+    
+    background-color: #F6BEED;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.name {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.social-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust the spacing between icons */
+    margin-top: 20px; /* Optional, to add spacing above the row */
+}
+
+.social-logo div {
+    text-align: center;
+}
+
+.social-logo .fa-2x {
+    color: #000000; /* Default color for icons */
+    transition: color 0.3s;
+}
+
+.social-logo .fa-2x:hover {
+    color: #0077ff; /* Color on hover */
+    transform: scale(1.1);
+}
+
+.other-event-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 40px;
+    align-items: top;
+    background-color: 000000; /* Background color for the page */
+    height: 170vh;
+    margin: 0;
+    flex-grow: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+.merch-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    justify-content: space-between;
+    background: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.merch-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.merch-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.gpr-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.gpr-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);}
+
+.gpr-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.pv-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.pv-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.pv-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.mus-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.mus-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.mus-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.fctc-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.fctc-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.fctc-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.tbp-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.tbp-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.tbp-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.jos-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.jos-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.jos-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.dadca-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.dadca-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.dadca-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.tstad-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.tstad-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.tstad-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.bc-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.bc-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.bc-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.cc-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.cc-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.cc-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.oo-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.oo-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.oo-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.cfs-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.cfs-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.cfs-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
+
+.copd-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 600px;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid black; /* Optional for a black border */
+    position: relative;
+}
+
+.copd-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    transform: translateY(3px);
+    transition: all 0.2s ease-in-out; 
+    background: linear-gradient(to right, #F508C2, #FFB82B);
+}
+
+.copd-text {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    letter-spacing: 1px;
+}
