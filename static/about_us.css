@@ -1,7 +1,7 @@
 body {
     font-family: 'Irish Grover', cursive;
-    background-color: #F6BEED;
-    color: black;
+    background-color: #000000;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +42,7 @@ body {
 }
 
 .social-logo .fa-2x {
-    color: #000000; /* Default color for icons */
+    color: #ffffff; /* Default color for icons */
     transition: color 0.3s;
 }
 
@@ -58,7 +58,7 @@ body {
     padding-top: 40px;
     align-items: top;
     background-color: 000000; /* Background color for the page */
-    height: 170vh;
+    height: 145vh;
     margin: 0;
     flex-grow: 1;
     padding: 20px;
@@ -70,13 +70,13 @@ body {
     align-items: center;
     text-decoration: none;
     justify-content: space-between;
-    background: white;
+    background: transparent;
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -84,7 +84,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .merch-text {
@@ -93,7 +93,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -101,13 +101,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
+    background: transparent;
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -115,7 +115,8 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);}
+    background: rgb(155, 10, 212);
+}
 
 .gpr-text {
     flex-grow: 1;
@@ -123,7 +124,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -131,14 +132,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -146,7 +146,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .pv-text {
@@ -155,7 +155,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -163,13 +163,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -177,7 +177,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .mus-text {
@@ -186,7 +186,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -194,13 +194,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -208,7 +208,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .fctc-text {
@@ -217,7 +217,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -225,13 +225,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -239,7 +239,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .tbp-text {
@@ -248,7 +248,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -256,13 +256,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -270,7 +270,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .jos-text {
@@ -279,7 +279,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -287,13 +287,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -301,7 +301,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .dadca-text {
@@ -310,7 +310,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -318,13 +318,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -332,7 +332,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .tstad-text {
@@ -341,7 +341,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -349,13 +349,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -363,7 +363,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .bc-text {
@@ -372,7 +372,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -380,13 +380,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -394,7 +394,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .cc-text {
@@ -403,7 +403,7 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }
 
@@ -411,13 +411,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;    
     border-radius: 30px;
     padding: 10px 20px;
     width: 600px;
     height: 60px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(155, 10, 212);
     position: relative;
 }
 
@@ -425,7 +425,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
     transform: translateY(3px);
     transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
+    background: rgb(155, 10, 212);
 }
 
 .oo-text {
@@ -434,68 +434,6 @@ body {
     font-family: 'Irish Grover', cursive; /* Matches the font in your design */
     font-size: 18px;
     font-weight: bold;
-    color: black;
-    letter-spacing: 1px;
-}
-
-.cfs-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
-    position: relative;
-}
-
-.cfs-card:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
-}
-
-.cfs-text {
-    flex-grow: 1;
-    text-align: center;
-    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-    letter-spacing: 1px;
-}
-
-.copd-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
-    position: relative;
-}
-
-.copd-card:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
-    background: linear-gradient(to right, #F508C2, #FFB82B);
-}
-
-.copd-text {
-    flex-grow: 1;
-    text-align: center;
-    font-family: 'Irish Grover', cursive; /* Matches the font in your design */
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
+    color: white;
     letter-spacing: 1px;
 }

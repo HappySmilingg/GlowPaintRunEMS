@@ -1,7 +1,7 @@
 body {
     font-family: 'Irish Grover', cursive;
-    background-color: #F6BEED;
-    color: black;
+    background-color: black;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,7 +35,7 @@ body {
     padding-top: 20px;
     align-items: top;
     background-color: 000000; /* Background color for the page */
-    height: 40vh;
+    height: auto;
     margin: 0;
     flex-grow: 1;
     padding: 20px;
@@ -47,13 +47,13 @@ body {
     flex-direction: column;
     justify-content: top;
     text-align: center;
-    background: rgb(245, 244, 208);
+    background: transparent;
     border-radius: 10px;
     padding: 20px 40px;
     width: 500px;
     height: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(183, 9, 252); 
     position: relative;
 }
 
@@ -62,13 +62,13 @@ body {
     flex-direction: column;
     justify-content: top;
     text-align: center;
-    background: rgb(245, 244, 208);
+    background: transparent;
     border-radius: 10px;
     padding: 20px 40px;
     width: 500px;
     height: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid black; /* Optional for a black border */
+    border: 3px solid rgb(183, 9, 252); 
     position: relative;
 }
 
@@ -85,8 +85,9 @@ body {
 .position {
     padding-top: 10px;
     padding-bottom: 10px;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 3px solid #00ccff;
+    border-image: linear-gradient(to right, #04FBFF, #1230AE) 5;
+    border-bottom: 3px solid #ff00ff;
     font-size: 24px;
     position: relative;
 }
