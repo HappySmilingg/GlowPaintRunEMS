@@ -39,58 +39,109 @@
       <i class='fas fa-user-alt' style="font-size: 24px;"></i>
     </div>
   </div>    
-
-      <!--Title & Background-->
-      <div class="container">
-        <h1>RUNNING ROUTE</h1>
-        <div class="content">
-          <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
-        </div>
-
-      <!-- Legend -->
-      <div class="legend-container">
-        <h2>5 KM ROUTE</h2>
-        <div class="legend-box">
-            <div class="mainpoint-icon">
-                <span class="icon"><i class="fas fa-location-dot fa-2x"></i></span>
-            </div>
-            <div class="directionpath-icon">
-                <span class="icon"><i class="fas fa-caret-right fa-3x"></i></span>
-            </div>
-            <div class="startfinish-icon">
-                <span class="icon"><i class="fas fa-flag flag fa-2x"></i></span>
-            </div>
-            <div class="text1">
-              <span>MAIN POINT</span>
-            </div>
-            <div class="text2">
-              <span>DIRECTION PATH</span>
-            </div>
-            <div class="text3">
-              <span>START / FINISH</span>
-            </div>
-        </div>
+    <!-- Legend -->
+    <div class="legend-container">
+      <h2>5 KM ROUTE</h2>
+      <div class="legend-box">
+          <div class="mainpoint-icon">
+              <span class="icon"><i class="fas fa-location-dot fa-2x"></i></span>
+          </div>
+          <div class="directionpath-icon">
+              <span class="icon"><i class="fas fa-caret-right fa-3x"></i></span>
+          </div>
+          <div class="startfinish-icon">
+              <span class="icon"><i class="fas fa-flag flag fa-2x"></i></span>
+          </div>
+          <div class="text1">
+            <span>MAIN POINT</span>
+          </div>
+          <div class="text2">
+            <span>DIRECTION PATH</span>
+          </div>
+          <div class="text3">
+            <span>START / FINISH</span>
+          </div>
       </div>
-
-      <div class="listbox">
-        <label for="view">VIEW MAIN POINTS PICTURE</label>
-        <select id="view" name="view">
-          <option value="default">--SELECT MAIN POINT--</option>
-            <option value="start">START / FINISH</option>
-            <option value="cafe">BUMBLEDEES CAFE</option>
-            <option value="muzium">MUZIUM & GALERI TUANKU FAUZIAH</option>
-            <option value="bukit">BUKIT CINTA</option>
-            <option value="hbp">HBP</option>
-            <option value="fajar">DESASISWA FAJAR</option>
-            <option value="bhepa">BHEPA</option>
-            <option value="kok">PUSAT RANCANGAN KOK</option>
-        </select>
     </div>
 
-    <div class="view-picture">
-      
-</body>
+   <!--Route-->
+   <div class="container">
+      <h1>RUNNING ROUTE</h1>
+      <div class="content">
+        <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
+      </div>
+      {% if route_images %}
+    <!-- Only display these divs if there are route images -->
+    <div class="location-icon1" id="location-icon1" data-img="data:image/jpeg;base64,{{ route_images[0] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
 
+    <div class="location-icon2" id="location-icon2" data-img="data:image/jpeg;base64,{{ route_images[1] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+
+    <div class="location-icon3" id="location-icon3" data-img="data:image/jpeg;base64,{{ route_images[2] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+
+    <div class="location-icon4" id="location-icon4" data-img="data:image/jpeg;base64,{{ route_images[3] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+
+    <div class="location-icon5" id="location-icon5" data-img="data:image/jpeg;base64,{{ route_images[4] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+
+    <div class="location-icon6" id="location-icon6" data-img="data:image/jpeg;base64,{{ route_images[5] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+
+    <div class="location-icon7" id="location-icon7" data-img="data:image/jpeg;base64,{{ route_images[6] }}">
+        <i class="fas fa-location-dot fa-2x"></i>
+    </div>
+    {% else %}
+        <p>No route images available.</p>
+    {% endif %}
+
+
+  <!-- Popup Window -->
+<div id="popup-window" class="popup-window">
+  <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <img id="popup-img" src="" alt="Popup Image">
+  </div>
+</div>
+
+      <div class="label-1">
+        <span>BUMBLEDEES</span>
+      </div>
+      <div class="label-2">
+        <span>MUZIUM & GALERI <br> TUANKU FAUZIAH</span>
+      </div>
+      <div class="label-3">
+        <span>BUKIT CINTA</span>
+      </div>
+      <div class="label-4">
+        <span>HBP</span>
+      </div>
+      <div class="label-5">
+        <span>DESASISWA FAJAR</span>
+      </div>
+      <div class="label-6">
+        <span>BHEPA</span>
+      </div>
+      <div class="label-7">
+        <span>PUSAT RANCANGAN <br> KOKURIKULUM</span>
+      </div>
+
+      <!--FLAG-->
+      <div class="start-end-icon" id="start-end-icon" data-img="data:image/jpeg;base64,{{ route_images[7] }}">
+        <i class="fas fa-flag flag fa-3x"></i>
+    </div>    
+      <div class="start-end-label">
+        <span>START / END POINT</span>
+   </div>
+</body>
 <footer class="footer">
   <div class="footer-section follow-us">
     <h3>FOLLOW US</h3>
