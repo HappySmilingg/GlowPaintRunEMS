@@ -65,18 +65,15 @@ def upload_images():
     db = mysql.connection.cursor()
 
     image_files = [
-        'static/Image/bumbledees.jpg',
-        'static/Image/muzium.jpg',
-        'static/Image/bukit cinta.jpg',
-        'static/Image/hbp.jpg',
-        'static/Image/fajar.jpg',
-        'static/Image/bhepa.jpg',
-        'static/Image/koko.jpg',
-        'static/Image/the bricks.jpg'
+        'static/Image/past 1.png',
+        'static/Image/past 2.png',
+        'static/Image/past 3.png',
+        'static/Image/past 4.png',
+        'static/Image/past 5.png',
     ]
 
     event_id = 1
-    detail_name = 'Route Images'
+    detail_name = 'Past Event Images'
     
     for image_file in image_files:
         with open(image_file, 'rb') as file:
@@ -92,7 +89,7 @@ def upload_images():
     db.connection.commit()
     db.close()
 
-    return "Images uploaded successfully!"
+    return "Images uploaded successfully!"
 
 @app.route('/Public/route')
 def route():

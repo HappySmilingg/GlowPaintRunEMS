@@ -43,11 +43,11 @@ body {
 
 .social-logo .fa-2x {
     color: #ffffff; /* Default color for icons */
-    transition: color 0.3s;
+    
 }
 
 .social-logo .fa-2x:hover {
-    color: #0077ff; /* Color on hover */
+    color: rgb(155, 10, 212); /* Color on hover */
     transform: scale(1.1);
 }
 
@@ -55,13 +55,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 40px;
     align-items: top;
     background-color: 000000; /* Background color for the page */
-    height: 145vh;
+    height: auto;
     margin: 0;
     flex-grow: 1;
-    padding: 20px;
+    padding: 40px;
     gap: 20px;
 }
 
@@ -82,8 +81,7 @@ body {
 
 .merch-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -113,8 +111,7 @@ body {
 
 .gpr-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -144,8 +141,7 @@ body {
 
 .pv-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -175,8 +171,7 @@ body {
 
 .mus-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -206,8 +201,7 @@ body {
 
 .fctc-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -237,8 +231,7 @@ body {
 
 .tbp-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -268,8 +261,7 @@ body {
 
 .jos-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -299,8 +291,7 @@ body {
 
 .dadca-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -330,8 +321,7 @@ body {
 
 .tstad-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -361,8 +351,7 @@ body {
 
 .bc-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -392,8 +381,7 @@ body {
 
 .cc-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
@@ -423,8 +411,7 @@ body {
 
 .oo-card:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-    transform: translateY(3px);
-    transition: all 0.2s ease-in-out; 
+    transform: translateY(5px);
     background: rgb(155, 10, 212);
 }
 
