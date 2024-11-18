@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 18px;
+    padding: 1.2vw;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -30,7 +30,7 @@ body {
 }
 
 .header.shrink {
-    padding: 12px;
+    padding: 0.8vw;
   }
 
   /* 16px = 1.2vw */
