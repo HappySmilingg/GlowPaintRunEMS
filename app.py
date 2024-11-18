@@ -1,5 +1,6 @@
 import os
 import random
+import base64
 from datetime import datetime
 from flask_migrate import Migrate
 import mimetypes
@@ -31,11 +32,87 @@ migrate = Migrate(app, mysql)
 
 @app.route('/')
 def homepage():
-    return render_template('Public/homepage.html')
+    db = mysql.connection.cursor()
+
+    # Get the event data from the Event table
+    db.execute("""
+        SELECT eventName, eventDate, eventStartTime, eventEndTime, eventLocation, routeDistance 
+        FROM Event
+    """)
+    events = db.fetchall()
+
+    # Retrieve 'Past Event Images'
+    db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Past Event Images'")
+    past_event_images = db.fetchall()
+
+    db.close()
+
+    # Convert binary images to base64 encoding
+    past_images = []
+    for image in past_event_images:
+        image_data = image[0]
+        base64_encoded_image = base64.b64encode(image_data).decode('utf-8')
+        past_images.append(base64_encoded_image)
+
+    if events:
+        event_date = events[0][1]  # second column is eventDate
+    else:
+        event_date = None
+    return render_template('Public/homepage.html', events=events, event_date=event_date, past_images=past_images)
+
+@app.route('/upload_images')
+def upload_images():
+    db = mysql.connection.cursor()
+
+    image_files = [
+        'static/Image/bumbledees.jpg',
+        'static/Image/muzium.jpg',
+        'static/Image/bukit cinta.jpg',
+        'static/Image/hbp.jpg',
+        'static/Image/fajar.jpg',
+        'static/Image/bhepa.jpg',
+        'static/Image/koko.jpg',
+        'static/Image/the bricks.jpg'
+    ]
+
+    event_id = 1
+    detail_name = 'Route Images'
+    
+    for image_file in image_files:
+        with open(image_file, 'rb') as file:
+            # Convert image to binary
+            binary_data = file.read()
+
+            sql = """
+                INSERT INTO EventDetails (eventID, detailName, detailPicture)
+                VALUES (%s, %s, %s)
+            """
+            db.execute(sql, (event_id, detail_name, binary_data))
+    
+    db.connection.commit()
+    db.close()
+
+    return "Images uploaded successfully!"
 
 @app.route('/Public/route')
 def route():
-    return render_template('Public/route.html')
+    db = mysql.connection.cursor()
+
+    # Retrieve 'Route Images'
+    db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Route Images'")
+    route_images = db.fetchall()
+
+    db.close()
+
+    # Convert binary images to base64 encoding
+    base64_route_images = []  # Use a new list for storing the base64-encoded images
+    for image in route_images:
+        image_data = image[0]
+        base64_encoded_image = base64.b64encode(image_data).decode('utf-8')
+        base64_route_images.append(base64_encoded_image)
+
+    return render_template('Public/route.html', route_images=base64_route_images)
+
 
 @app.route('/Public/public_register')
 def public_register():

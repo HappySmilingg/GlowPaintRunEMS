@@ -89,46 +89,48 @@
 
       <div class="info-text2">MEDAL FOR TOP 100!</div>
       
-        <div class="info-box">
+      <div class="info-box">
+        {% for event in events %}
           <div class="info-content">
+            <!-- Display event date -->
             <div class="info-item">
               <i class="fas fa-calendar-alt time-icon"></i>
-              <div class="info-text">14 DECEMBER 2024</div>
+              <div class="info-text">{{ event[1].strftime('%d %B %Y') }}</div> <!-- eventDate formatted -->
             </div>
+      
+            <!-- Display event start and end time in 12-hour format -->
             <div class="info-item">
               <i class="fas fa-clock time-icon"></i>
-              <div class="info-text">8:00 PM - 11:00 PM</div>
+              <div class="info-text">
+                {{ event[2].strftime('%I:%M %p') }} - {{ event[3].strftime('%I:%M %p') }} <!-- eventStartTime and eventEndTime in 12-hour format -->
+              </div>
             </div>
+      
+            <!-- Display event location -->
             <div class="info-item">
               <i class="fas fa-map-marker-alt location-icon"></i>
-              <div class="info-text">THE BRICKS, USM</div>
+              <div class="info-text">{{ event[4] }}</div> <!-- eventLocation -->
             </div>
+      
+            <!-- Display route distance -->
             <div class="info-item">
               <i class="fas fa-road route-icon"></i>
-              <div class="info-text">5 KM ROUTE</div>
+              <div class="info-text">{{ event[5] }} KM ROUTE</div> <!-- routeDistance -->
             </div>
           </div>
-        </div>        
+        {% endfor %}
+      </div>
+        
 
         <div class="Past-Event">
           <div class="past-event-text">PAST EVENT</div>
         
           <main id="carousel">               
-            <div class="item">
-              <img src="{{ url_for('static', filename='Image/past 1.png') }}" alt="Image 1" class="carousel-image" />
-            </div>
-            <div class="item">
-              <img src="{{ url_for('static', filename='Image/past 2.png') }}" alt="Image 2" class="carousel-image" />
-            </div>
-            <div class="item">
-              <img src="{{ url_for('static', filename='Image/past 3.png') }}" alt="Image 3" class="carousel-image" />
-            </div>
-            <div class="item">
-              <img src="{{ url_for('static', filename='Image/past 4.png') }}" alt="Image 4" class="carousel-image" />
-            </div>
-            <div class="item">
-              <img src="{{ url_for('static', filename='Image/past 5.png') }}" alt="Image 5" class="carousel-image" />
-            </div>
+            {% for image in past_images %}
+              <div class="item">
+                <img src="data:Image/png;base64,{{ image }}" alt="Past Event Image" class="carousel-image" />
+              </div>
+            {% endfor %}
           </main>
           <div class="radio-buttons">
             <input type="radio" name="position" data-pos="1" checked/>
@@ -143,12 +145,12 @@
     <div class="Route">
       <img class="Image1" src="{{ url_for('static', filename='Image/route.png') }}" alt="Event Route Image" />
       <div class="EventRoutetext1">Checkpoints</div>
-      <div class="EventRoutetext2">View Event Route</div>
+      <div class="EventRoutetext2" onclick="window.location.href='/Public/route'">View Event Route</div>
     </div>
     <div class="Packages">
       <img class="Image2" src="{{ url_for('static', filename='Image/background.png') }}" alt="Packages Info" />
       <div class="EventPackagetext1">Packages</div>
-      <div class="EventPackagetext2">View Running Kits & Collection Details</div>
+      <div class="EventPackagetext2" onclick="window.location.href='/Public/packages'">View Running Kits & Collection Details</div>
     </div>
     <div class="Sponsors">
       <div class="sponsor-text">SPONSORS & ORGANISERS</div>
@@ -231,7 +233,7 @@
 
     // Set coutdown timer function
     // Set the deadline date
-    const deadline = new Date("December 14, 2024 00:00:00").getTime();
+    const deadline = new Date("{{ event_date }}").getTime();
 
     // Update the countdown every second
     const countdown = setInterval(function() {
