@@ -156,25 +156,25 @@ body {
 /* Footer */
 .footer {
     background-color: black;
-    padding: 5vw 2vw;
+    padding: 1vw;
     font-family: 'Inter', sans-serif;
-    font-size: 1.2vw;
+    font-size: 1vw;
     font-weight: 700;
     letter-spacing: 1.00px;
 }
 
 .sponsor {
     text-align: center;
-    margin-bottom: 5.5vw;
+    margin-bottom: 3.5vw;
 }
 
 .sponsor-text {
     font-family: 'Inter', sans-serif;
     font-size: 1.2vw;
     font-weight: 700;
-    letter-spacing: 1.00px;
+    letter-spacing: 1px;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .sponsor-logos {
@@ -218,7 +218,7 @@ body {
     justify-content: center;
     align-items: start; 
     margin-bottom: 3vw;
-    padding-left: 5vw;
+    padding-left: 9vw;
     padding-right: 5vw;
 }
 
@@ -295,21 +295,21 @@ body {
 
 .footer-bottom {
     text-align: center;
-    margin-top: 5.5vw;
+    margin-top: 3vw;
 }
 
 .line {
-    border-top: 1.5px solid #9b4dff;
+    border-top: 1.5px solid white;
     width: 90%;
-    margin-top: 1.0vw;
     margin-bottom: 1.0vw;
     margin-left: auto;
     margin-right: auto;
 }
 
 .footer-bottom p {
+    margin-top: 1vw;
     font-family: 'Inter', sans-serif;
-    font-size: 1.0vw;
+    font-size: 0.8vw;
     font-weight: 400;
     letter-spacing: 1.0px;
     color: white;
