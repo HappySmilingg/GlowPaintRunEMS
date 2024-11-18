@@ -18,7 +18,7 @@
         <img class="background-image" src="{{ url_for('static', filename='Image/background.jpg') }}" alt="Background">
         <div class="header">
             <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-            <div class="header-structure">
+            <div class="header-structure-left">
                 <div class="header-item" onclick="window.location.href='/'">Dashboard</div>
                 <div class="header-item">Register
                     <i class="fa fa-caret-down"></i>
@@ -36,12 +36,14 @@
                         <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
                     </ul>
                 </div>
+            </div>
+            <div class="header-structure-right">
                 <div class="login-btn" onclick="window.location.href='/Organiser/login'">
                     <i class='fas fa-user-alt'></i>
                     <div class="login-text">Login</div>
                 </div>
             </div>
-        </div>
+        </div>        
         <div class="content">
             <div class="text1">Medal for TOP 100 participants only!</div>
             <div class="title">
