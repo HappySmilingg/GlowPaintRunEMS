@@ -1,0 +1,110 @@
+.container h1 {
+    font-size: 24px;
+    color: #fff;
+    padding-top: 10px;
+}
+
+.container {
+    height: 50px;
+    text-align: center;
+    background-color: #000000;
+}
+
+.container-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+body {
+    font-family: 'Irish Grover', cursive;
+    background-color: #000000;
+    color: #fff;
+}
+
+.column-left,
+.column-right {
+  width: 50%;
+}
+
+.map-text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 150px;
+    padding-top: 30px;
+    font-size: 24px;
+}
+
+.map-image {
+    padding-top: 40px;
+    background-color: #000000;
+    padding-left: 150px;
+}
+
+.upload-button {
+    margin-left: 35%;
+    margin-top: 35px;
+    display: inline-block;
+    background-color: #f8d40a; /* Button color */
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.upload-button:hover {
+    background-color: transparent; 
+    border: 2px solid;
+    border-color: #f8d40a;
+    color: #f8d40a;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+.location label {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.location input {
+    color: #000000;
+    width: 40%;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.location input::placeholder {
+    color: #000000;
+  }
+
+.background-img {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.upload-image {
+    margin-left: 9%;
+    margin-top: 10px;
+    width: 22%;
+    display: inline-block;
+    background-color: #f8d40a; /* Button color */
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.upload-image:hover {
+    background-color: transparent; 
+    border: 2px solid;
+    border-color: #f8d40a;
+    color: #f8d40a;
+}

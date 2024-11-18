@@ -1,0 +1,17 @@
+.container h1 {
+    font-size: 24px;
+    color: #fff;
+    padding-top: 10px;
+}
+
+.container {
+    height: 50px;
+    text-align: center;
+    background-color: #000000;
+}
+
+body {
+    font-family: 'Irish Grover', cursive;
+    background-color: #FFF;
+    color: #000000;
+}
