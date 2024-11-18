@@ -12,44 +12,43 @@
 </head>
 <body>
     <div class="header">
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
         <div class="header-structure">
-          <div class="header-item">Participants
-            <i class="fa fa-caret-down"></i>
-            <ul class="header-subitem">
-                <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
-                <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
-            </ul>
+            <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
+            <div class="header-item">Participant
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
+                    <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
+                </ul>
+            </div>
+            <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+            <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+            <div class="header-item">About Us
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+                    <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="logout-icon" onclick="window.location.href='/'">
+              <i class='fas fa-power-off'></i>Logout
+            </div>
           </div>
-          <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
-          <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
-          <div class="header-item">About Us
-            <i class="fa fa-caret-down"></i>
-            <ul class="header-subitem">
-              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
-            </ul>
-         </div>
-        </div>
-        <div class="logout-icon" onclick="window.location.href='/'">
-          <i class='fas fa-power-off' style="font-size: 24px;"></i>
-        </div>
-    </div>
-
+      </div>
     <div class="container">
     <h1>EVENT ROUTE</h1>
-    </div>
+    <div class="content">
     <div class="column-left">
         <div class="map">
             <div class="map-text">
-                <span>CURRENT MAP:</span>
+                <span>CURRENT MAP</span>
             </div>
             <div class="map-image">
                 <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image" width="70%">
             </div>
             <div class="map-upload">
-                <label for="upload-map" class="upload-button">
-                    UPLOAD NEW MAP
-                </label>
+                <label for="upload-map" class="upload-button">UPLOAD NEW MAP</label>
                 <input type="file" id="upload-map" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
@@ -58,18 +57,16 @@
         <div class="location">
             <label for="point-1">START / FINISH POINT</label>
             <input type="text" id="start-finish" name="start-finish" placeholder="START / FINISH">
-            <img class="background-img" src="{{ url_for('static', filename='Image/the bricks.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/the bricks.jpg') }}" alt="Background Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
-                    UPLOAD NEW IMAGE
-                </label>
+                <label for="upload-image" class="upload-image-button">UPLOAD NEW IMAGE</label>
                 <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
             <label for="point-1">MAIN POINT 1</label>
             <input type="text" id="point-1" name="point-1" placeholder="BUMBLEDEES CAFE">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bumbledees.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/bumbledees.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -80,7 +77,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 2</label>
             <input type="text" id="point-2" name="point-2" placeholder="MUZIUM & GALERI TUANKU FAUZIAH">
-            <img class="background-img" src="{{ url_for('static', filename='Image/muzium.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/muzium.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -91,7 +88,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 3</label>
             <input type="text" id="point-3" name="point-3" placeholder="BUKIT CINTA">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bukit cinta.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/bukit cinta.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -102,7 +99,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 4</label>
             <input type="text" id="point-4" name="point-4" placeholder="HBP">
-            <img class="background-img" src="{{ url_for('static', filename='Image/hbp.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/hbp.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -113,7 +110,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 5</label>
             <input type="text" id="point-5" name="point-5" placeholder="DESASISWA FAJAR">
-            <img class="background-img" src="{{ url_for('static', filename='Image/fajar.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/fajar.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -124,7 +121,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 6</label>
             <input type="text" id="point-6" name="point-6" placeholder="BHEPA">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bhepa.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/bhepa.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -135,7 +132,7 @@
         <div class="location">
             <label for="point-1">MAIN POINT 7</label>
             <input type="text" id="point-7" name="point-7" placeholder="PUSAT RANCANGAN KOK">
-            <img class="background-img" src="{{ url_for('static', filename='Image/koko.jpg') }}" alt="Background Image" width="40%">
+            <img class="background-img" src="{{ url_for('static', filename='Image/koko.jpg') }}" alt="Background Image">
             <div class="upload-image">
                 <label for="upload-image" class="upload-image-button">
                     UPLOAD NEW IMAGE
@@ -143,10 +140,8 @@
                 <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
+       </div>
     </div>
-        
-
-
-            
-
+    </div>
 </body>
+</html>

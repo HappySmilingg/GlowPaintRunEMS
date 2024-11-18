@@ -1,114 +1,157 @@
 .container h1 {
-    font-size: 24px;
-    color: #fff;
-    padding-top: 10px;
+    position: relative;
+    font-family: 'Irish Grover', cursive;
+    font-size: 2.5vw;
+    font-weight: 400; 
+    letter-spacing: 8.50px; 
+    padding-top: 0.8vw;
+    padding-bottom: 0.8vw;
+    color: white;
 }
 
 .container {
     height: 50px;
     text-align: center;
-    background-color: #000000;
+    background-color: rgb(12, 12, 12);
 }
 
-.container-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-body {
-    font-family: 'Irish Grover', cursive;
-    background-color: #000000;
-    color: #fff;
+.content {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.column-left,
-.column-right {
-  width: 50%;
-}
+/* Column Left */
 
 .map-text {
     display: flex;
-    flex-direction: column;
-    padding-left: 150px;
-    padding-top: 30px;
-    font-size: 24px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2.5vw;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.5vw;
+    font-weight: 700; 
+    letter-spacing: 1.0px;
+    color: white;
 }
 
 .map-image {
-    padding-top: 40px;
-    background-color: #000000;
-    padding-left: 150px;
+    background-color: black;
+    border: 2px solid #9B4DFF; 
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    margin-top: 1vw;
 }
 
 .upload-button {
-    margin-left: 35%;
-    margin-top: 35px;
-    display: inline-block;
-    background-color: #f8d40a; /* Button color */
+    margin-top: 3vw;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d40a;
     border: 2px solid;
     border-color: #f8d40a;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
     color: black;
     padding: 10px 20px;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .upload-button:hover {
-    background-color: transparent; 
+    background-color: rgba(0, 0, 0, 0.3);
     border: 2px solid;
     border-color: #f8d40a;
     color: #f8d40a;
+}
+/* Column Left */
+
+/* Column Right */
+.column-right {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
 }
 
 .location {
     display: flex;
     flex-direction: column;
-    padding-bottom: 15px;
+    align-items: center;
+    margin-top: 2.5vw;
 }
 
 .location label {
-    padding-top: 15px;
-    padding-bottom: 5px;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.5vw;
+    font-weight: 700; 
+    letter-spacing: 1.0px;
+    color: white;
 }
 
 .location input {
-    color: #000000;
-    width: 40%;
-    height: 30px;
-    padding-left: 10px;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.0vw;
+    font-weight: 400; 
+    letter-spacing: 1.0px;
+    color: black;
+    width: 30vw;
+    height: 2.5vw;
+    padding-left: 0.8vw;
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
 }
 
 .location input::placeholder {
-    color: #000000;
+    color: rgb(12, 12, 12);
   }
 
 .background-img {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1.0vw;
+    margin-bottom: 1.0vw;
+    width: 30vw;
+    height: auto;
 }
 
-.upload-image {
-    margin-left: 9%;
-    margin-top: 10px;
-    width: 22%;
-    display: inline-block;
-    background-color: #f8d40a; /* Button color */
-    color: black;
-    padding: 10px 20px;
+.upload-image .upload-image-button {
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d40a;
     border: 2px solid;
     border-color: #f8d40a;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
+    color: black;
+    padding: 10px 20px;
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 3vw;
 }
 
-.upload-image:hover {
-    background-color: transparent; 
+.upload-image-button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
     border: 2px solid;
     border-color: #f8d40a;
     color: #f8d40a;
 }
+
+.upload-image label{
+    margin-top: 1.0vw;
+    margin-bottom: 0.2vw;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.5vw;
+    font-weight: 700; 
+    letter-spacing: 1.0px;
+    color: black;
+}
+/* Right Column End */
