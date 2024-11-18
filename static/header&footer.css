@@ -23,14 +23,13 @@ body {
     position: sticky;
     top: 0;
     z-index: 10;
-    width: 80%;
     margin-left: auto;
     margin-right: auto;
     transition: padding 0.3s ease;
 }
 
 .header.shrink {
-    padding: 0.8vw;
+    padding: 0.6vw;
   }
 
   /* 16px = 1.2vw */
@@ -40,7 +39,7 @@ body {
     align-items: center;
     gap: 30px;
     font-family: 'Inter', sans-serif;
-    font-size: 1.2vw;
+    font-size: 1.0vw;
     font-weight: 700;
     letter-spacing: 1.00px;
 }
@@ -94,7 +93,7 @@ body {
 
 .login-btn {
     display: flex;
-    align-items: center; 
+    align-items: right; 
     gap: 5px;
     cursor: pointer;
     color: white;
@@ -107,12 +106,13 @@ body {
 }
 
 .login-btn i {
-    font-size: 1.5vw;
+    padding-left: 40vw;
+    font-size: 1.3vw;
     margin-right: 0.2vw;
 }
 
 .login-text {
-    font-size: 1.2vw;
+    font-size: 1.0vw;
 }
 
 /* Hamburger icon styles */
