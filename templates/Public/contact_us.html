@@ -39,11 +39,12 @@
         </div>
     </div>
 </div>    
-        
-    <div class="container">
-        <h1 class="title">CONTACT US</h1> 
-    </div>
 
+<div class="top-bar">       
+    <div class="bar-text">CONTACT US</div>
+</div>
+
+<div class="container">
     <div class="desc">
         <span>For any inquiries, please contact our committees.</span>
     </div>
@@ -85,6 +86,7 @@
             </a>
         </div>
     </div>
+</div>
 </body>
 <footer class="footer">
   <div class="sponsor">
@@ -153,7 +155,7 @@
 </html>
 
 <script>
-    // Select the header
+    // The top menu effect function
     const header = document.querySelector('.header');
   
     // Add scroll event listener
@@ -164,4 +166,11 @@
         header.classList.remove('shrink');
       }
     });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
 </script>

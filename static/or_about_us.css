@@ -1,283 +1,105 @@
-body {
-    font-family: 'Irish Grover', cursive;
-    background-color: #000000;
-    color: white;
+.container {
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
     align-items: center;
 }
 
-.container {
+.save-btn {
+    position: fixed;
+    bottom: 3vw;  
+    right: 3vw; 
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: #9b0ad4;
+    border: 2px solid;
+    border-color: #9b0ad4;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
+    color: white;
+    padding: 10px 20px;
     text-align: center;
-    margin-bottom: 10px;
-}
-
-.information {
-    text-align: center;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 100; 
 }
 
 .title {
-    margin-top: 20px;
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.social-logo {
-    align-items: center;
-    justify-items: center;
-}
-
-.social-logo input {
-    font-size: 1vw;
-}
-
-.tiktok {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust the spacing between icons */
-    margin-top: 20px; /* Optional, to add spacing above the row */
-}
-
-.facebook {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust the spacing between icons */
-    margin-top: 20px; /* Optional, to add spacing above the row */
-}
-
-.instagram {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust the spacing between icons */
-    margin-top: 20px; /* Optional, to add spacing above the row */
-}
-
-.email {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust the spacing between icons */
-    margin-top: 20px; /* Optional, to add spacing above the row */
-}
-
-.telegram {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Adjust the spacing between icons */
-    margin-top: 20px; /* Optional, to add spacing above the row */
-}
-
-.social-logo div {
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.5vw;
+    font-weight: 600; 
+    color: white;
     text-align: center;
+    margin-top: 5vw;
 }
 
-.social-logo .fa-3x {
-    color: #ffffff; /* Default color for icons */
+/* Hover effect */
+.save-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid;
+    border-color: #9b0ad4;
+    color: #9b0ad4;
 }
 
-.social-link {
-    padding-top: 5px;
-    padding-bottom: 10px;
-    letter-spacing: 1px;
-    font-size: 1vw;
-    font-family: 'Inter', cursive;
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
 }
 
-.other-event-link {
+.back-button {
+    font-size: 2.0vw;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
+}
+
+.bar-text {
+    font-size: 2.0vw;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 2.50px; 
+    flex-grow: 1; 
+    text-align: center; 
+}
+/* Top Bar End */
+
+.information {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: 000000; /* Background color for the page */
-    height: auto;
-    flex-grow: 1;
-    padding: 40px;
-    gap: 20px;
-}
-
-.other-event-link input {
-    font-size: 1vw;
     text-align: center;
-    background-color: #000000;
-    color: white;
 }
 
-.other-event-link label {
-    font-size: 1vw;
-    font-family: 'Inter', cursive;
-    margin-left: 10px;
-    margin-right: 10px;
+/* Organiser Profile */
+.profile-image {
+    width: 12vw; 
+    height: 12vw; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    margin-top: 1vw;
+    margin-bottom: 1.5vw;
+    border: 3px solid #9b0ad4;
 }
 
-.merch-card {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    justify-content: space-between;
-    background: transparent;
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.gpr-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.pv-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.mus-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.fctc-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.tbp-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.jos-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.dadca-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.tstad-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.bc-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.cc-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
-}
-
-.oo-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: transparent;    
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 600px;
-    height: 60px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 3px solid rgb(155, 10, 212);
-    position: relative;
+.profile-image img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
 }
 
 .upload-image .upload-image-button {
@@ -288,7 +110,7 @@ body {
     border: 2px solid;
     border-color: #9b0ad4;
     font-family: 'Inter', sans-serif; 
-    font-size: 1.0vw;
+    font-size: 1.1vw;
     font-weight: 600; 
     color: white;
     padding: 10px 20px;
@@ -307,29 +129,142 @@ body {
 }
 
 .fname label {
-    font-family: 'Inter', cursive;
+    margin-top: 1.0vw;
+    margin-bottom: 0.5vw;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.3vw;
+    font-weight: 700; 
+    letter-spacing: 1.0px;
+    color: white;
 }
 
 .name1 {
     padding-top: 5px;
     padding-bottom: 10px;
-    letter-spacing: 1px;
-    font-size: 20px;
 }
 
 .name2 {
     padding-top: 5px;
     padding-bottom: 10px;
-    letter-spacing: 1px;
-    font-size: 20px;
 }
 
 .name1 input {
+    letter-spacing: 1px;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
 }
 
 .name2 input {
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif; 
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
 }
+/* Organiser Profile End */
+
+/* 5 Social Media */
+.social-logo {
+    align-items: center;
+    justify-items: center;
+}
+
+.social-logo input {
+    letter-spacing: 1px;
+    font-size: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    color: black;
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+}
+
+.tiktok, .facebook, .instagram, .email, .telegram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2vw; 
+    margin-top: 1.5vw;
+}
+
+.social-logo div {
+    text-align: center;
+}
+
+.social-logo .fa-3x {
+    color: #ffffff; 
+    font-size: 2.5vw;
+}
+
+.social-link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+    font-size: 1.3vw;
+    font-weight: 700;
+    font-family: 'Inter', cursive;
+    letter-spacing: 1.0px;
+    color: white;
+}
+/* 5 Social Media End */
+
+/* Other Social Media */
+.other-event-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 2.5vw;
+    padding-bottom: 6vw;
+    gap: 1.5vw;
+}
+
+.other-event-link input {
+    letter-spacing: 1px;
+    font-size: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    color: white;
+    background-color: black;
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+    padding-right: 5vw;
+}
+
+.other-event-link label {
+    letter-spacing: 1px;
+    font-size: 1.3vw;
+    font-weight: 700;
+    font-family: 'Inter', cursive;
+    letter-spacing: 1.0px;
+    color: white;
+}
+
+.merch-card,
+.gpr-card,
+.pv-card,
+.mus-card,
+.fctc-card,
+.tbp-card,
+.jos-card,
+.dadca-card,
+.tstad-card,
+.bc-card,
+.cc-card,
+.oo-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    justify-content: space-between;
+    background: transparent;
+    border-radius: 2.5vw;
+    padding: 1.0vw 3.0vw;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgb(155, 10, 212);
+    position: relative;
+    gap: 1.2vw;
+}
+/* Other Social Media End */
