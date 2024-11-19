@@ -15,34 +15,34 @@
 </head>
   
 <body>
-    <div class="header">
-      <div class="logo">
-        <a href="/">
-            <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
-        </a>
-      </div>
-        <div class="header-structure">
-          <div class="header-item">Register
+  <div class="header">
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="header-structure-left">
+        <div class="header-item" onclick="window.location.href='/'">Dashboard</div>
+        <div class="header-item">Register
             <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
                 <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
                 <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
             </ul>
-          </div>
-          <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
-          <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
-          <div class="header-item">About Us
+        </div>
+        <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
+        <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
+        <div class="header-item">About Us
             <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
-              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
             </ul>
-         </div>
         </div>
-        <div class="profile-icon" onclick="window.location.href='/Organiser/login'">
-          <i class='fas fa-user-alt' style="font-size: 24px;"></i>
+    </div>
+    <div class="header-structure-right">
+        <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+            <i class='fas fa-user-alt'></i>
+            <div class="login-text">Login</div>
         </div>
-      </div>  
+    </div>
+</div>      
       <div class="top-bar">
             <div class="back-button" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i>  
@@ -157,57 +157,69 @@
 
 </body>
 <footer class="footer">
-    <div class="footer-section follow-us">
-      <h3>FOLLOW US</h3>
-      <div class="social-icons">
-        <div class="social-item">
-          <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
-            <i class="fab fa-instagram" style="font-size: 20px; margin-right: 10px;"></i>
-            <p>3KPP_USM</p>
-          </a>
-        </div>
-        <div class="social-item">
-          <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
-            <i class="fab fa-tiktok" style="font-size: 20px; margin-right: 10px;"></i>
-            <p>3KPP_USM</p>
-          </a>
-        </div>
-        <div class="social-item">
-          <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
-            <i class="fab fa-facebook" style="font-size: 20px; margin-right: 10px;"></i>
-            <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
-          </a>
-        </div>
+  <div class="sponsor">
+      <div class="sponsor-text">ORGANISED BY & SPONSORED BY</div>
+      <div class="sponsor-logos">
+          <img class="Logo1" src="{{ url_for('static', filename='Image/sponsor1.jpg') }}" alt="Sponsor 1" />
+          <img class="Logo2" src="{{ url_for('static', filename='Image/sponsor2.png') }}" alt="Sponsor 2" />
+          <img class="Logo3" src="{{ url_for('static', filename='Image/sponsor3.png') }}" alt="Sponsor 3" />
+          <img class="Logo4" src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Sponsor 4" />
       </div>
-    </div>
-  
-    <div class="footer-section register-now">
-      <h3>REGISTER NOW</h3>
-      <p onclick="window.location.href='/Public/student_register'">USM Student</p>
-      <p onclick="window.location.href='/Public/public_register'">Public</p>
-    </div>
-  
-    <div class="footer-section about-event">
-      <h3>ABOUT EVENT</h3>
-      <p onclick="window.location.href='/Public/route'">Event Route</p>
-    </div>
-  
-    <div class="footer-section package">
-      <h3>PACKAGE</h3>
-      <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
-    </div>
-  
-    <div class="footer-section about-us">
-      <h3>ABOUT US</h3>
-      <p onclick="window.location.href='/Public/about-us'">About Us</p>
-      <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
-    </div>
-  
-    <div class="footer-bottom">
+  </div>
+
+  <div class="footer-sections">
+      <div class="footer-section follow-us">
+          <h3>FOLLOW US</h3>
+          <div class="social-icons">
+              <div class="social-item">
+                  <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+                      <i class="fab fa-instagram"></i>
+                      <p>3KPP_USM</p>
+                  </a>
+              </div>
+              <div class="social-item">
+                  <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+                      <i class="fab fa-tiktok"></i>
+                      <p>3KPP_USM</p>
+                  </a>
+              </div>
+              <div class="social-item">
+                  <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+                      <i class="fab fa-facebook"></i>
+                      <p>KARNIVAL KEUSAHAWAN & KERJAYA PULAU PINANG</p>
+                  </a>
+              </div>
+          </div>
+      </div>
+
+      <div class="footer-section register-now">
+          <h3>REGISTER NOW</h3>
+          <p onclick="window.location.href='/Public/student_register'">USM Student</p>
+          <p onclick="window.location.href='/Public/public_register'">Public</p>
+      </div>
+
+      <div class="footer-section about-event">
+          <h3>ABOUT EVENT</h3>
+          <p onclick="window.location.href='/Public/route'">Event Route</p>
+      </div>
+
+      <div class="footer-section package">
+          <h3>PACKAGE</h3>
+          <p onclick="window.location.href='/Public/packages'">View Running Kit Package</p>
+      </div>
+
+      <div class="footer-section about-us">
+          <h3>ABOUT US</h3>
+          <p onclick="window.location.href='/Public/about-us'">About Us</p>
+          <p onclick="window.location.href='/Public/contact_us'">Contact Us</p>
+      </div>
+  </div>
+
+  <div class="footer-bottom">
       <div class="line"></div>
       <p>&copy; 2024 Universiti Sains Malaysia (USM). All rights reserved.</p>
-    </div>
-  </footer> 
+  </div>
+</footer>
 
 </html>
 

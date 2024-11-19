@@ -2,8 +2,6 @@ body {
     font-family: 'Irish Grover', cursive;
     background-color: #000000;
     color: white;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -35,30 +33,30 @@ body {
     align-items: center;
     gap: 20px; /* Adjust the spacing between icons */
     margin-top: 20px; /* Optional, to add spacing above the row */
+    transform: scale(1.4);
 }
 
 .social-logo div {
     text-align: center;
 }
 
-.social-logo .fa-2x {
+.social-logo .fa-3x {
     color: #ffffff; /* Default color for icons */
     
 }
 
-.social-logo .fa-2x:hover {
+.social-logo .fa-3x:hover {
     color: rgb(155, 10, 212); /* Color on hover */
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .other-event-link {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: top;
+    align-items: center;
     background-color: 000000; /* Background color for the page */
     height: auto;
-    margin: 0;
     flex-grow: 1;
     padding: 40px;
     gap: 20px;
