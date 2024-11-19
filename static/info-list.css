@@ -7,6 +7,35 @@
     align-items: center;
 }
 
+.save-btn {
+    position: fixed;
+    bottom: 3vw;  
+    right: 3vw; 
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: #f8d40a;
+    border: 2px solid;
+    border-color: #f8d40a;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 100; 
+}
+
+.save-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid;
+    border-color: #f8d40a;
+    color: #f8d40a;
+}
+
 /* Top Bar */
 .top-bar {
     width: 100%;
@@ -45,6 +74,12 @@
 }
 
 /* Column Left */
+.map {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+}
 
 .map-text {
     display: flex;
@@ -67,7 +102,7 @@
 }
 
 .upload-button {
-    margin-top: 3vw;
+    margin-top: 2vw;
     display: inline-flex; 
     justify-content: center;
     align-items: center;

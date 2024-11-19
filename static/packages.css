@@ -1,26 +1,50 @@
-/* Collection Details */
-body {
-    font-family: 'Irish Grover', cursive;
-    background-color: #000000;
-    color: white;
+.kit-package-container {
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
     align-items: center;
 }
 
-.kit-package-container {
-    text-align: center;
-    margin-bottom: 30px;
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
 }
 
-.title {
-    margin-top: 20px;
-    font-size: 24px;
-    margin-bottom: 15px;
+.back-button {
+    font-size: 2.0vw;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
 }
 
+.bar-text {
+    font-size: 2.0vw;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 2.50px; 
+    flex-grow: 1; 
+    text-align: center; 
+}
+
+/* Top Bar End */
+
+/* Cards */
 .package-cards {
     display: flex;
     justify-content: center;
     gap: 100px;
+    color: white;
 }
 
 .card {

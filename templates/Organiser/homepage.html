@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow Paint Run</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='homepage2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='or_homepage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
     <!-- Icon lib -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -43,11 +43,26 @@
             </div>
         </div>
     </div> 
+    <form method="POST" enctype="multipart/form-data" action="/Organiser/homepage">
+        <button type="submit" class="save-btn">Save Changes</button>
+    <div class="past-event-container">
+        <div class="past-event-section">
+            <div class="text4">Past Event</div>
+            <div class="carousel">               
+                {% for image in past_images %}
+                <div class="item">
+                <img src="data:Image/png;base64,{{ image }}" alt="Past Event Image" class="carousel-image" />
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </form>
   </body>
 </html>
 
 <script>
-    // Select the header
+    // The top menu effect function
     const header = document.querySelector('.header');
   
     // Add scroll event listener
@@ -59,40 +74,10 @@
       }
     });
 
-     // Set coutdown timer function
-    // Set the deadline date
-    const deadline = new Date("December 14, 2024 00:00:00").getTime();
-
-    // Update the countdown every second
-    const countdown = setInterval(function() {
-
-        // Get the current date and time
-        const now = new Date().getTime();
-        
-        // Calculate the difference between the deadline and now
-        const distance = deadline - now;
-        
-        // Time calculations for days, hours, minutes, and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        // Display the results
-        document.getElementById("days").innerText = days;
-        document.getElementById("hours").innerText = hours;
-        document.getElementById("minutes").innerText = minutes;
-        document.getElementById("seconds").innerText = seconds;
-        
-        // If the countdown finishes
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById("days").innerText = "0";
-            document.getElementById("hours").innerText = "0";
-            document.getElementById("minutes").innerText = "0";
-            document.getElementById("seconds").innerText = "0";
-            alert("Countdown finished!");
-        }
-    }, 1000);
-
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
 </script>

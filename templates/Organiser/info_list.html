@@ -11,37 +11,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-        <div class="header-structure-left">
-            <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
-            <div class="header-item">Participant
-                <i class="fa fa-caret-down"></i>
-                <ul class="header-subitem">
-                    <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
-                    <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
-                </ul>
-            </div>
-            <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
-            <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
-            <div class="header-item">About Us
-                <i class="fa fa-caret-down"></i>
-                <ul class="header-subitem">
-                    <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
-                    <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
-                </ul>
-            </div>
-            </div>
-            <div class="header-structure-right">
-                <div class="login-btn" onclick="window.location.href='/Organiser/login'">
-                    <i class='fas fa-power-off'></i>
-                    <div class="login-text">Log Out</div>
-                </div>
+<div class="header">
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="header-structure-left">
+        <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
+        <div class="header-item">Participant
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+            </ul>
+        </div>
+        <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+        <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+        <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="header-structure-right">
+            <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+                <i class='fas fa-power-off'></i>
+                <div class="login-text">Log Out</div>
             </div>
         </div>
+    </div>
     <div class="top-bar">       
         <div class="bar-text">EVENT ROUTE</div>
     </div>
+    <form method="POST" enctype="multipart/form-data" action="/Organiser/info_list">
+    <button type="submit" class="save-btn">Save Changes</button>
     <div class="container">
     <div class="content">
     <div class="column-left">
@@ -50,104 +52,105 @@
                 <span>CURRENT MAP</span>
             </div>
             <div class="map-image">
-                <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image" width="70%">
+                <img class="background-img" src="data:Image/png;base64,{{ location_14.picture }}" alt="Event Route Image" width="70%">
             </div>
             <div class="map-upload">
-                <label for="upload-map" class="upload-button">UPLOAD NEW MAP</label>
-                <input type="file" id="upload-map" accept="image/png, image/jpeg" style="display: none;">
+                <label for="upload-image-14" class="upload-button">UPLOAD NEW MAP</label>
+                <input type="file" id="upload-image-14" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
     </div>
     <div class="column-right">
         <div class="location">
-            <label for="point-1">START / FINISH POINT</label>
-            <input type="text" id="start-finish" name="start-finish" value="START / FINISH">
-            <img class="background-img" src="{{ url_for('static', filename='Image/the bricks.jpg') }}" alt="Background Image">
+            <label for="point-13">START / FINISH POINT</label>
+            <input type="text" id="point-13" name="point-13" value="{{ location_13.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_13.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">UPLOAD NEW IMAGE</label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <label for="upload-image-13" class="upload-image-button">UPLOAD NEW IMAGE</label>
+                <input type="file" id="upload-image-13" name="upload-image-13" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 1</label>
-            <input type="text" id="point-1" name="point-1" value="BUMBLEDEES CAFE">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bumbledees.jpg') }}" alt="Background Image">
+            <label for="point-6">MAIN POINT 1</label>
+            <input type="text" id="point-6" name="point-6" value="{{ location_6.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_6.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-6" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-6" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 2</label>
-            <input type="text" id="point-2" name="point-2" value="MUZIUM & GALERI TUANKU FAUZIAH">
-            <img class="background-img" src="{{ url_for('static', filename='Image/muzium.jpg') }}" alt="Background Image">
+            <label for="point-7">MAIN POINT 2</label>
+            <input type="text" id="point-7" name="point-7" value="{{ location_7.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_7.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-7" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-7" name="upload-image-7" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 3</label>
-            <input type="text" id="point-3" name="point-3" value="BUKIT CINTA">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bukit cinta.jpg') }}" alt="Background Image">
+            <label for="point-8">MAIN POINT 3</label>
+            <input type="text" id="point-8" name="point-8" value="{{ location_8.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_8.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-8" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-8" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 4</label>
-            <input type="text" id="point-4" name="point-4" value="HBP">
-            <img class="background-img" src="{{ url_for('static', filename='Image/hbp.jpg') }}" alt="Background Image">
+            <label for="point-9">MAIN POINT 4</label>
+            <input type="text" id="point-9" name="point-9" value="{{ location_9.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_9.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-9" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-9" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 5</label>
-            <input type="text" id="point-5" name="point-5" value="DESASISWA FAJAR">
-            <img class="background-img" src="{{ url_for('static', filename='Image/fajar.jpg') }}" alt="Background Image">
+            <label for="point-10">MAIN POINT 5</label>
+            <input type="text" id="point-10" name="point-10" value="{{ location_10.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_10.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-10" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-10" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 6</label>
-            <input type="text" id="point-6" name="point-6" value="BHEPA">
-            <img class="background-img" src="{{ url_for('static', filename='Image/bhepa.jpg') }}" alt="Background Image">
+            <label for="point-11">MAIN POINT 6</label>
+            <input type="text" id="point-11" name="point-11" value="{{ location_11.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_11.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-11" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-11" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
         <div class="location">
-            <label for="point-1">MAIN POINT 7</label>
-            <input type="text" id="point-7" name="point-7" value="PUSAT RANCANGAN KOK">
-            <img class="background-img" src="{{ url_for('static', filename='Image/koko.jpg') }}" alt="Background Image">
+            <label for="point-12">MAIN POINT 7</label>
+            <input type="text" id="point-12" name="point-12" value="{{ location_12.img_name }}">
+            <img class="background-img" src="data:image/jpeg;base64,{{ location_12.picture }}" alt="Event Route Image">
             <div class="upload-image">
-                <label for="upload-image" class="upload-image-button">
+                <label for="upload-image-12" class="upload-image-button">
                     UPLOAD NEW IMAGE
                 </label>
-                <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+                <input type="file" id="upload-image-12" accept="image/png, image/jpeg" style="display: none;">
             </div>
         </div>
-       </div>
     </div>
-    </div>
+   </div>
+  </div>
+</form>
 </body>
 </html>
 
@@ -170,4 +173,33 @@
         leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
         rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
     }
+
+       // Function to handle image preview
+       function setupImageUpload(inputId, imgSelector) {
+        const input = document.getElementById(inputId);
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the image preview
+                    document.querySelector(imgSelector).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Set up image upload previews for all inputs
+    document.addEventListener('DOMContentLoaded', function () {
+        setupImageUpload('upload-image-14', '.map-image img'); // Map image
+        setupImageUpload('upload-image-13', '#point-13 ~ img'); // Start/Finish point
+        setupImageUpload('upload-image-6', '#point-6 ~ img');   // Main Point 1
+        setupImageUpload('upload-image-7', '#point-7 ~ img');   // Main Point 2
+        setupImageUpload('upload-image-8', '#point-8 ~ img');   // Main Point 3
+        setupImageUpload('upload-image-9', '#point-9 ~ img');   // Main Point 4
+        setupImageUpload('upload-image-10', '#point-10 ~ img'); // Main Point 5
+        setupImageUpload('upload-image-11', '#point-11 ~ img'); // Main Point 6
+        setupImageUpload('upload-image-12', '#point-12 ~ img'); // Main Point 7
+    });
 </script>
