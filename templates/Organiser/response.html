@@ -11,30 +11,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-          <a href="/">
-              <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Logo">
-          </a>
-        </div> 
-        <div class="header-structure">
-          <div class="header-item">Participants
+  <div class="header">
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="header-structure-left">
+        <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
+        <div class="header-item">Participant
             <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
                 <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
                 <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
             </ul>
-          </div>
-          <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
-          <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
-          <div class="header-item">About Us
+        </div>
+        <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+        <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+        <div class="header-item">About Us
             <i class="fa fa-caret-down"></i>
             <ul class="header-subitem">
-              <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-              <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
             </ul>
-         </div>
         </div>
+        </div>
+        <div class="header-structure-right">
+            <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+                <i class='fas fa-power-off'></i>
+                <div class="login-text">Log Out</div>
+            </div>
+        </div>
+    </div>
         <div class="logout-icon" onclick="window.location.href='/'">
           <i class='fas fa-power-off' style="font-size: 24px;"></i>
         </div>
