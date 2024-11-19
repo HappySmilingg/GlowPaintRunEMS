@@ -115,7 +115,10 @@ def get_route_image(selected_option):
         'start': 7,     # Start/Finish
     }
 
+    print(f"index: {index}")
+
     if selected_option in index:
+        print(f"selectedoption:{selected_option}")
         image_index = index[selected_option]
         try:
             route_image = route_images[image_index][0] 
