@@ -1,114 +1,175 @@
-body {
-    font-family: 'Irish Grover', cursive;
-    background-color: #000;
-    color: #fff;
-}
-
-.container h1 {
-    font-size: 24px;
-}
-
 .container {
-    text-align: center;
-    margin-top: 20px;
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
+}
+
+.back-button {
+    font-size: 2.0vw;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
+}
+
+.bar-text {
+    font-size: 2.0vw;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 2.50px; 
+    flex-grow: 1; 
+    text-align: center; 
+}
+/* Top Bar End */
+
+/* Image Container */
+.img-content {
+    position: relative;
+    width: 65vw;
+    height: auto; 
+    z-index: 1;
+}
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Legend Container */
 .legend-container {
     position: absolute;
-    top: 100px;
-    left: 50px;
+    top: 11vw;
+    left: 5vw;
     text-align: center;
-    font-family: 'Irish Grover', cursive;
+    font-family: 'Inter', sans-serif; 
+    font-weight: 600;
+    letter-spacing: 1.0px;
+    color: white;
+    z-index: 2;
 }
 
 .legend-container h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background: linear-gradient(to right, #AE0AEF 50%, #FA0EBF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Irish Grover', cursive;
+    font-size: 2.5vw;
+    font-weight: 400; 
+    letter-spacing: 2.50px; 
+    margin-bottom: 0.8vw;
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #D8A0FF,  
+        1px -1px 0 #D8A0FF,  
+        -1px 1px 0 #D8A0FF,  
+        1px 1px 0 #D8A0FF; 
+    text-align: left;
 }
 
+
 .legend-box {
-    width: 257px;
-    height: 170px;
-    border: 8px solid;
-    border-image: linear-gradient(to right, #04FBFF, #1230AE) 5;
-    padding: 10px;
-    background-color: #000;
+    height: 12.5vw;
+    width: 20.5vw;
+    border: 5px solid transparent; 
+    border-image: linear-gradient(180deg, rgba(216, 160, 255, 0.5) 40%, rgba(155, 77, 255, 0.5) 100%);
+    border-image-slice: 1; 
+    padding: 5vw;
+    background-color: rgba(0, 0, 0, 0.3); 
     color: white;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: flex-start;
 }
 
 .mainpoint-icon {
     position: absolute;
     color: red;
-    top: 65px;
-    left: 30px;
+    top: 5.5vw;
+    left: 3vw;
+    font-size: 1.2vw;
 }
 
 .directionpath-icon {
     position: absolute;
     color: yellow;
-    top: 100px;
-    left: 30px;
+    top: 8vw;
+    left: 3vw;
+    font-size: 1.2vw;
 }
 
 .startfinish-icon {
     position: absolute;
     color: greenyellow;
-    top: 155px;
-    left: 30px;
+    top: 12.2vw;
+    left: 3vw;
+    font-size: 1.05vw;
 }
 
 .text1 {
     position: absolute;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: white;
-    top: 67px;
-    left: 80px;
+    top: 5.7vw;
+    left: 7vw;
 }
 
 .text2 {
     position: absolute;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: white;
-    top: 113px;
-    left: 80px;
+    top: 9vw;
+    left: 7vw;
 }
 
 .text3 {
     position: absolute;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: white;
-    top: 160px;
-    left: 80px;
+    top: 12.4vw;
+    left: 7vw;
 }
 
 /* Listbox */
 .listbox {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
 }
 
 .listbox label {
     display: block;
-    font-size: 17px;
+    font-size: 1.2vw;
     margin-bottom: 8px;
-    font-weight: 500;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    color: white;
 }
 
 .listbox select {
-    width: 20%;
     padding: 12px;
-    font-size: 12px;
+    font-size: 1.1vw;
     background-color: white;
     border: 2px solid transparent; 
+    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
     border-radius: 5px;
-    color: black
-}
-
-.view-picture {
-    
+    color: black;
+    width: 100%;
 }

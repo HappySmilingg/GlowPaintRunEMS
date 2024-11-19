@@ -135,16 +135,17 @@ body {
     .header-structure-left, .header-structure-right {
         flex-direction: column;
         align-items: center;
+        display: none; /* Hide the sections initially on mobile */
+    }
+
+    .header-structure-left.menu-open, .header-structure-right.menu-open {
+        display: flex; /* Show the sections when the menu is toggled */
     }
 
     .header-item {
         padding: 5px 0;
         text-align: center;
         width: 100%;
-    }
-
-    .header-structure.menu-open {
-        display: flex;
     }
 
     .login-btn i {

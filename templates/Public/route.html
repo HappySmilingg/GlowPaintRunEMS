@@ -40,16 +40,20 @@
     </div>
 </div>     
 
-      <!--Title & Background-->
-      <div class="container">
-        <h1>RUNNING ROUTE</h1>
-        <div class="content">
-          <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
-        </div>
+    <div class="top-bar">
+        <div class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>  
+        </div>        
+        <div class="bar-text">RUNNING ROUTE</div>
+    </div>
+    <div class="container">
+    <div class="img-content">
+        <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
+    </div>
 
       <!-- Legend -->
       <div class="legend-container">
-        <h2>5 KM ROUTE</h2>
+        <h2>5 KM Route</h2>
         <div class="legend-box">
             <div class="mainpoint-icon">
                 <span class="icon"><i class="fas fa-location-dot fa-2x"></i></span>
@@ -61,21 +65,21 @@
                 <span class="icon"><i class="fas fa-flag flag fa-2x"></i></span>
             </div>
             <div class="text1">
-              <span>MAIN POINT</span>
+                <span>Main Point</span>
             </div>
             <div class="text2">
-              <span>DIRECTION PATH</span>
+                <span>Direction Path</span>
             </div>
             <div class="text3">
-              <span>START / FINISH</span>
+                <span>Start/Finish</span>
             </div>
         </div>
-      </div>
+    </div>    
 
       <div class="listbox">
         <label for="view">VIEW MAIN POINTS PICTURE</label>
         <select id="view" name="view">
-          <option value="default">--SELECT MAIN POINT--</option>
+          <option value="default">--Select Main Point--</option>
             <option value="start">START / FINISH</option>
             <option value="cafe">BUMBLEDEES CAFE</option>
             <option value="muzium">MUZIUM & GALERI TUANKU FAUZIAH</option>
@@ -86,9 +90,7 @@
             <option value="kok">PUSAT RANCANGAN KOK</option>
         </select>
     </div>
-
-    <div class="view-picture">
-      
+  </div>
 </body>
 
 <footer class="footer">
@@ -158,6 +160,24 @@
 </html>
 
 <script>
+    // The top menu effect function
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
   // // Select the header
   // const header = document.querySelector('.header');
 

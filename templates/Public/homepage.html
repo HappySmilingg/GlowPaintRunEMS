@@ -216,6 +216,14 @@
       }
     });
 
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
+
+
     // Set coutdown timer function
     // Set the deadline date
     const deadline = new Date("{{ event_date }}").getTime();
@@ -295,9 +303,4 @@
         }
       });
     });
-
-    function toggleMenu() {
-        const headerStructure = document.querySelector('.header-structure');
-        headerStructure.classList.toggle('menu-open'); // This toggles the visibility of the menu
-    }
 </script>
