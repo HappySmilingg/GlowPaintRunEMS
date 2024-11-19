@@ -40,9 +40,10 @@
         </div>
     </div>
   </div>    
-
+  <div class="top-bar">       
+    <div class="bar-text">PACKAGES</div>
+    </div>
     <div class="kit-package-container">
-        <h1 class="title">KIT PACKAGES</h1>
         <div class="package-cards">
             <!-- Package Card 1 -->
             <div class="card">
@@ -168,7 +169,7 @@
 </html>
 
 <script>
-    // Select the header
+    // The top menu effect function
     const header = document.querySelector('.header');
   
     // Add scroll event listener
@@ -179,4 +180,11 @@
         header.classList.remove('shrink');
       }
     });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
 </script>
