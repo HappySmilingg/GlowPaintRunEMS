@@ -28,6 +28,10 @@ body {
     transition: padding 0.3s ease;
 }
 
+.header.shrink {
+    padding: 0.8vw;
+}
+
 .header-structure-left, .header-structure-right {
     display: flex;
     align-items: center;
