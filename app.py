@@ -93,23 +93,38 @@ def upload_images():
 
 @app.route('/Public/route')
 def route():
+    return render_template('Public/route.html')
+
+@app.route('/Public/route/<selected_option>', methods=['GET'])
+def get_route_image(selected_option):
     db = mysql.connection.cursor()
 
-    # Retrieve 'Route Images'
     db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Route Images'")
     route_images = db.fetchall()
-
     db.close()
 
-    # Convert binary images to base64 encoding
-    base64_route_images = []  # Use a new list for storing the base64-encoded images
-    for image in route_images:
-        image_data = image[0]
-        base64_encoded_image = base64.b64encode(image_data).decode('utf-8')
-        base64_route_images.append(base64_encoded_image)
+    # Map selected_option to the corresponding index in the result set
+    index = {
+        'cafe': 0,      # Bumbledees Cafe
+        'muzium': 1,    # Muzium
+        'bukit': 2,     # Bukit Cinta
+        'hbp': 3,       # HBP
+        'fajar': 4,     # Fajar
+        'bhepa': 5,     # BHEPA
+        'kok': 6,       # Rancangan KOK
+        'start': 7,     # Start/Finish
+    }
 
-    return render_template('Public/route.html', route_images=base64_route_images)
-
+    if selected_option in index:
+        image_index = index[selected_option]
+        try:
+            route_image = route_images[image_index][0] 
+            base64_encoded_image = base64.b64encode(route_image).decode('utf-8')
+            return {'image': base64_encoded_image}
+        except IndexError:
+            return {'error': 'Image not found'}, 404
+    else:
+        return {'error': 'Invalid selection'}, 400
 
 @app.route('/Public/public_register')
 def public_register():

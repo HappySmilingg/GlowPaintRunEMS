@@ -76,10 +76,10 @@
         </div>
     </div>    
 
-      <div class="listbox">
+    <div class="listbox">
         <label for="view">VIEW MAIN POINTS PICTURE</label>
-        <select id="view" name="view">
-          <option value="default">--Select Main Point--</option>
+        <select id="view" name="view" onchange="showImage()">
+            <option value="default">--Select Main Point--</option>
             <option value="start">START / FINISH</option>
             <option value="cafe">BUMBLEDEES CAFE</option>
             <option value="muzium">MUZIUM & GALERI TUANKU FAUZIAH</option>
@@ -90,6 +90,15 @@
             <option value="kok">PUSAT RANCANGAN KOK</option>
         </select>
     </div>
+    
+    <!-- Popup Window -->
+    <div id="imagePopup" class="popup-window" style="display:none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <img id="popupImage" src="" alt="Event Route Image">
+        </div>
+    </div>
+    
   </div>
 </body>
 
@@ -159,6 +168,7 @@
 </footer>
 </html>
 
+
 <script>
     // The top menu effect function
     const header = document.querySelector('.header');
@@ -178,38 +188,32 @@
         leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
         rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
     }
-  // // Select the header
-  // const header = document.querySelector('.header');
+  
+    // To show the image by pop up window
+    function showImage() {
+        var selectedOption = document.getElementById('view').value;
+        var imagePopup = document.getElementById('imagePopup');
+        var popupImage = document.getElementById('popupImage');
 
-  // // Add scroll event listener
-  // window.addEventListener('scroll', () => {
-  //   if (window.scrollY > 0) {
-  //     header.classList.add('shrink');
-  //   } else {
-  //     header.classList.remove('shrink');
-  //   }
-  // });
-
- // Function to open the popup window with the selected image
- function showPopup(imgSrc) {
-        const popupWindow = document.getElementById("popup-window");
-        const popupImg = document.getElementById("popup-img");
-
-        popupImg.src = imgSrc;
-        popupWindow.style.display = "flex"; // Make the popup visible
+        // Check if a valid option is selected
+        if (selectedOption !== 'default') {
+            // Send the selected option to the server to get the image
+            fetch('/Public/route/' + selectedOption)
+                .then(response => response.json())
+                .then(data => {
+                    // Set the image src to the base64 data from the server
+                    popupImage.src = 'data:image/png;base64,' + data.image;
+                    // Show the popup
+                    imagePopup.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                });
+        }
     }
 
-    // Function to close the popup window
+    // Close the popup
     function closePopup() {
-        const popupWindow = document.getElementById("popup-window");
-        popupWindow.style.display = "none"; // Hide the popup
+        document.getElementById('imagePopup').style.display = 'none';
     }
-
-    // Attach click event listeners to each location icon
-    document.querySelectorAll('[id^="location-icon"], .start-end-icon').forEach(icon => {
-        icon.addEventListener('click', function () {
-            const imgSrc = this.getAttribute('data-img'); // Get the image source from the data attribute
-            showPopup(imgSrc); // Show the popup with the selected image
-        });
-    });
 </script>
