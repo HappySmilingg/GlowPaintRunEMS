@@ -1,19 +1,42 @@
-.container h1 {
-    position: relative;
-    font-family: 'Irish Grover', cursive;
-    font-size: 2.0vw;
-    font-weight: 400; 
-    letter-spacing: 2.50px; 
-    padding-top: 0.8vw;
-    padding-bottom: 0.8vw;
-    color: white;
+.container {
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
 
-.container {
-    height: 50px;
-    text-align: center;
-    background-color: rgb(12, 12, 12);
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
 }
+
+.back-button {
+    font-size: 2.0vw;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
+}
+
+.bar-text {
+    font-size: 2.0vw;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 2.50px; 
+    flex-grow: 1; 
+    text-align: center; 
+}
+/* Top Bar End */
 
 .content {
     display: grid; 
@@ -88,9 +111,9 @@
 .location label {
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
-    font-family: 'Irish Grover', cursive;
-    font-weight: 400;
-    letter-spacing: 2.50px;
+    font-family: 'Inter', sans-serif;    
+    font-size: 1.5vw;
+    font-weight: 700; 
     letter-spacing: 1.0px;
     color: white;
 }
@@ -102,8 +125,7 @@
     letter-spacing: 1.0px;
     color: black;
     background-color: white;
-    border: 2px solid transparent; 
-    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+    border: 2px solid #9B4DFF;
     border-radius: 5px;
     width: 30vw;
     height: 2.5vw;
@@ -113,7 +135,7 @@
 }
 
 .location input::placeholder {
-    color: rgb(14, 14, 14);
+    color: gray;
   }
 
 .background-img {
