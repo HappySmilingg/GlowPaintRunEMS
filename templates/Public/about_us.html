@@ -43,43 +43,43 @@
                 <div class="login-text">Login</div>
             </div>
         </div>
-    </div>    <!--Header close--> 
-
-    <div class="container">
-        <h1 class="title">ABOUT US</h1>
+    </div>   
+    <div class="top-bar">       
+        <div class="bar-text">ABOUT US</div>
     </div>
 
+    <div class="container">
     <div class="information">
-        <div class="profile">
-            <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="profile_pic">
+        <div class="profile-image">
+            <img src="data:image/png;base64,{{ profile.picture }}" alt="profile_pic">
         </div>
         <div class="name">
-            <span>3KPP24 <br> KARNIVAL KEUSAHAWANAN DAN KERJAYA PULAU PINANG 2024</span>
+            <span>{{ profile.name1 }} <br> {{ profile.name2 }}</span>
         </div>
 
         <!-- Social Media Logo -->
         <div class="social-logo">
-            <a href="https://www.tiktok.com/@3KPP_USM" target="_blank" class="social-link">
+            <a href="{{ social.linkName1 }}" target="_blank" class="social-link">
               <div class="tiktok">
                   <span class="tiktok-icon"><i class="fab fa-tiktok fa-3x"></i></span>
               </div>
             </a>
-            <a href="https://www.facebook.com/KARNIVALKEUSAHAWAN" target="_blank" class="social-link">
+            <a href="{{ social.linkName2 }}" target="_blank" class="social-link">
               <div class="facebook">
                   <span class="facebook-icon"><i class="fab fa-facebook fa-3x"></i></span>
               </div>
             </a>
-            <a href="https://www.instagram.com/3KPP_USM" target="_blank" class="social-link">
+            <a href="{{ social.linkName3 }}" target="_blank" class="social-link">
               <div class="instagram">
                   <span class="instagram-icon"><i class="fab fa-instagram fa-3x"></i></span>
               </div>
             </a>
-            <a href="mailto:3kpp24@gmail.com" class="social-link">
+            <a href="{{ social.linkName4 }}" class="social-link">
               <div class="email">
                   <span class="email-icon"><i class="fas fa-envelope fa-3x"></i></span>
               </div>
             </a>
-            <a href="https://t.me/+1_8xeTSfHdViZmY9" target="blank" class="social-link">
+            <a href="{{ social.linkName5 }}" target="blank" class="social-link">
               <div class="telegram">
                   <span class="telegram-icon"><i class="fab fa-telegram fa-3x"></i></span>
               </div>
@@ -89,67 +89,79 @@
         <!-- Other Event Link -->
         <div class="other-event-link">
 
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVF1T406NhiHMc-rsWdqyT-J2fGwln2D75pVhjmq857aUiOA/viewform" target="blank" style="text-decoration: none;">
+            <a href="{{ event['eventLink1'] }}" target="blank" style="text-decoration: none;">
                 <div class="merch-card">
-                    <div class="merch-text">BUY OUR MERCH HERE</div>
-                </div></a>
+                    <div class="merch-text">{{ event['eventName1'] }}</div>
+                </div>
+            </a>
             
-            <a href="/Public/public_register" style="text-decoration: none;">
-            <div class="gpr-card">
-                <div class="gpr-text">GLOW PAINT RUN</div>
-            </div></a>
+            <a href="{{ event['eventLink2'] }}" target="blank" style="text-decoration: none;">
+                <div class="gpr-card">
+                    <div class="gpr-text">{{ event['eventName2'] }}</div>
+                </div>
+            </a>
             
-
-            <a href="https://docs.google.com/forms/d/1aHKB3VLlZrnygYCovUyEVJxVPKCtyKhk4J9WQlFwvK0/closedform" target="blank" style="text-decoration: none;">
-            <div class="pv-card">
-                <div class="pv-text">PENCARIAN VENDOR</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd23LdT9vkZjLv45_gFpqr7gwRBgi-MGA9HM1x_GM4l6OsWgQ/viewform" target="blank" style="text-decoration: none;">
-            <div class="mus-card">
-                <div class="mus-text">MAKE-UP STAR</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfctaKfw_UqGr1zi0FJkBHPsTGlJB2eavlJx3PBFfuf72x7Ag/closedform" target="blank" style="text-decoration: none;">
-            <div class="fctc-card">
-                <div class="fctc-text">FROM CAMPUS TO CEO</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScFsPt_0NE_sC4IAh5eoGtTUKHOJPmt4LtGD0xmdOZ9ItRp-Q/viewform" target="blank" style="text-decoration: none;">
-            <div class="tbp-card">
-                <div class="tbp-text">TOTE BAG PAINTING</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYvQrnzpN3YCJtCpM4pL6P1govqbcCtkthejmUU0H3YFkHZg/viewform" target="blank" style="text-decoration: none;">
-            <div class="jos-card">
-                <div class="jos-text">JOIN OUR SECRETERIAT</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTCBrvP0UIFO8XahAha77RdOrXSHQyKB0BPaXdKDhnbq0lxg/viewform" target="blank" style="text-decoration: none;">
-            <div class="dadca-card">
-                <div class="dadca-text">DIY AIR DRY CLAY ART</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeINWfujbGY4WYUV7OSmXscoCV_uwj5zXAcrOiKyNbUB8xQ0w/viewform" target="blank" style="text-decoration: none;">
-            <div class="tstad-card">
-                <div class="tstad-text">T-SHIRT TIE AND DYE</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0vh2sn2hla9sz4C80mGcFsrWZLiUM6bvtRDO_nxQbuGGCOg/viewform" target="blank" style="text-decoration: none;">
-            <div class="bc-card">
-                <div class="bc-text">BATIK COLOURING</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf0xnoI5CP1d9m-nY6woICp2DnF7l0OBbN1yQ1ftSlOe-JTLQ/viewform" target="blank" style="text-decoration: none;">
-            <div class="cc-card">
-                <div class="cc-text">CAPTURE & CREATE</div>
-            </div></a>
-
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSecO3CD2qnLUf1kNiwR4HTKwYPtc5K8BBH7F2aMn9DpLWPD-g/viewform" target="blank" style="text-decoration: none;">
-            <div class="oo-card">
-                <div class="oo-text">OTAKU ODYSEY</div>
-            </div></a>
+            <a href="{{ event['eventLink3'] }}" target="blank" style="text-decoration: none;">
+                <div class="pv-card">
+                    <div class="pv-text">{{ event['eventName3'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink4'] }}" target="blank" style="text-decoration: none;">
+                <div class="mus-card">
+                    <div class="mus-text">{{ event['eventName4'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink5'] }}" target="blank" style="text-decoration: none;">
+                <div class="fctc-card">
+                    <div class="fctc-text">{{ event['eventName5'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink6'] }}" target="blank" style="text-decoration: none;">
+                <div class="tbp-card">
+                    <div class="tbp-text">{{ event['eventName6'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink7'] }}" target="blank" style="text-decoration: none;">
+                <div class="jos-card">
+                    <div class="jos-text">{{ event['eventName7'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink8'] }}" target="blank" style="text-decoration: none;">
+                <div class="dadca-card">
+                    <div class="dadca-text">{{ event['eventName8'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink9'] }}" target="blank" style="text-decoration: none;">
+                <div class="tstad-card">
+                    <div class="tstad-text">{{ event['eventName9'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink10'] }}" target="blank" style="text-decoration: none;">
+                <div class="bc-card">
+                    <div class="bc-text">{{ event['eventName10'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink11'] }}" target="blank" style="text-decoration: none;">
+                <div class="cc-card">
+                    <div class="cc-text">{{ event['eventName11'] }}</div>
+                </div>
+            </a>
+            
+            <a href="{{ event['eventLink12'] }}" target="blank" style="text-decoration: none;">
+                <div class="oo-card">
+                    <div class="oo-text">{{ event['eventName12'] }}</div>
+                </div>
+            </a>            
         </div>
+    </div>
     </div>
 </body>
 <footer class="footer">
@@ -219,7 +231,7 @@
 </html>
 
 <script>
-    // Select the header
+    // The top menu effect function
     const header = document.querySelector('.header');
   
     // Add scroll event listener
@@ -230,4 +242,11 @@
         header.classList.remove('shrink');
       }
     });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
 </script>
