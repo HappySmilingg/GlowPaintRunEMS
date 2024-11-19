@@ -15,31 +15,35 @@
 </head>
   
 <body>
-      <div class="header">
-        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-        <div class="header-structure">
-            <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
-            <div class="header-item">Participant
-                <i class="fa fa-caret-down"></i>
-                <ul class="header-subitem">
-                    <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
-                    <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
-                </ul>
-            </div>
-            <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
-            <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
-            <div class="header-item">About Us
-                <i class="fa fa-caret-down"></i>
-                <ul class="header-subitem">
-                    <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-                    <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="logout-icon" onclick="window.location.href='/'">
-              <i class='fas fa-power-off'></i>Logout
-            </div>
+    <div class="header">
+      <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+      <div class="header-structure-left">
+          <div class="header-item" onclick="window.location.href='/'">Dashboard</div>
+          <div class="header-item">Participant
+              <i class="fa fa-caret-down"></i>
+              <ul class="header-subitem">
+                  <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                  <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+              </ul>
           </div>
-      </div>
+          <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+          <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+          <div class="header-item">About Us
+              <i class="fa fa-caret-down"></i>
+              <ul class="header-subitem">
+                  <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                  <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
+              </ul>
+          </div>
+          </div>
+          <div class="header-structure-right">
+              <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+                  <i class='fas fa-user-alt'></i>
+                  <div class="login-text">Login</div>
+              </div>
+          </div>
+      </div>
+
       <div class="content">
         <img class="background-img" src="{{ url_for('static', filename='Image/background.png') }}" alt="Background Image">
         <div class="title">
