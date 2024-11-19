@@ -1,5 +1,7 @@
 import os
-import random
+from io import BytesIO
+import logging
+logging.basicConfig(level=logging.DEBUG)
 import base64
 from datetime import datetime
 from flask_migrate import Migrate
@@ -34,14 +36,12 @@ migrate = Migrate(app, mysql)
 def homepage():
     db = mysql.connection.cursor()
 
-    # Get the event data from the Event table
     db.execute("""
         SELECT eventName, eventDate, eventStartTime, eventEndTime, eventLocation, routeDistance 
         FROM Event
     """)
     events = db.fetchall()
 
-    # Retrieve 'Past Event Images'
     db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Past Event Images'")
     past_event_images = db.fetchall()
 
@@ -60,20 +60,64 @@ def homepage():
         event_date = None
     return render_template('Public/homepage.html', events=events, event_date=event_date, past_images=past_images)
 
+# @app.route('/upload_images')
+# def upload_images():
+#     db = mysql.connection.cursor()
+
+#     # Define image categories with corresponding file paths
+#     image_categories = {
+#         'Past Event Images': [
+#             'static/Image/past 1.png',
+#             'static/Image/past 2.png',
+#             'static/Image/past 3.png',
+#             'static/Image/past 4.png',
+#             'static/Image/past 5.png',
+#         ],
+#         'Route Images': [
+#             'static/Image/bumbledees.jpg',
+#             'static/Image/muzium.jpg',
+#             'static/Image/bukit cinta.jpg',
+#             'static/Image/hbp.jpg',
+#             'static/Image/fajar.jpg',
+#             'static/Image/bhepa.jpg',
+#             'static/Image/koko.jpg',
+#             'static/Image/the bricks.jpg',
+#             'static/Image/routebg.png',
+#         ],
+#     }
+
+#     event_id = 1  # Set the event ID for all images
+
+#     # Iterate through each category and its images
+#     for detail_name, image_files in image_categories.items():
+#         for image_file in image_files:
+#             with open(image_file, 'rb') as file:
+#                 # Convert image to binary
+#                 binary_data = file.read()
+
+#                 # Insert into the database
+#                 sql = """
+#                     INSERT INTO EventDetails (eventID, detailName, detailPicture)
+#                     VALUES (%s, %s, %s)
+#                 """
+#                 db.execute(sql, (event_id, detail_name, binary_data))
+    
+#     # Commit the changes and close the connection
+#     db.connection.commit()
+#     db.close()
+
+#     return "Images uploaded successfully!"
+
 @app.route('/upload_images')
 def upload_images():
     db = mysql.connection.cursor()
 
     image_files = [
-        'static/Image/past 1.png',
-        'static/Image/past 2.png',
-        'static/Image/past 3.png',
-        'static/Image/past 4.png',
-        'static/Image/past 5.png',
+        'static/Image/profile pic.png'
     ]
 
     event_id = 1
-    detail_name = 'Past Event Images'
+    detail_name = 'Organiser Profile'
     
     for image_file in image_files:
         with open(image_file, 'rb') as file:
@@ -89,7 +133,7 @@ def upload_images():
     db.connection.commit()
     db.close()
 
-    return "Images uploaded successfully!"
+    return "Images uploaded successfully!"
 
 @app.route('/Public/route')
 def route():
@@ -115,10 +159,7 @@ def get_route_image(selected_option):
         'start': 7,     # Start/Finish
     }
 
-    print(f"index: {index}")
-
     if selected_option in index:
-        print(f"selectedoption:{selected_option}")
         image_index = index[selected_option]
         try:
             route_image = route_images[image_index][0] 
@@ -298,7 +339,6 @@ def submit_payment():
         package_price = request.form.get('package_price')
         additional_price = request.form.get('additional_price')
 
-        print(f"Email: {email}")
         subject = "Order Confirmation - Glow Paint Run 3KPP"
         message_body = f"""
         <html>
@@ -399,7 +439,111 @@ def packages():
 
 @app.route('/Public/about_us')
 def about_us():
-    return render_template('Public/about_us.html')
+    db = mysql.connection.cursor()
+    db.execute("""
+        SELECT detailPicture AS picture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name1')) AS name1,
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name2')) AS name2
+        FROM EventDetails
+        WHERE detailName = 'Organiser Profile'
+    """)
+    profile_data = db.fetchall()
+    profile = None
+
+    if profile_data:
+        profile = {
+            'picture': base64.b64encode(profile_data[0][0]).decode('utf-8') if profile_data[0][0] else None,
+            'name1': profile_data[1][1],     
+            'name2': profile_data[1][2]      
+        }
+
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName1')) AS linkName1,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName2')) AS linkName2,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName3')) AS linkName3,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName4')) AS linkName4,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName5')) AS linkName5
+        FROM EventDetails
+        WHERE detailName = 'Social Link'
+    """)
+    social_data = db.fetchall()
+    social = None
+
+    if social_data:
+        social = {
+            'linkName1': social_data[0][0],
+            'linkName2': social_data[0][1],
+            'linkName3': social_data[0][2],
+            'linkName4': social_data[0][3],
+            'linkName5': social_data[0][4]
+        }
+    
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName1')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink1')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName2')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink2')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName3')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink3')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName4')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink4')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName5')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink5')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName6')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink6')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName7')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink7')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName8')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink8')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName9')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink9')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName10')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink10')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName11')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink11')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName12')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink12')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName13')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink13')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName14')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink14')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName15')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink15')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName16')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink16')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName17')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink17')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName18')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink18')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName19')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink19')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName20')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink20')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName21')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink21')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName22')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink22')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName23')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink23')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName24')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink24'))
+        FROM EventDetails
+        WHERE detailName = 'Other Social Link'
+    """)
+
+    other_social_data = db.fetchall()
+    event = None
+
+    if other_social_data:
+        event = {}
+        for i in range(1, 25):
+            event[f'eventName{i}'] = other_social_data[0][2 * (i - 1)]  
+            event[f'eventLink{i}'] = other_social_data[0][2 * (i - 1) + 1] 
+
+    db.close()
+    return render_template('Public/about_us.html', profile=profile, social=social, event=event)
 
 @app.route('/Public/contact_us')
 def contact_us():
@@ -412,15 +556,44 @@ def login():
        password = request.form['password']
        
        if email == '123@gmail.com' and password == '123':
-          return redirect(url_for('admin_homepage')) 
+          return redirect(url_for('o_homepage')) 
        else:
           flash('Invalid email or password.', 'error')
           return redirect(url_for('login'))
     return render_template('Organiser/login.html')
 
-@app.route('/Organiser/homepage')
-def admin_homepage():
-    return render_template('Organiser/homepage.html')
+@app.route('/Organiser/homepage', methods=['GET', 'POST'])
+def o_homepage():
+    db = mysql.connection.cursor()
+    # if request.method == 'POST':
+    #     img_file = request.files.get('profile') 
+
+    #     if profile_file:
+    #         img_data = profile_file.read()
+    #         db.execute(
+    #             """
+    #             UPDATE EventDetails
+    #             SET detailPicture = %s,
+    #             WHERE detailName = 'Past Event Images'
+    #             """,
+    #             (img_data,)
+    #         )
+
+    #         mysql.connection.commit()
+
+    db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Past Event Images'")
+    past_event_images = db.fetchall()
+
+    db.close()
+
+    # Convert binary images to base64 encoding
+    past_images = []
+    for image in past_event_images:
+        image_data = image[0]
+        base64_encoded_image = base64.b64encode(image_data).decode('utf-8')
+        past_images.append(base64_encoded_image)
+
+    return render_template('Organiser/homepage.html', past_images=past_images)
 
 @app.route('/Organiser/student_participant_list')
 def student_participant_list():
@@ -533,17 +706,329 @@ def update_status2(ICNumber):
 
     return jsonify({'success': True})
 
-@app.route('/Organiser/info_list')
+@app.route('/Organiser/info_list', methods=['GET', 'POST'])
 def info_list():
-    return render_template('Organiser/info_list.html')
+    db = mysql.connection.cursor()
+
+    if request.method == 'POST':
+        for i in range(6, 14):  # Handling locations 6 to 13
+            img_name = request.form.get(f'point-{i}')
+            img_file = request.files.get(f'upload-image-{i}')
+
+            if img_file:
+                img_data = img_file.read()
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET 
+                        detailPicture = %s,
+                        detailDescription = CASE
+                            WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
+                                JSON_SET(detailDescription, '$.imgName', %s)
+                            ELSE
+                                JSON_SET(detailDescription, '$.imgName', %s)  -- Add imgName if not present
+                        END
+                    WHERE eventDetailId = %s
+                    """,
+                    (img_data, img_name, img_name, i)
+                )
+
+            else:
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET detailDescription = CASE
+                        WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
+                            JSON_SET(detailDescription, '$.imgName', %s)
+                        ELSE
+                            JSON_SET(detailDescription, '$.imgName', %s)  -- Add imgName if it doesn't exist
+                    END
+                    WHERE eventDetailId = %s
+                    """,
+                    (img_name, img_name, i)
+                )
+
+        mysql.connection.commit()
+
+    db.execute("""
+        SELECT eventDetailId, detailPicture, JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.imgName')) AS detailDescription
+        FROM EventDetails
+        WHERE detailName = 'Route Images'
+    """)
+    event_details = db.fetchall()
+
+    db.close()
+
+    locations = {}
+    for detail in event_details:
+        locations[detail[0]] = {
+            "picture": base64.b64encode(detail[1]).decode('utf-8') if detail[1] else None,
+            "img_name": detail[2]
+        }
+
+    return render_template('Organiser/info_list.html',
+                            location_6=locations.get(6),
+                            location_7=locations.get(7),
+                            location_8=locations.get(8),
+                            location_9=locations.get(9),
+                            location_10=locations.get(10),
+                            location_11=locations.get(11),
+                            location_12=locations.get(12),
+                            location_13=locations.get(13),
+                            location_14=locations.get(14)
+                        )
 
 @app.route('/Organiser/response')
 def response():
     return render_template('Organiser/response.html')
 
-@app.route('/Organiser/about_us')
+@app.route('/Organiser/about_us', methods=['GET', 'POST'])
 def o_about_us():
-    return render_template('Organiser/about_us.html')
+    db = mysql.connection.cursor()
+
+    if request.method == 'POST':
+        profile_name1 = request.form.get('name1')  
+        profile_name2 = request.form.get('name2')  
+        profile_file = request.files.get('profile') 
+
+        if profile_file:
+            img_data = profile_file.read()
+            db.execute(
+                """
+                UPDATE EventDetails
+                SET 
+                    detailPicture = %s,
+                    detailDescription = JSON_SET(detailDescription, '$.name1', %s),
+                    detailDescription = JSON_SET(detailDescription, '$.name2', %s)
+                WHERE detailName = 'Organiser Profile'
+                """,
+                (img_data, profile_name1, profile_name2)
+            )
+        else:
+            db.execute(
+                """
+                UPDATE EventDetails
+                SET 
+                    detailDescription = JSON_SET(detailDescription, '$.name1', %s),
+                    detailDescription = JSON_SET(detailDescription, '$.name2', %s)
+                WHERE detailName = 'Organiser Profile'
+                """,
+                (profile_name1, profile_name2)
+            )
+
+        mysql.connection.commit()
+
+        sociallink1 = request.form.get('link1')
+        sociallink2 = request.form.get('link2')
+        sociallink3 = request.form.get('link3')
+        sociallink4 = request.form.get('link4')
+        sociallink5 = request.form.get('link5')
+
+        db.execute(
+            """
+            UPDATE EventDetails
+            SET 
+                detailDescription = JSON_SET(detailDescription, '$.linkName1', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName2', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName3', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName4', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName5', %s)
+            WHERE detailName = 'Social Link'
+            """,
+            (sociallink1, sociallink2, sociallink3, sociallink4, sociallink5)
+        )
+
+        mysql.connection.commit()
+
+        eventname1 = request.form.get('text1')
+        eventlink1 = request.form.get('text2')
+
+        eventname2 = request.form.get('text3')
+        eventlink2 = request.form.get('text4')
+
+        eventname3 = request.form.get('text5')
+        eventlink3 = request.form.get('text6')
+
+        eventname4 = request.form.get('text7')
+        eventlink4 = request.form.get('text8')
+
+        eventname5 = request.form.get('text9')
+        eventlink5 = request.form.get('text10')
+
+        eventname6 = request.form.get('text11')
+        eventlink6 = request.form.get('text12')
+
+        eventname7 = request.form.get('text13')
+        eventlink7 = request.form.get('text14')
+
+        eventname8 = request.form.get('text15')
+        eventlink8 = request.form.get('text16')
+
+        eventname9 = request.form.get('text17')
+        eventlink9 = request.form.get('text18')
+
+        eventname10 = request.form.get('text19')
+        eventlink10 = request.form.get('text20')
+
+        eventname11 = request.form.get('text21')
+        eventlink11 = request.form.get('text22')
+
+        eventname12 = request.form.get('text23')
+        eventlink12 = request.form.get('text24')
+
+        db.execute(
+            """
+            UPDATE EventDetails
+            SET 
+                detailDescription = JSON_SET(detailDescription, '$.eventName1', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName1', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName2', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName2', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName3', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName3', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName4', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName4', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName5', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName5', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName6', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName6', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName7', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName7', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName8', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName8', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName9', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName9', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName10', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName10', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName11', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName11', %s),
+                detailDescription = JSON_SET(detailDescription, '$.eventName12', %s),
+                detailDescription = JSON_SET(detailDescription, '$.linkName12', %s)
+            WHERE detailName = 'Other Social Link'
+            """,
+            (
+                eventname1, eventlink1,
+                eventname2, eventlink2,
+                eventname3, eventlink3,
+                eventname4, eventlink4,
+                eventname5, eventlink5,
+                eventname6, eventlink6,
+                eventname7, eventlink7,
+                eventname8, eventlink8,
+                eventname9, eventlink9,
+                eventname10, eventlink10,
+                eventname11, eventlink11,
+                eventname12, eventlink12
+            )
+        )
+
+        mysql.connection.commit()
+
+    db.execute("""
+        SELECT detailPicture AS picture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name1')) AS name1,
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name2')) AS name2
+        FROM EventDetails
+        WHERE detailName = 'Organiser Profile'
+    """)
+    profile_data = db.fetchall()
+    profile = None
+
+    if profile_data:
+        profile = {
+            'picture': base64.b64encode(profile_data[0][0]).decode('utf-8') if profile_data[0][0] else None,
+            'name1': profile_data[1][1],     
+            'name2': profile_data[1][2]      
+        }
+
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName1')) AS linkName1,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName2')) AS linkName2,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName3')) AS linkName3,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName4')) AS linkName4,
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName5')) AS linkName5
+        FROM EventDetails
+        WHERE detailName = 'Social Link'
+    """)
+    social_data = db.fetchall()
+    social = None
+
+    if social_data:
+        social = {
+            'linkName1': social_data[0][0],
+            'linkName2': social_data[0][1],
+            'linkName3': social_data[0][2],
+            'linkName4': social_data[0][3],
+            'linkName5': social_data[0][4]
+        }
+    
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName1')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink1')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName2')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink2')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName3')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink3')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName4')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink4')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName5')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink5')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName6')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink6')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName7')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink7')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName8')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink8')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName9')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink9')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName10')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink10')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName11')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink11')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName12')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink12')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName13')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink13')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName14')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink14')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName15')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink15')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName16')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink16')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName17')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink17')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName18')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink18')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName19')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink19')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName20')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink20')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName21')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink21')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName22')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink22')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName23')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink23')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName24')),
+            JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink24'))
+        FROM EventDetails
+        WHERE detailName = 'Other Social Link'
+    """)
+
+    other_social_data = db.fetchall()
+    event = None
+
+    if other_social_data:
+        event = {}
+        for i in range(1, 25):
+            event[f'eventName{i}'] = other_social_data[0][2 * (i - 1)]  
+            event[f'eventLink{i}'] = other_social_data[0][2 * (i - 1) + 1] 
+
+    db.close()
+    return render_template('Organiser/about_us.html', profile=profile, social=social, event=event)
+
 
 @app.route('/Organiser/contact_us')
 def o_contact_us():
