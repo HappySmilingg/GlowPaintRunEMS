@@ -533,6 +533,10 @@ def update_status2(ICNumber):
 
     return jsonify({'success': True})
 
+@app.route('/Organiser/info_list')
+def info_list():
+    return render_template('Organiser/info_list.html')
+
 @app.route('/Organiser/response')
 def response():
     return render_template('Organiser/response.html')
