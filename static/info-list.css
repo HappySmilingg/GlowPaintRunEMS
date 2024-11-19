@@ -1,9 +1,9 @@
 .container h1 {
     position: relative;
     font-family: 'Irish Grover', cursive;
-    font-size: 2.5vw;
+    font-size: 2.0vw;
     font-weight: 400; 
-    letter-spacing: 8.50px; 
+    letter-spacing: 2.50px; 
     padding-top: 0.8vw;
     padding-bottom: 0.8vw;
     color: white;
@@ -88,9 +88,9 @@
 .location label {
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
-    font-family: 'Inter', sans-serif;    
-    font-size: 1.5vw;
-    font-weight: 700; 
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    letter-spacing: 2.50px;
     letter-spacing: 1.0px;
     color: white;
 }
@@ -101,6 +101,10 @@
     font-weight: 400; 
     letter-spacing: 1.0px;
     color: black;
+    background-color: white;
+    border: 2px solid transparent; 
+    border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
+    border-radius: 5px;
     width: 30vw;
     height: 2.5vw;
     padding-left: 0.8vw;
@@ -109,7 +113,7 @@
 }
 
 .location input::placeholder {
-    color: rgb(12, 12, 12);
+    color: rgb(14, 14, 14);
   }
 
 .background-img {

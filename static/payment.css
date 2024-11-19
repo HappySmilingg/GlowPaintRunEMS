@@ -1,25 +1,30 @@
 /* Top Bar */
 .top-bar {
-    height: 50px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    padding: 0 10px;
-    background-color: black;
-    width: 100%; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
 }
 
 .back-button {
-    font-size: 20px;
+    font-size: 2.0vw;
     cursor: pointer;
     color: white;
     margin-right: 10px;
 }
 
+/* Common use bar text */
 .bar-text {
-    font-size: 24px;
+    font-size: 2.0vw;
     font-family: 'Irish Grover', cursive;
+    font-weight: 400;
     color: white;
+    letter-spacing: 2.50px; 
     flex-grow: 1; 
     text-align: center; 
 }
@@ -27,8 +32,8 @@
 
 .payment-container {
   width: 100%;
-  padding: 20px;
-  background-color: rgb(14, 14, 14);
+  padding: 2.5vw;
+  background-color: #1A1A1A;
 }
 
 .section {
@@ -41,25 +46,24 @@
 
 /* Order Details Section */
 .order-details-title {
-  background: #e60d0d;
+  background: linear-gradient(45deg, #e60d0d, #ff4d4d, #b30000);
+  background-size: 200% 200%;
+  animation: gradient-shift 5s infinite;
   color: white;
   padding: 12px;
   text-align: center;
   border-radius: 8px 8px 0 0;
   font-family: 'Irish Grover', cursive;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.order-details-title h3 {
-  font-size: 20px;
+  font-size: 1.2vw;
+  font-weight: 400; 
+  letter-spacing: 2.50px; 
 }
 
 .order-details-content {
   width: 80%;
   padding: 20px;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 1.1vw;
   font-weight: 400;
   line-height: 25px;
   margin-left: auto;
@@ -67,7 +71,7 @@
 }
 
 .order-message {
-  font-size: 16px;
+  font-size: 1.3vw;
   color: black; 
   margin-bottom: 10px;
   text-align: left;
@@ -80,7 +84,7 @@ table {
 }
 
 table td {
-  padding: 12px;
+  padding: 0.8vw;
   border-bottom: 1px solid #ddd;
 }
 
@@ -106,30 +110,35 @@ tr.total-amount-row {
 
 tr.total-amount-row td:first-child {
   text-align: left;
-  padding-left: 20px; 
+  padding-left: 1.5vw; 
 }
 
 tr.total-amount-row td:nth-child(2) {
   text-align: right;
-  padding-right: 20px; 
+  padding-right: 1.5vw; 
 }
 
 /* Order Details Section End */
 
 /* Online Transfer Section */
 .online-transfer-title {
-  background: #e60d0d;
+  background: linear-gradient(45deg, #e60d0d, #ff4d4d, #b30000);
+  background-size: 200% 200%;
+  animation: gradient-shift 5s infinite;
   color: white;
   padding: 12px;
   text-align: center;
   border-radius: 8px 8px 0 0;
   font-family: 'Irish Grover', cursive;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: 1.2vw;
+  font-weight: 400; 
+  letter-spacing: 2.50px; 
 }
 
 .online-transfer-content {
-  padding: 20px;
+  padding: 1.5vw;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1vw;
   font-weight: 400;
   line-height: 25px;
   text-align: center;
@@ -139,13 +148,15 @@ tr.total-amount-row td:nth-child(2) {
   margin: 10px 0;
   color: black;
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 1.3vw;
 }
 
 .online-transfer-content strong {
   font-weight: 700;
+  font-family: 'Inter', sans-serif;
   color: black;
-  font-size: 14px;
+  font-size: 1.1vw;
 }
 
 .bank-details {
@@ -162,20 +173,23 @@ tr.total-amount-row td:nth-child(2) {
 
 .details-title {
   text-decoration: underline; 
-  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2vw;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 0.8vw;
 }
 
 .details-content p {
-  font-size: 14px;
+  font-size: 1.1vw;
   margin: 8px 0;
 }
 
 .reference-info {
-  font-size: 14px;
+  font-size: 1.1vw;
   margin-top: 10px;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
+  color: black;
 }
 
 /* Online Transfer Section End */
@@ -202,14 +216,17 @@ tr.total-amount-row td:nth-child(2) {
 }
 
 .qr-code-title, .proof-of-payment-title {
-  background: #e60d0d;
+  background: linear-gradient(45deg, #e60d0d, #ff4d4d, #b30000);
+  background-size: 200% 200%;
+  animation: gradient-shift 5s infinite;
   color: white;
   padding: 12px;
   text-align: center;
   border-radius: 8px 8px 0 0;
   font-family: 'Irish Grover', cursive;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: 1.2vw;
+  font-weight: 400; 
+  letter-spacing: 2.50px; 
 }
 
 .qr-image {
@@ -223,8 +240,9 @@ tr.total-amount-row td:nth-child(2) {
   padding: 20px;
   color: black;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 25px;
+  font-weight: 400;
+  font-size: 1.2vw;
+  line-height: 2.0vw;
   text-align: left;
   margin-left: auto;
   margin-right: auto;
@@ -236,7 +254,7 @@ tr.total-amount-row td:nth-child(2) {
 }
 
 .proof-of-payment-content .file-info {
-  font-size: 12px;
+  font-size: 1.0vw;
   color: black;
   margin-top: 5px;
   margin-bottom: 30px;
@@ -253,9 +271,9 @@ tr.total-amount-row td:nth-child(2) {
   border: 1px solid black;
   background-size: 300%;
   color: #3B4FA4;
-  font-size: 14px;
+  font-size: 1.2vw;
   font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: transform 0.3s ease;
   white-space: nowrap;
@@ -310,7 +328,7 @@ input[type="file"] {
 }
 
 .terms-and-conditions p {
-  font-size: 14px;
+  font-size: 1.2vw;
   color: white;
   font-weight: 400;
   padding: 10px;
@@ -334,9 +352,9 @@ input[type="file"] {
   background-size: 300%;
   border-radius: 10px;
   color: white;
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-family: 'Inter', sans-serif; 
+  font-size: 1.2vw;
+  font-weight: 600; 
   border: 2px solid;
   border-color: #e60d0d;
   cursor: pointer;
@@ -354,9 +372,9 @@ input[type="file"] {
 }
 
 .submit-btn:disabled {
-    background: #d3d3d3;
-    border: 2px solid #d3d3d3; 
-    color: white;
+    background: #d3d3d3 !important;
+    border: 2px solid #d3d3d3 !important; 
+    color: white !important;
     cursor: not-allowed !important; 
     box-shadow: none !important; 
     transform: none !important; 
@@ -365,24 +383,15 @@ input[type="file"] {
 
 .submit-btn:hover {
   animation: gradient-flow 1.2s infinite linear;
-  transform: scale(1.05);
+  transform: scale(1.00);
   box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #e60d0d;
   color: #e60d0d;
 }
 
-@keyframes gradient-flow {
-  0% {
-      background-position: 0% 50%;
-  }
-  100% {
-      background-position: 100% 50%;
-  }
-}
-
-
+/* Window */
 /* Window */
 .success-window {
   display: none;
@@ -393,7 +402,7 @@ input[type="file"] {
   z-index: 1000;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(26, 26, 26, 0.2);
   justify-content: center;
   align-items: center;
 }
@@ -402,12 +411,14 @@ input[type="file"] {
   width: 100%;
   height: 100%;
   position: relative;
-  background: white;
+  background: #1A1A1A; 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
   padding-top: 50px;
+  color: white; 
 }
 
+/* Success Icon */
 .success-icon {
   width: 200px;
   height: 200px;
@@ -422,12 +433,12 @@ input[type="file"] {
 .vector {
   width: 200px;
   height: 200px;
-  background: #26F234;
+  background: #26F234; 
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 100px; 
+  font-size: 100px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -436,52 +447,51 @@ input[type="file"] {
   color: white;
 }
 
+/* Success Text */
 .success-text {
-  font-size: 16px;
-  color: black; 
+  font-size: 1.2vw;
+  color: white; 
   font-family: 'Inter', sans-serif;
-  font-weight: 400; 
+  font-weight: 400;
   text-align: center;
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-.button {
-    padding: 13px 14px;
-    background: linear-gradient(90deg, #ff389b 0%, #ff275d 50%, #9934ff 100%);
-    background-size: 300%;
-    border-radius: 10px;
-    color: white;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    white-space: nowrap; 
-    min-width: 180px;
-    display: inline-flex; /* Adapts width to content */
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 30px auto;
-    margin-bottom: 30px;
+/* Done Button */
+.done-button {
+  padding: 13px 14px;
+  background: #e60d0d;
+  background-size: 300%;
+  border-radius: 10px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2vw;
+  font-weight: 600;
+  border: 2px solid;
+  border-color: #e60d0d;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+  min-width: 180px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 30px auto;
+  margin-bottom: 30px;
 }
 
-button:hover {
+.done-button:hover {
   animation: gradient-flow 1.2s infinite linear;
-  transform: scale(1.05);
-  box-shadow: 0px 4px 10px rgba(255, 39, 93, 0.5);
+  transform: scale(1.00);
+  box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid;
+  border-color: #e60d0d;
+  color: #e60d0d;
 }
 
-@keyframes gradient-flow {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
 
 @media (max-width: 768px) {
   .rectangle82 {
@@ -531,7 +541,7 @@ button:hover {
   position: absolute;
   top: 10px;
   left: 15px;
-  font-size: 24px;
+  font-size: 1.5vw;
   color: black;
   cursor: pointer;
   background: transparent;
@@ -543,7 +553,7 @@ button:hover {
 }
 
 .popup-content h2 {
-  font-size: 24px;
+  font-size: 1.5vw;
   color: black;
   text-align: center;
   margin-bottom: 20px;
@@ -551,7 +561,7 @@ button:hover {
 }
 
 .popup-body {
-  font-size: 16px;
+  font-size: 1.2vw;
   color: black;
   line-height: 1.6;
   margin-bottom: 20px;
@@ -560,14 +570,29 @@ button:hover {
 .popup-body ul {
   list-style-type: disc;
   padding-left: 20px;
-  font-size: 12px;
+  font-size: 1.0vw;
   color: black;
 }
 
 .popup-body h3 {
-  font-size: 14px;
+  font-size: 1.1vw;
   margin-top: 20px;
   color: black;
 }
 
 /* Window End */
+
+@keyframes gradient-flow {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

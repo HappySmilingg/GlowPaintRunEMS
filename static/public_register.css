@@ -1,25 +1,29 @@
 /* Top Bar */
 .top-bar {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Distribute space between items */
-    padding: 0 10px; /* Adjust padding for spacing */
-    background-color: black;
-    width: 100%; /* Ensure the top bar spans the full width */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding-top:1vw;
+  padding-bottom: 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  background: #131313;
 }
 
 .back-button {
-    font-size: 20px;
-    cursor: pointer;
-    color: white;
-    margin-right: 10px; /* Add a bit of margin to avoid touching the edges */
+  font-size: 2.0vw;
+  cursor: pointer;
+  color: white;
+  margin-right: 10px;
 }
 
 .bar-text {
-    font-size: 24px;
+    font-size: 2.0vw;
     font-family: 'Irish Grover', cursive;
+    font-weight: 400;
     color: white;
+    letter-spacing: 2.50px; 
     margin-left: 210px;
 }
 
@@ -29,9 +33,9 @@ button {
     background-size: 300%;
     border-radius: 10px;
     color: white;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
     border: 2px solid;
     border-color: #e60d0d;
     cursor: pointer;
@@ -43,9 +47,9 @@ button {
 
 button:hover {
   animation: gradient-flow 1.2s infinite linear;
-  transform: scale(1.05);
+  transform: scale(1.00);
   box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #e60d0d;
   color: #e60d0d;
@@ -65,10 +69,12 @@ button:hover {
 /* Registration Form */
 .form-container {
     width: 100%;
-    background-color: rgb(14, 14, 14);
+    background-color: #1A1A1A;
     padding: 20px;
     color: white;
     font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    letter-spacing: 2.50px;
   }
   
   .form-row {
@@ -88,11 +94,10 @@ button:hover {
   
   .input-group label {
     display: block;
-    font-size: 14px;
+    font-size: 1.1vw;
     margin-top: 10px;
     margin-bottom: 8px;
     margin-left: 40px;
-    font-weight: 500;
   }
   
   .input-group input {
@@ -100,7 +105,7 @@ button:hover {
     margin-left: 40px;
     margin-bottom: 20px;
     padding: 12px;
-    font-size: 12px;
+    font-size: 1.0vw;
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
@@ -118,10 +123,10 @@ button:hover {
 
   .t-shirt-text {
     display: block;
-    font-size: 14px;
+    font-size: 1.1vw;
     margin-top: 10px;
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 400;
     color: white;
   }
   
@@ -140,7 +145,7 @@ button:hover {
   }
   
   .additional-info {
-    font-size: 12px;
+    font-size: 1.0vw;
     color: white;
     font-family: 'Irish Grover', cursive;
     letter-spacing: 1px;
@@ -161,7 +166,7 @@ button:hover {
   }
 
   .package-link:hover {
-    color: blue;
+    color: #e60d0d;
   }
 
   .proceed-button {
@@ -173,13 +178,13 @@ button:hover {
   
   .btn-proceed {
     padding: 13px 14px;
-    background: #e60d0d; 
-    background-size: 300%; 
+    background: #e60d0d;
+    background-size: 300%;
     border-radius: 10px;
     color: white;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
     border: 2px solid;
     border-color: #e60d0d;
     cursor: pointer;
@@ -188,9 +193,9 @@ button:hover {
   
   .btn-proceed:hover {
     animation: gradient-flow 1.2s infinite linear;
-    transform: scale(1.05);
+    transform: scale(1.00);
     box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
-    background: transparent;
+    background: rgba(0, 0, 0, 0.3);
     border: 2px solid;
     border-color: #e60d0d;
     color: #e60d0d;
@@ -232,7 +237,7 @@ button:hover {
   
   .MeasurementArea {
     color: white;
-    font-size: 10px;
+    font-size: 0.8vw;
     font-family: 'Irish Grover', cursive;
     font-weight: 400;
     margin-top: 10px;
@@ -249,7 +254,7 @@ button:hover {
   
   .input-group2 label {
     display: block;
-    font-size: 14px;
+    font-size: 1.1vw;
     margin-bottom: 8px;
     margin-right: 40px;
     font-weight: 500;
@@ -259,7 +264,7 @@ button:hover {
     width: 90%;
     margin-right: 40px;
     padding: 12px;
-    font-size: 12px;
+    font-size: 1.0vw;
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
@@ -301,6 +306,7 @@ button:hover {
     font-family: 'Inter', cursive;
     position: relative;
     background: white;
+    letter-spacing: 1.0px;
     border-radius: 10px;
     padding: 30px;
     margin-left: auto;
@@ -315,7 +321,7 @@ button:hover {
     position: absolute;
     top: 10px;
     left: 15px;
-    font-size: 24px;
+    font-size: 1.5vw;
     color: black;
     cursor: pointer;
     background: transparent;
@@ -327,7 +333,7 @@ button:hover {
   }
   
   .popup-content h2 {
-    font-size: 24px;
+    font-size: 1.5vw;
     color: black;
     text-align: center;
     margin-bottom: 20px;
@@ -335,7 +341,7 @@ button:hover {
   }
   
   .popup-body {
-    font-size: 16px;
+    font-size: 1.2vw;
     color: black;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -344,12 +350,12 @@ button:hover {
   .popup-body ul {
     list-style-type: disc;
     padding-left: 20px;
-    font-size: 12px;
+    font-size: 1.0vw;
     color: black;
   }
   
   .popup-body h3 {
-    font-size: 14px;
+    font-size: 1.1vw;
     margin-top: 20px;
     color: black;
   }
