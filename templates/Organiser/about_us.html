@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='or_about_us.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="header">
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <div class="header-structure-left">
+        <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
+        <div class="header-item">Participant
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+            </ul>
+        </div>
+        <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+        <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+        <div class="header-item">About Us
+            <i class="fa fa-caret-down"></i>
+            <ul class="header-subitem">
+                <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="header-structure-right">
+            <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+                <i class='fas fa-power-off'></i>
+                <div class="login-text">Log Out</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">ABOUT US</h1>
+    </div>
+
+    <div class="information">
+        <div class="profile">
+            <img src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="profile_pic">
+        </div>
+        <div class="upload-image">
+            <label for="upload-image" class="upload-image-button">UPLOAD NEW IMAGE</label>
+            <input type="file" id="upload-image" accept="image/png, image/jpeg" style="display: none;">
+        </div>
+        <div class="fname">
+            <label for="fname" class="fname">NAME:</label>
+            <div class="name1">
+                <input type="text" id="name1" name="name1" value="3KPP24" style="width: 1000px">
+            </div>
+            <div class="name2">
+                <input type="text" id="name2" name="name2" value="KARNIVAL KEUSAHAWANAN DAN KERJAYA PULAU PINANG 2024" style="width: 1000px">
+            </div>
+        </div>
+
+        <!-- Social Media Logo -->
+        <div class="social-logo">
+            <div class="tiktok">
+                <span class="tiktok-icon"><i class="fab fa-tiktok fa-3x"></i></span>    
+                <div class="link">
+                    <label for="social-link" class="social-link">LINK:</label>
+                    <input type="text" id="link1" name="link1" value="https://www.tiktok.com/@3KPP_USM" style="width: 500px">
+                </div>
+            </div>
+            <div class="facebook">
+                <span class="facebook-icon"><i class="fab fa-facebook fa-3x"></i></span>
+                <div class="link">
+                    <label for="social-link" class="social-link">LINK:</label>
+                    <input type="text" id="link2" name="link2" value="https://www.facebook.com/KARNIVALKEUSAHAWAN" style="width: 500px">
+                </div>
+            </div>
+            <div class="instagram">
+                <span class="instagram-icon"><i class="fab fa-instagram fa-3x"></i></span>
+                <div class="link">
+                    <label for="social-link" class="social-link">LINK:</label>
+                    <input type="text" id="link3" name="link3" value="https://www.instagram.com/3KPP_USM" style="width: 500px">
+                </div>
+            </div>
+            <div class="email">
+                <span class="email-icon"><i class="fas fa-envelope fa-3x"></i></span>
+                <div class="link">
+                    <label for="social-link" class="social-link">LINK:</label>
+                    <input type="text" id="link4" name="link4" value="mailto:3kpp24@gmail.com" style="width: 500px">
+                </div>
+            </div>
+            <div class="telegram">
+                <span class="telegram-icon"><i class="fab fa-telegram fa-3x"></i></span>
+                <div class="link">
+                    <label for="social-link" class="social-link">LINK:</label>
+                    <input type="text" id="link5" name="link5" value="https://t.me/+1_8xeTSfHdViZmY9" style="width: 500px">
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Event Link -->
+        <div class="other-event-link">
+            <div class="merch-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text1" name="text1" value="BUY OUR MERCH HERE" style="width: 500px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text1" name="text1" value="https://docs.google.com/forms/d/e/1FAIpQLSeVF1T406NhiHMc-rsWdqyT-J2fGwln2D75pVhjmq857aUiOA/viewform" style="width: 150px">
+            </div>
+
+            <div class="gpr-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text2" name="text2" value="GLOW PAINT RUN" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text2" name="text2" value="/Public/public_register" style="width: 150px">
+            </div>
+            
+            <div class="pv-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text3" name="text3" value="PENCARIAN VENDOR" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text3" name="text3" value="https://docs.google.com/forms/d/1aHKB3VLlZrnygYCovUyEVJxVPKCtyKhk4J9WQlFwvK0/closedform" style="width: 150px">
+            </div>
+
+            <div class="mus-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text4" name="text4" value="MAKE-UP STAR" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text4" name="text4" value="https://docs.google.com/forms/d/e/1FAIpQLSd23LdT9vkZjLv45_gFpqr7gwRBgi-MGA9HM1x_GM4l6OsWgQ/viewform" style="width: 150px">
+            </div>
+
+            <div class="fctc-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text5" name="text5" value="FROM CAMPUS TO CEO" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text5" name="text5" value="https://docs.google.com/forms/d/e/1FAIpQLSfctaKfw_UqGr1zi0FJkBHPsTGlJB2eavlJx3PBFfuf72x7Ag/closedform" style="width: 150px">
+            </div>
+
+            <div class="tbp-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text6" name="text6" value="TOTE BAG PAINTING" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text6" name="text6" value="https://docs.google.com/forms/d/e/1FAIpQLScFsPt_0NE_sC4IAh5eoGtTUKHOJPmt4LtGD0xmdOZ9ItRp-Q/viewform" style="width: 150px">
+            </div>
+
+            <div class="jos-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text7" name="text7" value="JOIN OUR SECRETERIAT" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text7" name="text7" value="https://docs.google.com/forms/d/e/1FAIpQLSdYvQrnzpN3YCJtCpM4pL6P1govqbcCtkthejmUU0H3YFkHZg/viewform" style="width: 150px">
+            </div>
+
+            <div class="dadca-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text8" name="text8" value="DIY AIR DRY CLAY ART" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text8" name="text8" value="https://docs.google.com/forms/d/e/1FAIpQLSeTCBrvP0UIFO8XahAha77RdOrXSHQyKB0BPaXdKDhnbq0lxg/viewform" style="width: 150px">
+            </div>
+
+            <div class="tstad-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text9" name="text9" value="T-SHIRT TIE AND DYE" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text9" name="text9" value="https://docs.google.com/forms/d/e/1FAIpQLSeINWfujbGY4WYUV7OSmXscoCV_uwj5zXAcrOiKyNbUB8xQ0w/viewform" style="width: 150px">
+            </div>
+
+            <div class="bc-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text10" name="text10" value="BATIK COLOURING" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text10" name="text10" value="https://docs.google.com/forms/d/e/1FAIpQLSf0vh2sn2hla9sz4C80mGcFsrWZLiUM6bvtRDO_nxQbuGGCOg/viewform" style="width: 150px">
+            </div>
+
+            <div class="cc-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text11" name="text11" value="CAPTURE & CREATE" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text11" name="text11" value="https://docs.google.com/forms/d/e/1FAIpQLSf0xnoI5CP1d9m-nY6woICp2DnF7l0OBbN1yQ1ftSlOe-JTLQ/viewform" style="width: 150px">
+            </div>
+
+            <div class="oo-card">
+                <label for="text">NAME:</label>
+                <input type="text" id="text12" name="text12" value="OTAKU ODYSEY" style="width: 550px">
+                <label for="text">LINK:</label>
+                <input type="text" id="text12" name="text12" value="https://docs.google.com/forms/d/e/1FAIpQLSecO3CD2qnLUf1kNiwR4HTKwYPtc5K8BBH7F2aMn9DpLWPD-g/viewform" style="width: 150px">
+            </div>
+        </div>
+    </div>
+</body>
