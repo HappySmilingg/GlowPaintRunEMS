@@ -533,9 +533,17 @@ def update_status2(ICNumber):
 
     return jsonify({'success': True})
 
-@app.route('/Organiser/info_list')
-def info_list():
-    return render_template('Organiser/info_list.html')
+@app.route('/Organiser/response')
+def response():
+    return render_template('Organiser/response.html')
+
+@app.route('/Organiser/about_us')
+def o_about_us():
+    return render_template('Organiser/about_us.html')
+
+@app.route('/Organiser/contact_us')
+def o_contact_us():
+    return render_template('Organiser/contact_us.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
