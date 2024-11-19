@@ -1,44 +1,67 @@
-body {
-    font-family: 'Irish Grover', cursive;
-    background-color: black;
-    color: white;
-
+.container {
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
     align-items: center;
 }
 
-.container {
-    text-align: center;
-    margin-bottom: 15px;
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top:1vw;
+    padding-bottom: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background: #131313;
 }
 
-.title {
-    margin-top: 20px;
-    font-size: 24px;
+.back-button {
+    font-size: 2.0vw;
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
 }
 
-.name {
-    padding-top: 5px;
-    letter-spacing: 1px;
-    font-size: 20px;
-    padding-bottom: 5px;
+.bar-text {
+    font-size: 2.0vw;
+    font-family: 'Irish Grover', cursive;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 2.50px; 
+    flex-grow: 1; 
+    text-align: center; 
 }
 
+/* Top Bar End */
+
+/* Top text */
 .desc {
     text-align: center;
-    font-size: 20px;  
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 400; 
+    letter-spacing: 1.0px;
+    color: white; 
     margin-top: 2vw;
+    margin-bottom: 2vw;
 }
-
+/* Top Text End */
+ 
+/* 2 Card */
 .contact-card {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: top;
-    background-color: 000000; /* Background color for the page */
     height: auto;
-    padding-top: 10px;
+    padding-top: 1vw;
     flex-grow: 1;
-    gap: 40px;
+    gap: 5vw;
 }
 
 .sponsor-hod {
@@ -47,10 +70,10 @@ body {
     justify-content: top;
     text-align: center;
     background: transparent;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 20px 40px;
-    width: 500px;
-    height: 500px;
+    width: 38vw;
+    height: 38vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     border: 3px solid rgb(183, 9, 252); 
     position: relative;
@@ -62,77 +85,102 @@ body {
     justify-content: top;
     text-align: center;
     background: transparent;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 20px 40px;
-    width: 500px;
-    height: 500px;
+    width: 38vw;
+    height: 38vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     border: 3px solid rgb(183, 9, 252); 
     position: relative;
 }
 
+.sponsor-hod h2, .project-director h2 {
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.5vw;
+    font-weight: 600; 
+    letter-spacing: 1.0px;
+    color: white;
+}
+
 .s_pic {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 
 .pd_pic {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 
 .position {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 1.2vw;
+    padding-bottom: 1.2vw;
     border-top: 3px solid #00ccff;
     border-image: linear-gradient(to right, #cc10f1, #5a03e6) 5;
     border-bottom: 3px solid #ff00ff;
-    font-size: 24px;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.5vw;
+    font-weight: 400; 
+    letter-spacing: 1.0px;
+    color: white;
     position: relative;
 }
 
 .name {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 24px;
+    margin-top: 1.2vw;
+    margin-bottom: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    font-size: 2vw;
+    font-weight: 600; 
+    letter-spacing: 1.0px;
+    color: white;
 }
 
 .sponsor-button {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 3px solid black;
-    background: rgb(183, 9, 252);
-    border-radius: 20px;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    background: transparent;
+    border-radius: 4vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgb(155, 10, 212);
+    transition: background 0.3, transform 0.3;
 }
 
 .sponsor-button:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    background: rgb(155, 10, 212);
     transform: scale(1.1);
 }
 
 .pd-button {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 3px solid black;
-    background: rgb(183, 9, 252);
-    border-radius: 20px;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    background: transparent;
+    border-radius: 4vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgb(155, 10, 212);
+    transition: background 0.3, transform 0.3;
 }
 
 .pd-button:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+    background: rgb(155, 10, 212);
     transform: scale(1.1);
 }
 
 .sponsor-button-text {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
 }
 
 .pd-button-text {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
 }
+/* 2 Card End */
