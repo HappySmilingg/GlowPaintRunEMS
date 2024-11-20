@@ -315,47 +315,4 @@ body {
     letter-spacing: 1.0px;
     color: white;
 }
-
-@media (max-width: 768px) {
-    .footer {
-        padding: 8vw 5vw;
-        font-size: 3.5vw; 
-    }
-
-    .sponsor-logos {
-        gap: 3vw; 
-    }
-
-    .footer-sections {
-        grid-template-columns: repeat(2, 1fr);  
-        padding-left: 5vw;
-        padding-right: 5vw;
-    }
-
-    .footer-section h3 {
-        font-size: 3.5vw; 
-    }
-
-    .footer-section p {
-        font-size: 3vw; 
-    }
-
-    .social-link i {
-        font-size: 3vw;  
-    }
-
-    .social-link p {
-        font-size: 3vw;  
-    }
-
-    .footer-bottom p {
-        font-size: 3vw; 
-    }
-
-    .line {
-        width: 80%; 
-    }
-}
-
-
 /* Footer End */

@@ -84,40 +84,45 @@ button:hover {
 /* Search Function End */
 
 /* Participant Table */
+/* Odd row */
+.participant-table tbody tr:nth-child(odd) {
+    background-color: rgb(226, 226, 226); 
+    color: black; 
+}
+
+/* Event row */
+.participant-table tbody tr:nth-child(even) {
+    background-color: #ff9c9c; 
+    color: black; 
+}
+
 .participant-table {
     border-collapse: collapse;
-    margin-bottom: 3.66vw; /* 50px converted */
-    margin-left: 1.46vw; /* 20px converted */
-    margin-right: 1.46vw; /* 20px converted */
+    margin-bottom: 3.66vw;
+    margin-left: 1.46vw;
+    margin-right: 1.46vw;
 }
 
 .participant-table th, .participant-table td {
-    padding: 0.73vw; /* 10px converted */
-    border: 0.07vw solid #ddd; /* 1px converted */
+    padding: 0.73vw;
+    border: 0.12vw solid white;
     text-align: center;
     font-family: 'Inter', sans-serif;
 }
 
 th {
-    font-size: 1.17vw; /* 16px converted */
-    font-weight: bold;
+    font-size: 1.17vw;
+    font-weight: 600;
+    background-color: #9c0000;
+    color: #fff;
 }
 
 td {
-    font-size: 1.02vw; /* 14px converted */
-}
-
-.participant-table th {
-    background-color: #333;
-    color: #fff;
+    font-size: 1.02vw;
 }
 
 .hidden-column {
     display: none;
-}
-
-.participant-table tbody tr:nth-child(odd) {
-    background-color: #ff4d4d;
 }
 
 th:nth-child(1), td:nth-child(1) {
@@ -158,7 +163,7 @@ input[type="checkbox"] {
 }
 
 .download-link {
-    color: #007bff;
+    color: #003871;
     text-decoration: none;
 }
 
