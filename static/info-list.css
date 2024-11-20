@@ -21,7 +21,7 @@
     font-size: 1.2vw;
     font-weight: 600; 
     color: black;
-    padding: 10px 20px;
+    padding: 0.8vw 1.2vw; 
     text-align: center;
     cursor: pointer;
     border-radius: 100px;
@@ -113,7 +113,7 @@
     font-size: 1.2vw;
     font-weight: 600; 
     color: black;
-    padding: 10px 20px;
+    padding: 0.8vw 1.1vw; 
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
@@ -192,7 +192,7 @@
     font-size: 1.2vw;
     font-weight: 600; 
     color: black;
-    padding: 10px 20px;
+    padding: 0.8vw 1.1vw; 
     text-align: center;
     cursor: pointer;
     border-radius: 5px;

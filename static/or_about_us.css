@@ -14,14 +14,14 @@
     display: inline-flex; 
     justify-content: center;
     align-items: center;
-    background-color: #9b0ad4;
+    background-color: rgb(183, 9, 252);
     border: 2px solid;
-    border-color: #9b0ad4;
+    border-color: rgb(183, 9, 252);
     font-family: 'Inter', sans-serif; 
     font-size: 1.2vw;
     font-weight: 600; 
     color: white;
-    padding: 10px 20px;
+    padding: 0.8vw 1.2vw; 
     text-align: center;
     cursor: pointer;
     border-radius: 100px;
@@ -38,12 +38,11 @@
     margin-top: 5vw;
 }
 
-/* Hover effect */
 .save-btn:hover {
     background-color: rgba(0, 0, 0, 0.3);
     border: 2px solid;
-    border-color: #9b0ad4;
-    color: #9b0ad4;
+    border-color:rgb(183, 9, 252);
+    color: rgb(183, 9, 252);
 }
 
 /* Top Bar */
@@ -93,7 +92,7 @@
     overflow: hidden; 
     margin-top: 1vw;
     margin-bottom: 1.5vw;
-    border: 3px solid #9b0ad4;
+    border: 3px solid rgb(183, 9, 252);
 }
 
 .profile-image img {
@@ -106,14 +105,14 @@
     display: inline-flex; 
     justify-content: center;
     align-items: center;
-    background-color: #9b0ad4;
+    background-color: rgb(183, 9, 252);
     border: 2px solid;
-    border-color: #9b0ad4;
+    border-color: rgb(183, 9, 252);
     font-family: 'Inter', sans-serif; 
     font-size: 1.1vw;
     font-weight: 600; 
     color: white;
-    padding: 10px 20px;
+    padding: 0.8vw 1.1vw; 
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
@@ -124,8 +123,8 @@
 .upload-image-button:hover {
     background-color: rgba(0, 0, 0, 0.3);
     border: 2px solid;
-    border-color: #9b0ad4;
-    color: #9b0ad4;
+    border-color: rgb(183, 9, 252);
+    color: rgb(183, 9, 252);
 }
 
 .fname label {
