@@ -565,35 +565,40 @@ def login():
 @app.route('/Organiser/homepage', methods=['GET', 'POST'])
 def o_homepage():
     db = mysql.connection.cursor()
-    # if request.method == 'POST':
-    #     img_file = request.files.get('profile') 
+    
+    for i in range(1, 5): 
+        img_file = request.files.get(f'upload-image-{i}')
 
-    #     if profile_file:
-    #         img_data = profile_file.read()
-    #         db.execute(
-    #             """
-    #             UPDATE EventDetails
-    #             SET detailPicture = %s,
-    #             WHERE detailName = 'Past Event Images'
-    #             """,
-    #             (img_data,)
-    #         )
+        if img_file:
+            img_data = img_file.read()
+            db.execute(
+                """
+                UPDATE EventDetails
+                SET 
+                    detailPicture = %s
+                WHERE eventDetailId = %s
+                """,
+                (img_data, i)
+            )
 
-    #         mysql.connection.commit()
+            mysql.connection.commit()
 
-    db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Past Event Images'")
+    db.execute("""
+        SELECT eventDetailID, detailPicture 
+        FROM EventDetails 
+        WHERE eventDetailID BETWEEN 1 AND 5 AND detailName = 'Past Event Images';
+    """)
     past_event_images = db.fetchall()
 
     db.close()
 
-    # Convert binary images to base64 encoding
-    past_images = []
+    images = {}
     for image in past_event_images:
-        image_data = image[0]
-        base64_encoded_image = base64.b64encode(image_data).decode('utf-8')
-        past_images.append(base64_encoded_image)
+        images[image[0]] = {
+            "picture": base64.b64encode(image[1]).decode('utf-8') if image[1] else None,
+        }
 
-    return render_template('Organiser/homepage.html', past_images=past_images)
+    return render_template('Organiser/homepage.html', images=images)
 
 @app.route('/Organiser/student_participant_list')
 def student_participant_list():
@@ -711,7 +716,7 @@ def info_list():
     db = mysql.connection.cursor()
 
     if request.method == 'POST':
-        for i in range(6, 14):  # Handling locations 6 to 13
+        for i in range(6, 14): 
             img_name = request.form.get(f'point-{i}')
             img_file = request.files.get(f'upload-image-{i}')
 
@@ -726,7 +731,7 @@ def info_list():
                             WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
                                 JSON_SET(detailDescription, '$.imgName', %s)
                             ELSE
-                                JSON_SET(detailDescription, '$.imgName', %s)  -- Add imgName if not present
+                                JSON_SET(detailDescription, '$.imgName', %s)  
                         END
                     WHERE eventDetailId = %s
                     """,
@@ -741,7 +746,7 @@ def info_list():
                         WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
                             JSON_SET(detailDescription, '$.imgName', %s)
                         ELSE
-                            JSON_SET(detailDescription, '$.imgName', %s)  -- Add imgName if it doesn't exist
+                            JSON_SET(detailDescription, '$.imgName', %s)  
                     END
                     WHERE eventDetailId = %s
                     """,
@@ -753,7 +758,7 @@ def info_list():
     db.execute("""
         SELECT eventDetailId, detailPicture, JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.imgName')) AS detailDescription
         FROM EventDetails
-        WHERE detailName = 'Route Images'
+        WHERE eventDetailId BETWEEN 6 AND 14 AND detailName = 'Route Images'
     """)
     event_details = db.fetchall()
 

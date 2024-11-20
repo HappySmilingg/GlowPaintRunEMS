@@ -48,13 +48,17 @@
     <div class="past-event-container">
         <div class="past-event-section">
             <div class="text4">Past Event</div>
-            <div class="carousel">               
-                {% for image in past_images %}
+            <div class="carousel">
+                {% for i in range(1, 6) %}
                 <div class="item">
-                <img src="data:Image/png;base64,{{ image }}" alt="Past Event Image" class="carousel-image" />
+                    <img class="carousel-image" src="data:image/png;base64,{{ images[i].picture }}" alt="Past Event Image">
+                    <div class="upload-container">
+                        <label for="upload-image-{{ i }}" class="upload-btn">UPLOAD NEW IMAGE</label>
+                        <input type="file" id="upload-image-{{ i }}" name="upload-image-{{ i }}" accept="image/png, image/jpeg" style="display: none;">
+                    </div>
                 </div>
                 {% endfor %}
-            </div>
+            </div>             
         </div>
     </div>
     </form>
@@ -80,4 +84,30 @@
         leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
         rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
     }
+
+    // Function to handle image preview
+    function setupImageUpload(inputId, imgSelector) {
+        const input = document.getElementById(inputId);
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the image preview
+                    document.querySelector(imgSelector).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Set up image upload previews for all inputs
+    document.addEventListener('DOMContentLoaded', function () {
+    for (let i = 1; i <= 5; i++) {
+        setupImageUpload(
+            `upload-image-${i}`, 
+            `.carousel .item:nth-child(${i}) img.carousel-image`
+        );
+    }
+});
 </script>
