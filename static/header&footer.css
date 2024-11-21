@@ -62,6 +62,10 @@ body {
     color: #D8A0FF;
 }
 
+.header-item.active {
+    color: #D8A0FF; 
+}
+
 /* Submenu */
 .header-subitem {
     display: none;
@@ -90,6 +94,10 @@ body {
 
 .header-subitem li a:hover {
     color: #D8A0FF;
+}
+
+.header-subitem li a.active {
+    color: #D8A0FF; 
 }
 
 .header-item:hover .header-subitem {
