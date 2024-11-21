@@ -70,7 +70,7 @@ button:hover {
 .form-container {
     width: 100%;
     background-color: #1A1A1A;
-    padding: 20px;
+    padding: 1.46vw;
     color: white;
     font-family: 'Irish Grover', cursive;
     font-weight: 400;
@@ -95,14 +95,14 @@ button:hover {
   .input-group label {
     display: block;
     font-size: 1.1vw;
-    margin-top: 10px;
-    margin-bottom: 8px;
-    margin-left: 40px;
+    margin-top: 0.73vw;
+    margin-bottom: 0.6vw;
+    margin-left: 4.25vw;
   }
   
   .input-group input {
-    width: 75%;
-    margin-left: 40px;
+    width: 73.5%;
+    margin-left: 4.1vw;
     margin-bottom: 20px;
     padding: 12px;
     font-size: 1.0vw;
@@ -141,7 +141,7 @@ button:hover {
   .shirt-size-chart {
     width: 30%;
     border-radius: 5px;
-    margin-right: 40px;
+    margin-right: 3.5vw;
   }
   
   .additional-info {
@@ -161,7 +161,7 @@ button:hover {
   .package-link {
     color: white;
     text-decoration: underline;
-    margin-left: 40px;
+    margin-left: 4.1vw;
     transition: color 0.3s ease, text-shadow 0.3s ease;
   }
 
@@ -226,7 +226,7 @@ button:hover {
   .ShirtSizeChart {
     width: 100%;
     border-radius: 5px;
-    margin-right: 40px;
+    margin-right: 4.1vw;
   }
 
   .size-selection-images3 {
@@ -249,20 +249,20 @@ button:hover {
   .input-group2 {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 40px;
+    margin-right: 4.1vw;
   }
   
   .input-group2 label {
     display: block;
     font-size: 1.1vw;
-    margin-bottom: 8px;
-    margin-right: 40px;
-    font-weight: 500;
+    margin-bottom: 0.6vw;
+    margin-right: 4.1vw;
+    font-weight: 500;;
   }
   
   .input-group2 select {
     width: 90%;
-    margin-right: 40px;
+    margin-right: 4.1vw;
     padding: 12px;
     font-size: 1.0vw;
     background-color: white;

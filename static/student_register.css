@@ -119,7 +119,7 @@ button:hover {
   
   .input-group input[readonly] {
     background-color: rgb(255, 255, 255);
-  }
+  } 
 
   .t-shirt-text {
     display: block;
@@ -141,7 +141,7 @@ button:hover {
   .shirt-size-chart {
     width: 30%;
     border-radius: 5px;
-    margin-right: 4.1vw;
+    margin-right: 3.5vw;
   }
   
   .additional-info {
