@@ -76,7 +76,7 @@
                 <input type="email" id="email" name="email" placeholder="(Eg. abc@gmail.com)" />
               </div>
 
-              <div class="input-group3">
+              <div class="input-group4">
                 <label for="campus">CAMPUS</label>
                 <select id="campus" name="campus">
                     <option value="">--Select Campus--</option>
@@ -84,6 +84,17 @@
                     <option value="health">Health Campus</option>
                     <option value="engineering">Engineering Campus</option>
                 </select>
+            </div>
+
+            <!-- Hidden transportation option, will be shown only when "Engineering Campus" is selected -->
+            <div class="extra-input-group4" id="transportation-option" style="display: none;">
+              <label>Do you need transport provided by organisers?</label>
+              <label for="yes">
+                  <input type="radio" id="yes" name="transportation" value="yes"> Yes
+              </label>
+              <label for="no">
+                  <input type="radio" id="no" name="transportation" value="no"> No
+              </label>
             </div>
             
             <div class="input-group3">
@@ -372,4 +383,18 @@
         });
     });
 
+    document.getElementById("campus").addEventListener("change", function() {
+    // Get the selected value from the campus dropdown
+    var selectedCampus = this.value;
+
+    // Get the transportation field
+    var transportationField = document.getElementById("transportation-option");
+
+    // If "engineering" is selected, show the transportation options
+    if (selectedCampus === "engineering") {
+        transportationField.style.display = "block";
+    } else {
+        transportationField.style.display = "none";
+    }
+  });
 </script>
