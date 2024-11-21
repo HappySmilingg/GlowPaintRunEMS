@@ -189,13 +189,15 @@ def submit_form():
         school = request.form['school']
         package = request.form['package-details']
         t_shirt_size = request.form['t-shirt-size']
+        transportation = request.form.get('transportation')
         
         user_description = {
             "matricNumber": matric_number,
             "package": package,
             "tShirtSize": t_shirt_size,
             "campus": campus,
-            "school": school
+            "school": school,
+            "transport": transportation
         }
 
         now = datetime.now()
