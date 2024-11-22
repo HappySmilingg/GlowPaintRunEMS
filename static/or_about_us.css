@@ -85,22 +85,6 @@
 }
 
 /* Organiser Profile */
-.profile-image {
-    width: 12vw; 
-    height: 12vw; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    margin-top: 1vw;
-    margin-bottom: 1.5vw;
-    border: 3px solid rgb(183, 9, 252);
-}
-
-.profile-image img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
 .upload-image .upload-image-button {
     display: inline-flex; 
     justify-content: center;
