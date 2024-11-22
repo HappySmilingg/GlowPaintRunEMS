@@ -419,7 +419,7 @@ input[type="radio"]:hover {
 }
 
 .route-section:hover {
-    background: white;
+    background: linear-gradient(180deg, white, #e3bcff);
 }
 
 .text5 {
@@ -488,7 +488,7 @@ input[type="radio"]:hover {
 }
 
 .package-section:hover {
-    background: white;
+    background: linear-gradient(180deg, white, #e3bcff);
 }
 
 .text7 {
