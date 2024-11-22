@@ -124,11 +124,13 @@
 .details-title {
     font-size: 24px;
     margin-bottom: 15px;
+    color: white;
 }
 
 .details-note {
     font-family: 'Inter', cursive;
     font-size: 14px;
     margin-bottom: 20px;
+    color: white;
 }
 
