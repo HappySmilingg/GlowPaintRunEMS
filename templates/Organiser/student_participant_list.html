@@ -64,6 +64,11 @@
           <select id="school" name="school" disabled>
               <option value="">All School</option>
           </select>
+
+          <select id="transportation" name="transportation" disabled>
+            <option value="">All Students</option>
+            <option value="yes">Need Transportation</option>
+        </select>
       </div>
   </div>
 
@@ -84,6 +89,7 @@
                 <th>Attend</th>
                 <th class="hidden-column">Campus</th>
                 <th class="hidden-column">School</th>
+                <th class="hidden-column">Transport</th>
             </tr>
         </thead>
         <tbody id="participant-list">
@@ -126,6 +132,7 @@
               </td>
               <td class="hidden-column">{{ student.campus }}</td>
               <td class="hidden-column">{{ student.school }}</td>
+              <td class="hidden-column">{{ student.transport }}</td>
           </tr>
           {% endfor %}
       </tbody>
@@ -160,8 +167,13 @@
     document.addEventListener("DOMContentLoaded", () => {
     const campusDropdown = document.getElementById("campus");
     const schoolDropdown = document.getElementById("school");
+    const transportationSelect = document.getElementById("transportation");
+    const searchInput = document.getElementById("search");
+    const campusFilter = document.getElementById("campus");
+    const schoolFilter = document.getElementById("school");
+    const participantList = document.getElementById("participant-list");
+    const participants = [...document.querySelectorAll(".participant")];
 
-    // Mapping campuses to their respective schools
     const schoolOptions = {
         "main": [
             { value: "hbp", text: "School of Housing, Building and Planning" },
@@ -198,7 +210,6 @@
         ],
     };
 
-    // Event listener for Campus dropdown change
     campusDropdown.addEventListener("change", () => {
         const selectedCampus = campusDropdown.value;
 
@@ -218,48 +229,56 @@
             // Enable School dropdown
             schoolDropdown.disabled = false;
         }
+
+        // Enable or disable transportation filter based on campus
+        if (selectedCampus === 'engineering') {
+            transportationSelect.disabled = false;
+        } else {
+            transportationSelect.disabled = true;
+            transportationSelect.value = '';  // Reset transportation filter
+        }
+
+        filterParticipants(); // Reapply filters when campus changes
     });
 
     // Handle the participant filter functionality
-    const searchInput = document.getElementById("search");
-    const campusFilter = document.getElementById("campus");
-    const schoolFilter = document.getElementById("school");
-    const participantList = document.getElementById("participant-list");
-    const participants = [...document.querySelectorAll(".participant")];
-
-    // Function to filter participants based on search and dropdown values
     function filterParticipants() {
         const searchValue = searchInput.value.toLowerCase();
         const selectedCampus = campusFilter.value;
         const selectedSchool = schoolFilter.value;
+        const selectedTransportation = transportationSelect.value;
 
         participants.forEach(participant => {
             const name = participant.querySelector("td:nth-child(2)").textContent.toLowerCase();
             const matricNumber = participant.querySelector("td:nth-child(3)").textContent.toLowerCase();
             const campus = participant.querySelector("td:nth-child(12)").textContent.toLowerCase();
             const school = participant.querySelector("td:nth-child(13)").textContent.toLowerCase();
+            const transport = participant.querySelector("td:nth-child(14)").textContent.toLowerCase();
 
+            // Match filters
             const matchesSearch = name.includes(searchValue) || matricNumber.includes(searchValue);
             const matchesCampus = selectedCampus ? campus === selectedCampus : true;
             const matchesSchool = selectedSchool ? school === selectedSchool : true;
+            const matchesTransport = selectedTransportation ? transport === selectedTransportation : true;
 
-            // Display the participant row if it matches the filter, otherwise hide it
-            if (matchesSearch && matchesCampus && matchesSchool) {
+            // Display the participant row if it matches all filters, otherwise hide it
+            if (matchesSearch && matchesCampus && matchesSchool && matchesTransport) {
                 participant.style.display = "";
             } else {
                 participant.style.display = "none";
             }
-        });
-    }
+         });
+        }
 
-    // Add event listeners for the search and filter inputs
-    searchInput.addEventListener("input", filterParticipants);
-    campusFilter.addEventListener("change", filterParticipants);
-    schoolFilter.addEventListener("change", filterParticipants);
+        // Add event listeners for the search and filter inputs
+        searchInput.addEventListener("input", filterParticipants);
+        campusFilter.addEventListener("change", filterParticipants);
+        schoolFilter.addEventListener("change", filterParticipants);
+        transportationSelect.addEventListener("change", filterParticipants); // Ensure transportation change also triggers filtering
 
-    // Initial filter (optional)
-    filterParticipants();
-  });
+        // Initial filter (optional)
+        filterParticipants();
+    });
 
   document.querySelectorAll('.kit-checkbox, .attend-checkbox').forEach(checkbox => {
     checkbox.addEventListener('change', function() {

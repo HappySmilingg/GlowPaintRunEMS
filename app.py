@@ -603,7 +603,7 @@ def o_homepage():
 
     return render_template('Organiser/homepage.html', images=images)
 
-@app.route('/Organiser/student_participant_list')
+@app.route('/Organiser/student_participant_list', methods=['GET'])
 def student_participant_list():
     db = mysql.connection.cursor()
     query = '''
@@ -619,7 +619,8 @@ def student_participant_list():
             U.userStatus,
             T.totalAmount, 
             T.fileUploaded,
-            T.fileName
+            T.fileName,
+            JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.transport')) AS transport
         FROM Users U
         LEFT JOIN transaction T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber'))
         WHERE U.userType = 'student';
@@ -641,7 +642,8 @@ def student_participant_list():
             'status': student[8],
             'totalAmount': student[9],
             'fileUploaded': student[10],
-            'fileName': student[11]
+            'fileName': student[11],
+            'transport': student[12]
         }
         for student in students
     ]
