@@ -584,6 +584,7 @@ def o_homepage():
             )
 
             mysql.connection.commit()
+            flash('Your changes have been saved!', 'success')
 
     db.execute("""
         SELECT eventDetailID, detailPicture 
@@ -718,44 +719,49 @@ def info_list():
     db = mysql.connection.cursor()
 
     if request.method == 'POST':
-        for i in range(6, 14): 
-            img_name = request.form.get(f'point-{i}')
-            img_file = request.files.get(f'upload-image-{i}')
+        try:
+            for i in range(6, 14): 
+                img_name = request.form.get(f'point-{i}')
+                img_file = request.files.get(f'upload-image-{i}')
 
-            if img_file:
-                img_data = img_file.read()
-                db.execute(
-                    """
-                    UPDATE EventDetails
-                    SET 
-                        detailPicture = %s,
-                        detailDescription = CASE
+                if img_file:
+                    img_data = img_file.read()
+                    db.execute(
+                        """
+                        UPDATE EventDetails
+                        SET 
+                            detailPicture = %s,
+                            detailDescription = CASE
+                                WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
+                                    JSON_SET(detailDescription, '$.imgName', %s)
+                                ELSE
+                                    JSON_SET(detailDescription, '$.imgName', %s)  
+                            END
+                        WHERE eventDetailId = %s
+                        """,
+                        (img_data, img_name, img_name, i)
+                    )
+                else:
+                    db.execute(
+                        """
+                        UPDATE EventDetails
+                        SET detailDescription = CASE
                             WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
                                 JSON_SET(detailDescription, '$.imgName', %s)
                             ELSE
                                 JSON_SET(detailDescription, '$.imgName', %s)  
                         END
-                    WHERE eventDetailId = %s
-                    """,
-                    (img_data, img_name, img_name, i)
-                )
+                        WHERE eventDetailId = %s
+                        """,
+                        (img_name, img_name, i)
+                    )
 
-            else:
-                db.execute(
-                    """
-                    UPDATE EventDetails
-                    SET detailDescription = CASE
-                        WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
-                            JSON_SET(detailDescription, '$.imgName', %s)
-                        ELSE
-                            JSON_SET(detailDescription, '$.imgName', %s)  
-                    END
-                    WHERE eventDetailId = %s
-                    """,
-                    (img_name, img_name, i)
-                )
+            mysql.connection.commit()
+            flash('Your changes have been saved!', 'success')
 
-        mysql.connection.commit()
+        except Exception as e:
+            mysql.connection.rollback()
+            flash('Failed to save changes. Please try again.', 'error')
 
     db.execute("""
         SELECT eventDetailId, detailPicture, JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.imgName')) AS detailDescription
@@ -930,6 +936,7 @@ def o_about_us():
         )
 
         mysql.connection.commit()
+        flash('Your changes have been saved!', 'success')
 
     db.execute("""
         SELECT detailPicture AS picture, 
@@ -1035,7 +1042,6 @@ def o_about_us():
 
     db.close()
     return render_template('Organiser/about_us.html', profile=profile, social=social, event=event)
-
 
 @app.route('/Organiser/contact_us')
 def o_contact_us():

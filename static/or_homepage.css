@@ -1,3 +1,29 @@
+.containers {
+    width: 100%;
+    padding: 2.5vw;
+    background-color: #1A1A1A;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+.flash-message-container {
+    position: fixed; 
+    left: 50%; 
+    transform: translateX(-50%);
+    z-index: 1001; 
+    width: fit-content; 
+    max-width: 90%; 
+    text-align: center; 
+}
+
+.flash-message {
+    margin: 0.5vw 0;
+    border-radius: 5px;
+    padding: 1vw 3vw; 
+    display: inline-block; 
+}
+
 .save-btn {
     position: fixed;
     bottom: 3vw;  
