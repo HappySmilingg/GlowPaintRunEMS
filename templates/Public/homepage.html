@@ -14,8 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head> 
 <body>
-    <div class="home-container">
-        <img class="background-image" src="{{ url_for('static', filename='Image/background.jpg') }}" alt="Background">
         <div class="header">
             <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
             <div class="header-structure-left">
@@ -43,7 +41,9 @@
                     <div class="login-text">Login</div>
                 </div>
             </div>
-        </div>        
+        </div>  
+        <div class="top-part">
+        <img class="background-image" src="{{ url_for('static', filename='Image/background.jpg') }}" alt="Background">      
         <div class="content">
             <div class="text1">Medal for TOP 100 participants only!</div>
             <div class="title">
@@ -110,6 +110,9 @@
                 </div>
             </div>
             {% endfor %}
+            </div>
+        </div>
+        <div class="content2">
             <div class="past-event-section">
                 <div class="text4">Past Event</div>
                 <main id="carousel">               
@@ -134,9 +137,8 @@
             <div class="package-section">
                 <div class="text7">Packages</div>
                 <div class="text8" onclick="window.location.href='/Public/packages'">View Collection Kit</div>
-            </div>
+            </div>    
         </div>
-    </div>
 </body>
 <footer class="footer">
     <div class="sponsor">
@@ -145,7 +147,7 @@
             <img class="Logo1" src="{{ url_for('static', filename='Image/sponsor1.jpg') }}" alt="Sponsor 1" />
             <img class="Logo2" src="{{ url_for('static', filename='Image/sponsor2.png') }}" alt="Sponsor 2" />
             <img class="Logo3" src="{{ url_for('static', filename='Image/sponsor3.png') }}" alt="Sponsor 3" />
-            <img class="Logo4" src="{{ url_for('static', filename='Image/profile pic.png') }}" alt="Sponsor 4" />
+            <img class="Logo4" src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="Sponsor 4" />
         </div>
     </div>
 
