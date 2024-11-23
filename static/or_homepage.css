@@ -180,8 +180,9 @@
 }
 
 .event-time {
+    color: white;
     padding-bottom: 20px;
-    padding-left: 9.7vw;
+    padding-left: 25.7vw;
 }
 
 .event-time label{
