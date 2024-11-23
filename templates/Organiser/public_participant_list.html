@@ -36,12 +36,23 @@
             </div>
             </div>
             <div class="header-structure-right">
-                <div class="login-btn" onclick="window.location.href='/'">
+                <div class="login-btn" onclick="showLogoutPopup()">
                     <i class='fas fa-power-off'></i>
                     <div class="login-text">Log Out</div>
                 </div>
             </div>
         </div> 
+
+        <!-- Logout Confirmation Popup -->
+        <div id="logout-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-contents">
+                <p>Do you want to log out?</p>
+                <div class="popup-buttons">
+                    <button class="confirm-btn" onclick="window.location.href='/'">Confirm</button>
+                    <button class="cancel-btn" onclick="closeLogoutPopup()">Cancel</button>
+                </div>
+            </div>
+        </div>
 
       <div class="top-bar">
         <div class="back-button" onclick="goBack()">
@@ -216,4 +227,11 @@ function updateStatusInDatabase(ICNumber, status) {
     });
   }
 
+  function showLogoutPopup() {
+            document.getElementById("logout-popup").style.display = "block";
+        }
+
+    function closeLogoutPopup() {
+        document.getElementById("logout-popup").style.display = "none";
+    }
 </script>
