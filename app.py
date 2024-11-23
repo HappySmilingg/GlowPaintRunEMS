@@ -568,7 +568,7 @@ def login():
 def o_homepage():
     db = mysql.connection.cursor()
     
-    for i in range(1, 5): 
+    for i in range(1, 6): 
         img_file = request.files.get(f'upload-image-{i}')
 
         if img_file:
