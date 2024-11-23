@@ -13,6 +13,18 @@
 </head>
 
 <body>
+    <div class="flash-message-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
     <div class="header">
         <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
         <div class="header-structure-left">
@@ -45,56 +57,115 @@
             <div class="bar-text">CONTACT US
         </div>
     </div>
-
+    <form method="POST" enctype="multipart/form-data" action="/Organiser/contact_us">
+        <button type="submit" class="save-btn">Save Changes</button>
         <div class="containers">
-            <div class="desc">
-                <input type="text" id="desc" name="desc" value="For any inquiries, please contact our committees.">
+            <div class="descs">
+                <input type="text" id="desc" name="desc" value="{{ contact.message }}">
             </div>
-        
             <div class="contact-card">
                 <div class="sponsor-hod">
-                    <div class="desc">
-                        <input type="text" id="desc2" name="desc2" value="Want to sponsor our event?">
+                    <div class="descss">
+                        <input type="text" id="desc2" name="desc2" value="{{ contact.title }}">
                     </div>
                     <div class="s_pic">
-                        <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="sponsor_pic">
+                        <img src="data:image/jpeg;base64,{{ contact.profile }}" alt="sponsor_pic">
                     </div>
                     <div class="upload-image">
                         <label for="profile" class="upload-image-button">UPLOAD NEW IMAGE</label>
                         <input type="file" id="profile" name="profile" accept="image/png, image/jpeg" style="display: none;">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc3" name="desc3" value="Head of Sponsorship Department">
+                        <input type="text" id="desc3" name="desc3" value="{{ contact.position }}">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc4" name="desc4" value="Pavitra">
+                        <input type="text" id="desc4" name="desc4" value="{{ contact.name }}">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc" name="desc" value="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)">
+                        <input type="text" id="desc5" name="desc5" value="{{ contact.contact }}">
                     </div>
                 </div>
         
                 <div class="project-director">
-                    <div class="desc">
-                        <input type="text" id="desc6" name="desc6" value="Any inquiries about this event?">
+                    <div class="descss">
+                        <input type="text" id="desc6" name="desc6" value="{{ contact2.title }}">
                     </div>
                     <div class="pd_pic">
-                        <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="pd_pic">
+                        <img src="data:image/jpeg;base64,{{ contact2.profile }}" alt="pd_pic">
                     </div>
                     <div class="upload-image">
-                        <label for="profile" class="upload-image-button">UPLOAD NEW IMAGE</label>
-                        <input type="file" id="profile" name="profile" accept="image/png, image/jpeg" style="display: none;">
+                        <label for="profile2" class="upload-image-button">UPLOAD NEW IMAGE</label>
+                        <input type="file" id="profile2" name="profile2" accept="image/png, image/jpeg" style="display: none;">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc7" name="desc7" value="Project Director">
+                        <input type="text" id="desc7" name="desc7" value="{{ contact2.position }}">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc8" name="desc8" value="Azfar">
+                        <input type="text" id="desc8" name="desc8" value="{{ contact2.name }}">
                     </div>
                     <div class="desc">
-                        <input type="text" id="desc" name="desc" value="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)">
+                        <input type="text" id="desc9" name="desc9" value="{{ contact2.contact }}">
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </form>
+</body>
+</html>
+
+<script>
+    // The top menu effect function
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
+
+   // Function to handle image preview
+    function setupImageUpload(inputId, imgClass) {
+        const input = document.getElementById(inputId);
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Update the image preview
+                    document.querySelector(imgClass).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Set up image upload previews for all inputs
+    document.addEventListener('DOMContentLoaded', function () {
+        setupImageUpload('profile', '.s_pic img'); // For the first image
+        setupImageUpload('profile2', '.pd_pic img'); // For the second image
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach((msg) => {
+            // Fade out effect
+            msg.style.transition = 'opacity 0.5s ease';
+            msg.style.opacity = '0';
+            setTimeout(() => {
+                msg.remove(); // Remove after fade out
+            }, 500);
+            });
+        }, 3000); // Display for 3 seconds
+    });
+</script>

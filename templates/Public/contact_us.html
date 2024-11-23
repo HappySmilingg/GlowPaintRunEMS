@@ -46,22 +46,22 @@
 
 <div class="container">
     <div class="desc">
-        <span>For any inquiries, please contact our committees.</span>
+        <span>{{ contact.message }}</span>
     </div>
 
     <div class="contact-card">
         <div class="sponsor-hod">
-            <h2>Want to sponsor our event?</h2>
+            <h2>{{ contact.title }}</h2>
             <div class="s_pic">
-                <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="sponsor_pic">
+                <img src="data:image/jpeg;base64,{{ contact.profile }}" alt="sponsor_pic">
             </div>
             <div class="position">
-                <span>Head of Sponsorship Department</span>
+                <span>{{ contact.position }}</span>
             </div>
             <div class="name">
-                <span>Pavitra</span>
+                <span>{{ contact.name }}</span>
             </div>
-            <a href="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)" target="blank" style="text-decoration: none;">
+            <a href="{{ contact.contact }}" target="blank" style="text-decoration: none;">
                 <div class="sponsor-button">
                     <div class="sponsor-button-text">Contact for Sponsorship</div>
                 </div>
@@ -69,17 +69,17 @@
         </div>
 
         <div class="project-director">
-            <h2>Any inquiries about this event?</h2>
+            <h2>{{ contact2.title }}</h2>
             <div class="pd_pic">
-                <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="pd_pic">
+                <img src="data:image/jpeg;base64,{{ contact2.profile }}" alt="pd_pic">
             </div>
             <div class="position">
-                <span>Project Director</span>
+                <span>{{ contact2.position }}</span>
             </div>
             <div class="name">
-                <span>Azfar</span>
+                <span>{{ contact2.name }}</span>
             </div>
-            <a href="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)" target="blank" style="text-decoration: none;">
+            <a href="{{ contact2.contact }}" target="blank" style="text-decoration: none;">
                 <div class="pd-button">
                     <div class="pd-button-text">Message Project Director</div>
                 </div>

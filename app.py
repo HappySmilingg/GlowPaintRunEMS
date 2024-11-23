@@ -60,54 +60,6 @@ def homepage():
         event_date = None
     return render_template('Public/homepage.html', events=events, event_date=event_date, past_images=past_images)
 
-# @app.route('/upload_images')
-# def upload_images():
-#     db = mysql.connection.cursor()
-
-#     # Define image categories with corresponding file paths
-#     image_categories = {
-#         'Past Event Images': [
-#             'static/Image/past 1.png',
-#             'static/Image/past 2.png',
-#             'static/Image/past 3.png',
-#             'static/Image/past 4.png',
-#             'static/Image/past 5.png',
-#         ],
-#         'Route Images': [
-#             'static/Image/bumbledees.jpg',
-#             'static/Image/muzium.jpg',
-#             'static/Image/bukit cinta.jpg',
-#             'static/Image/hbp.jpg',
-#             'static/Image/fajar.jpg',
-#             'static/Image/bhepa.jpg',
-#             'static/Image/koko.jpg',
-#             'static/Image/the bricks.jpg',
-#             'static/Image/routebg.png',
-#         ],
-#     }
-
-#     event_id = 1  # Set the event ID for all images
-
-#     # Iterate through each category and its images
-#     for detail_name, image_files in image_categories.items():
-#         for image_file in image_files:
-#             with open(image_file, 'rb') as file:
-#                 # Convert image to binary
-#                 binary_data = file.read()
-
-#                 # Insert into the database
-#                 sql = """
-#                     INSERT INTO EventDetails (eventID, detailName, detailPicture)
-#                     VALUES (%s, %s, %s)
-#                 """
-#                 db.execute(sql, (event_id, detail_name, binary_data))
-    
-#     # Commit the changes and close the connection
-#     db.connection.commit()
-#     db.close()
-
-#     return "Images uploaded successfully!"
-
 @app.route('/upload_images')
 def upload_images():
     db = mysql.connection.cursor()
@@ -549,7 +501,56 @@ def about_us():
 
 @app.route('/Public/contact_us')
 def contact_us():
-    return render_template('Public/contact_us.html')
+    db = mysql.connection.cursor()
+
+    db.execute("""
+        SELECT detailPicture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.message')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.title')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
+        FROM EventDetails
+        WHERE eventDetailId = 19 AND detailName = 'Contact Us'
+    """)
+    contact_data = db.fetchall()
+
+    db.execute("""
+        SELECT detailPicture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.title')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
+        FROM EventDetails
+        WHERE eventDetailId = 20 AND detailName = 'Contact Us'
+    """)
+    contact_data2 = db.fetchall()
+
+    contact = None
+    contact2 = None
+
+    if contact_data:
+       contact = {
+            'profile': base64.b64encode(contact_data[0][0]).decode('utf-8') if contact_data[0][0] else None,
+            'message': contact_data[0][1],
+            'title': contact_data[0][2],
+            'position': contact_data[0][3],
+            'name': contact_data[0][4],
+            'contact': contact_data[0][5],
+        }
+
+    if contact_data2:
+       contact2 = {
+            'profile': base64.b64encode(contact_data2[0][0]).decode('utf-8') if contact_data2[0][0] else None,
+            'title': contact_data2[0][1],
+            'position': contact_data2[0][2],
+            'name': contact_data2[0][3],
+            'contact': contact_data2[0][4],
+        }
+
+    db.close()
+
+    return render_template('Public/contact_us.html', contact=contact, contact2=contact2)
 
 @app.route('/Organiser/login', methods=['GET', 'POST'])
 def login():
@@ -1045,9 +1046,139 @@ def o_about_us():
     db.close()
     return render_template('Organiser/about_us.html', profile=profile, social=social, event=event)
 
-@app.route('/Organiser/contact_us')
+@app.route('/Organiser/contact_us', methods=['GET', 'POST'])
 def o_contact_us():
-    return render_template('Organiser/contact_us.html')
+    db = mysql.connection.cursor()
+
+    if request.method == 'POST':
+        try:
+            message = request.form.get('desc')
+            title = request.form.get('desc2')
+            position = request.form.get('desc3')
+            name = request.form.get('desc4')
+            contact = request.form.get('desc5')
+            img_file = request.files.get('profile')
+
+            if img_file:
+                img_data = img_file.read()
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET 
+                        detailPicture = %s,
+                        detailDescription = JSON_SET(detailDescription, '$.message', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.title', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.position', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.name', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.contact', %s)
+                    WHERE eventDetailId = 19
+                    """,
+                    (img_data, message, title, position, name, contact)
+                )
+            else:
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET detailDescription = JSON_SET(detailDescription, '$.message', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.title', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.position', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.name', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.contact', %s)
+                    WHERE eventDetailId = 19
+                    """,
+                    (message, title, position, name, contact)
+                )
+
+            mysql.connection.commit()
+
+            title2 = request.form.get('desc6')
+            position2 = request.form.get('desc7')
+            name2 = request.form.get('desc8')
+            contact2 = request.form.get('desc9')
+            img_file2 = request.files.get('profile2')
+
+            if img_file2:
+                img_data = img_file2.read()
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET 
+                        detailPicture = %s,
+                        detailDescription = JSON_SET(detailDescription, '$.title', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.position', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.name', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.contact', %s)
+                    WHERE eventDetailId = 20
+                    """,
+                    (img_data, title2, position2, name2, contact2)
+                )
+            else:
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET detailDescription = JSON_SET(detailDescription, '$.title', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.position', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.name', %s),
+                        detailDescription = JSON_SET(detailDescription, '$.contact', %s)
+                    WHERE eventDetailId = 20
+                    """,
+                    (title2, position2, name2, contact2)
+                )
+
+            mysql.connection.commit()
+            flash('Your changes have been saved!', 'success')
+
+        except Exception as e:
+            mysql.connection.rollback()
+            flash('Failed to save changes. Please try again.', 'error')
+
+    db.execute("""
+        SELECT detailPicture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.message')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.title')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
+        FROM EventDetails
+        WHERE eventDetailId = 19 AND detailName = 'Contact Us'
+    """)
+    contact_data = db.fetchall()
+
+    db.execute("""
+        SELECT detailPicture, 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.title')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
+        FROM EventDetails
+        WHERE eventDetailId = 20 AND detailName = 'Contact Us'
+    """)
+    contact_data2 = db.fetchall()
+
+    contact = None
+    contact2 = None
+
+    if contact_data:
+       contact = {
+            'profile': base64.b64encode(contact_data[0][0]).decode('utf-8') if contact_data[0][0] else None,
+            'message': contact_data[0][1],
+            'title': contact_data[0][2],
+            'position': contact_data[0][3],
+            'name': contact_data[0][4],
+            'contact': contact_data[0][5],
+        }
+
+    if contact_data2:
+       contact2 = {
+            'profile': base64.b64encode(contact_data2[0][0]).decode('utf-8') if contact_data2[0][0] else None,
+            'title': contact_data2[0][1],
+            'position': contact_data2[0][2],
+            'name': contact_data2[0][3],
+            'contact': contact_data2[0][4],
+        }
+    db.close()
+    
+    return render_template('Organiser/contact_us.html', contact=contact, contact2=contact2)
 
 if __name__ == '__main__':
     app.run(debug=True)

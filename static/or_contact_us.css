@@ -128,6 +128,26 @@
     padding-bottom: 0.3vw;
 }
 
+.descs input {
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+    width: 50vw;
+}
+
+.descss input {
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 1.2vw;
+    font-family: 'Inter', sans-serif; 
+    padding-top: 0.3vw;
+    padding-bottom: 0.3vw;
+    width: 30vw;
+}
+
 .contact-card {
     display: flex;
     flex-direction: row;
