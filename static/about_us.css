@@ -45,9 +45,7 @@
     height: 12vw; 
     border-radius: 50%; 
     overflow: hidden; 
-    margin-top: 1vw;
-    margin-bottom: 1.5vw;
-    border: 3px solid #9b0ad4;
+    margin-left: 1vw;
 }
 
 .profile-image img {

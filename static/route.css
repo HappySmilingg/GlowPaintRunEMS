@@ -20,13 +20,6 @@
     background: #131313;
 }
 
-.back-button {
-    font-size: 2.0vw;
-    cursor: pointer;
-    color: white;
-    margin-right: 10px;
-}
-
 .bar-text {
     font-size: 2.0vw;
     font-family: 'Irish Grover', cursive;
@@ -100,7 +93,7 @@
     position: absolute;
     color: red;
     top: 5.5vw;
-    left: 3vw;
+    left: 2vw;
     font-size: 1.2vw;
 }
 
@@ -108,7 +101,7 @@
     position: absolute;
     color: yellow;
     top: 8vw;
-    left: 3vw;
+    left: 2vw;
     font-size: 1.2vw;
 }
 
@@ -116,7 +109,7 @@
     position: absolute;
     color: white;
     top: 12.2vw;
-    left: 3vw;
+    left: 2vw;
     font-size: 1.05vw;
 }
 
@@ -125,7 +118,7 @@
     font-size: 1.5vw;
     color: white;
     top: 5.7vw;
-    left: 7vw;
+    left: 6vw;
 }
 
 .text2 {
@@ -133,7 +126,7 @@
     font-size: 1.5vw;
     color: white;
     top: 9vw;
-    left: 7vw;
+    left: 6vw;
 }
 
 .text3 {
@@ -141,7 +134,7 @@
     font-size: 1.5vw;
     color: white;
     top: 12.4vw;
-    left: 7vw;
+    left: 6vw;
 }
 
 /* Listbox */
@@ -197,8 +190,7 @@
 }
 
 
-  .popup-body {
+.popup-body {
     color: black;
-  }
+}
   /* Popup Window End */
-  

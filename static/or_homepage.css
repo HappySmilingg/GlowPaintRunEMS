@@ -31,13 +31,13 @@
     display: inline-flex; 
     justify-content: center;
     align-items: center;
-    background-color: rgb(183, 9, 252);
+    background-color: #f8d40a;
     border: 2px solid;
-    border-color: rgb(183, 9, 252);
+    border-color: #f8d40a;
     font-family: 'Inter', sans-serif; 
     font-size: 1.2vw;
     font-weight: 600; 
-    color: white;
+    color: black;
     padding: 0.8vw 1.2vw; 
     text-align: center;
     cursor: pointer;
@@ -47,10 +47,10 @@
 }
 
 .save-btn:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: transparent;
     border: 2px solid;
-    border-color: rgb(183, 9, 252);
-    color: rgb(183, 9, 252);
+    border-color: #f8d40a;
+    color: #f8d40a;
 }
 
 .past-event-section {
@@ -110,10 +110,11 @@
 }
 
 .upload-btn {
-    background-color: rgb(183, 9, 252); 
-    border: 2px solid rgb(183, 9, 252); 
+    background-color: #f8d40a;
+    border: 2px solid;
+    border-color: #f8d40a; 
     border-radius: 5px; 
-    color: white;
+    color: black;
     padding: 0.8vw 1.1vw; 
     font-family: 'Inter', sans-serif; 
     font-size: 1.2vw;
@@ -126,7 +127,8 @@
 }
 
 .upload-btn:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-color: rgb(183, 9, 252); 
-    color: rgb(183, 9, 252); 
+    background-color: transparent;
+    border: 2px solid;
+    border-color: #f8d40a;
+    color: #f8d40a;
 }
