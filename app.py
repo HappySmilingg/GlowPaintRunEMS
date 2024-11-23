@@ -722,7 +722,7 @@ def info_list():
 
     if request.method == 'POST':
         try:
-            for i in range(6, 14): 
+            for i in range(6, 15): 
                 img_name = request.form.get(f'point-{i}')
                 img_file = request.files.get(f'upload-image-{i}')
 
