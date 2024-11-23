@@ -15,31 +15,18 @@
 </head>
   
 <body>
-  <div class="header">
-    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-    <div class="header-structure-left">
-        <div class="header-item" onclick="window.location.href='/'">Dashboard</div>
-        <div class="header-item">Register
-            <i class="fa fa-caret-down"></i>
-            <ul class="header-subitem">
-                <li><a href="#" onclick="window.location.href='/Public/student_register'">USM Student</a></li>
-                <li><a href="#" onclick="window.location.href='/Public/public_register'">Public</a></li>
-            </ul>
+      <div class="top-bar">
+        <div class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>  
         </div>
-        <div class="header-item" onclick="window.location.href='/Public/route'">Event Route</div>
-        <div class="header-item" onclick="window.location.href='/Public/packages'">Packages</div>
-        <div class="header-item">About Us
-            <i class="fa fa-caret-down"></i>
-            <ul class="header-subitem">
-                <li><a href="#" onclick="window.location.href='/Public/about_us'">About Us</a></li>
-                <li><a href="#" onclick="window.location.href='/Public/contact_us'">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-  </div>  
-      <div class="top-bar">       
-            <div class="bar-text">LOGIN</div>
+        <div class="bar-text">LOGIN</div>
        </div>
+       <div class="notification-container">
+        <div class="notification">
+            <span>Attention ! This login function is for administration use only.</span>
+        </div>
+       </div>
+
        <div class="content-wrapper">
         <div class="login-container">
             {% with messages = get_flashed_messages(with_categories=true) %}
@@ -84,17 +71,6 @@
 </html>
 
 <script>
-    // The top menu effect function
-    const header = document.querySelector('.header');
-  
-    // Add scroll event listener
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 0) {
-        header.classList.add('shrink');
-      } else {
-        header.classList.remove('shrink');
-      }
-    });
 
     function toggleMenu() {
         const leftStructure = document.querySelector('.header-structure-left');
@@ -117,5 +93,9 @@
         eyeIcon.classList.add('fa-eye-slash');  
         }
     }
+
+    function goBack() {
+        window.history.back(); 
+      }
 
 </script>

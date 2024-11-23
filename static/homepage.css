@@ -165,10 +165,10 @@
 }
 
 .btn1, .btn2 {
-    background-color: white; 
-    border: 2px solid white; 
+    background-color: #9B4DFF; 
+    border: 2px solid #9B4DFF; 
     border-radius: 5px; 
-    color: #9B4DFF; 
+    color: white; 
     padding: 10px 20px; 
     font-family: 'Inter', sans-serif; 
     font-size: 1.5vw;
@@ -182,9 +182,11 @@
 }
 
 .btn1:hover, .btn2:hover {
-    background-color: rgba(155, 77, 255, 0.3);
-    border-color: white; 
-    color: white; 
+    border: 3px solid;
+    box-shadow: 0px 4px 10px #9B4DFF;
+    background-color: white;
+    border-color: #9B4DFF; 
+    color: #9B4DFF; 
 }
 
 .btn1:focus, .btn2:focus {

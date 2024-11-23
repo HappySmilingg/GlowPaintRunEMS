@@ -81,14 +81,16 @@
 }
 
 .price-button {
-    position:sticky;
-    background: linear-gradient(to right, #04FBFF, #1230AE);
+    width: 100%;
+    position : sticky;
+    background-color: transparent;
     color: white;
-    border: none;
-    padding: 8px 20px;
+    border: 3px solid;
+    border-image: linear-gradient(to right, #04FBFF, #1230AE) 5;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 20px;
     text-align: center;
 }
 
@@ -116,7 +118,7 @@
     margin-top: 20px;
     padding: 20px;
     border-top: 2px solid #00ccff;
-    border-image: linear-gradient(to right, #04FBFF, #1230AE) 5;
+    border-image: linear-gradient(to right, #04FBFF, #1230AE, #04FBFF) 5;
     border-bottom: 2px solid #ff00ff;
     margin-bottom: 50px;
 }
@@ -128,9 +130,49 @@
 }
 
 .details-note {
+    margin-top: 10px;
     font-family: 'Inter', cursive;
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
     color: white;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 2vw;
+    font-weight : bold;
+    letter-spacing: 2px;
+}
+
+.details-date {
+    border: 3px solid;
+    border-image: linear-gradient(to right, #04FBFF, #1230AE) 5;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.details-time {
+    border: 3px solid;
+    border-color: #1230AE;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.details-venue {
+    border: 3px solid;
+    border-image: linear-gradient(to left, #04FBFF, #1230AE) 5;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
