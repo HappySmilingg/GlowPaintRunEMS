@@ -46,6 +46,13 @@
     z-index: 100; 
 }
 
+.save-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid;
+    border-color:rgb(183, 9, 252);
+    color: rgb(183, 9, 252);
+}
+
 .title {
     font-family: 'Inter', sans-serif; 
     font-size: 1.5vw;
@@ -53,13 +60,6 @@
     color: white;
     text-align: center;
     margin-top: 5vw;
-}
-
-.save-btn:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 2px solid;
-    border-color:rgb(183, 9, 252);
-    color: rgb(183, 9, 252);
 }
 
 /* Top Bar */

@@ -28,10 +28,10 @@
 }
 
 button {
-  padding: 13px 14px;
+  padding: 0.8vw 1vw;
   background: #e60d0d;
   background-size: 300%;
-  border-radius: 10px;
+  border-radius: 0.8vw;
   color: white;
   font-family: 'Inter', sans-serif; 
   font-size: 1.2vw;
@@ -48,7 +48,7 @@ button {
 button:hover {
   animation: gradient-flow 1.2s infinite linear;
   transform: scale(1.00);
-  box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
+  box-shadow: 0px 0.2vw 1vw rgba(255, 0, 0, 0.5);
   background: rgba(0, 0, 0, 0.3);
   border: 2px solid;
   border-color: #e60d0d;
@@ -194,18 +194,8 @@ button:hover {
   .btn-proceed:hover {
     animation: gradient-flow 1.2s infinite linear;
     transform: scale(1.00);
-    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
+    box-shadow: 0px 0.2vw 1vw rgba(255, 0, 0, 0.5);
     background: rgba(0, 0, 0, 0.3);
-    border: 2px solid;
-    border-color: #e60d0d;
-    color: #e60d0d;
-  }
-  
-  .btn-proceed:hover {
-    animation: gradient-flow 1.2s infinite linear;
-    transform: scale(1.05);
-    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
-    background: transparent;
     border: 2px solid;
     border-color: #e60d0d;
     color: #e60d0d;
