@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Paint Run</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='or_contact_us.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="header-structure-left">
+            <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Dashboard</div>
+            <div class="header-item">Participant
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                    <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+                </ul>
+            </div>
+            <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+            <div class="header-item" onclick="window.location.href='/Organiser/response'">Response</div>
+            <div class="header-item active">About Us
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                    <li><a class="active" href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
+                </ul>
+            </div>
+            </div>
+            <div class="header-structure-right">
+                <div class="login-btn" onclick="window.location.href='/Organiser/login'">
+                    <i class='fas fa-power-off'></i>
+                    <div class="login-text">Log Out</div>
+                </div>
+            </div>
+        </div>
+        <div class="top-bar">       
+            <div class="bar-text">CONTACT US
+        </div>
+    </div>
+
+        <div class="containers">
+            <div class="desc">
+                <input type="text" id="desc" name="desc" value="For any inquiries, please contact our committees.">
+            </div>
+        
+            <div class="contact-card">
+                <div class="sponsor-hod">
+                    <div class="desc">
+                        <input type="text" id="desc2" name="desc2" value="Want to sponsor our event?">
+                    </div>
+                    <div class="s_pic">
+                        <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="sponsor_pic">
+                    </div>
+                    <div class="upload-image">
+                        <label for="profile" class="upload-image-button">UPLOAD NEW IMAGE</label>
+                        <input type="file" id="profile" name="profile" accept="image/png, image/jpeg" style="display: none;">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc3" name="desc3" value="Head of Sponsorship Department">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc4" name="desc4" value="Pavitra">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc" name="desc" value="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)">
+                    </div>
+                </div>
+        
+                <div class="project-director">
+                    <div class="desc">
+                        <input type="text" id="desc6" name="desc6" value="Any inquiries about this event?">
+                    </div>
+                    <div class="pd_pic">
+                        <img src="{{ url_for('static', filename='Image/profile pic.jpg') }}" alt="pd_pic">
+                    </div>
+                    <div class="upload-image">
+                        <label for="profile" class="upload-image-button">UPLOAD NEW IMAGE</label>
+                        <input type="file" id="profile" name="profile" accept="image/png, image/jpeg" style="display: none;">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc7" name="desc7" value="Project Director">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc8" name="desc8" value="Azfar">
+                    </div>
+                    <div class="desc">
+                        <input type="text" id="desc" name="desc" value="https://api.whatsapp.com/send?phone=60124783587&text=Alya%20(HOD%20Netship)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
