@@ -58,8 +58,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 1vw;
-    margin-bottom: 8vw;
 }
 
 .text4 {
@@ -131,4 +129,108 @@
     border: 2px solid;
     border-color: #f8d40a;
     color: #f8d40a;
+}
+
+.event-details {
+    justify-items: center;
+    font-size: 2vw;
+    padding: 20px;
+}
+
+.event-title {
+    padding-bottom: 20px;
+    padding-left: 14.8vw;
+}
+
+.event-title label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-title input{
+    padding-left: 15px;
+}
+
+.event-desc {
+    padding-bottom: 20px;
+    padding-left: 8.3vw;
+}
+
+.event-desc label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-desc input{
+    padding-left: 15px;
+}
+
+.event-date {
+    padding-bottom: 20px;
+}
+
+.event-date label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-date input{
+    padding-left: 15px;
+}
+
+.event-time {
+    padding-bottom: 20px;
+    padding-left: 21.2vw;
+}
+
+.event-time label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-time input{
+    padding-left: 15px;
+}
+
+
+.event-venue {
+    padding-bottom: 20px;
+    padding-left: 16.1vw;
+}
+
+.event-venue input{
+    padding-left: 15px;
+}
+
+.event-venue label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-distance {
+    padding-bottom: 20px;
+    padding-left: 16.6vw;
+}
+
+.event-distance label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-distance input{
+    padding-left: 15px;
+}
+
+.event-info {
+    padding-bottom: 20px;
+    padding-left: 14.6vw;
+}
+
+.event-info label{
+    padding-right: 50px;
+    color: white;
+}
+
+.event-info input{
+    padding-left: 15px;
 }
