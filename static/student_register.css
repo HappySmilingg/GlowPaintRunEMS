@@ -351,17 +351,16 @@ button:hover {
 
   .extra-input-group4 label {
     display: block;
-    font-size: 14px;
+    font-size: 1.3vw;
     margin-bottom: 8px;
     font-weight: 500;
   } 
 
 .extra-input-group4 label[for="yes"],
 .extra-input-group4 label[for="no"] {
-    font-size: 1.1vw;
+    font-size: 1.1vw !important;
     color: white;
     font-family: 'Inter', sans-serif; 
-    font-size: 1.0vw;
     font-weight: 500; 
 }
   
