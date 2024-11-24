@@ -86,13 +86,13 @@ button:hover {
 /* Participant Table */
 /* Odd row */
 .participant-table tbody tr:nth-child(odd) {
-    background-color: rgb(226, 226, 226); 
+    background-color: rgb(255, 248, 248); 
     color: black; 
 }
 
 /* Event row */
 .participant-table tbody tr:nth-child(even) {
-    background-color: #ff9c9c; 
+    background-color: #ffcaca;
     color: black; 
 }
 
