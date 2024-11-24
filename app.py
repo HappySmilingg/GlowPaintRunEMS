@@ -600,6 +600,7 @@ def o_homepage():
                 )
                 print("sub_details:", description, remark1, remark2, remark3)
                 mysql.connection.commit()
+                flash('Your changes have been saved!', 'success')
 
             if title or date or time1 or time2 or venue or distance:
                 time_start = f"{date} {time1}" 
@@ -618,6 +619,7 @@ def o_homepage():
                     (title, date, time_start, time_end, venue, distance)
                 )
                 mysql.connection.commit()
+                flash('Your changes have been saved!', 'success')
                 
             for i in range(1, 6): 
                 img_file = request.files.get(f'upload-image-{i}')

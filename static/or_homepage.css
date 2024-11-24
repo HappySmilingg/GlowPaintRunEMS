@@ -46,13 +46,6 @@
     z-index: 100; 
 }
 
-.save-btn:hover {
-    background-color: transparent;
-    border: 2px solid;
-    border-color: #f8d40a;
-    color: #f8d40a;
-}
-
 /* Event Info Edit */
 .event-header {
     font-family: 'Inter', sans-serif; 
