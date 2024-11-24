@@ -71,6 +71,8 @@
     <button type="submit" class="save-btn">Save Changes</button>
     <div class="containers">
         <div class="information">
+            <div class="content1">
+                <div class="title">Profile Information</div>
             <div class="profile-image">
                 <img src="data:image/jpeg;base64,{{ profile.picture }}" alt="profile_pic">
             </div>
@@ -87,8 +89,10 @@
                     <input type="text" id="name2" name="name2" value="{{ profile.name2 }}" style="width: 1000px">
                 </div>
             </div>
+            </div>
             
-            <!-- Social Media Logo -->
+            <!-- Social Media Link -->
+            <div class="content2">
             <div class="title">Social Media Link</div>
             <div class="social-logo">
                 <div class="tiktok">
@@ -127,8 +131,10 @@
                     </div>
                 </div>
             </div>
+            </div>
 
             <!-- Other Event Link -->
+            <div class="content3">
             <div class="title">Other Event Link</div>
             <div class="other-event-link">
                 <div class="merch-card">
@@ -214,6 +220,7 @@
                     <label for="text24">LINK:</label>
                     <input type="text" id="text24" name="text24" value="{{ event['eventLink12'] }}">
                 </div>                
+            </div>
             </div>
         </div>
     </div>
