@@ -67,48 +67,53 @@
     <div class="containers">
     <form method="POST" enctype="multipart/form-data" action="/Organiser/homepage">
         <button type="submit" class="save-btn">Save Changes</button>
-    <div class="event-details">
-        <div class="event-title">
-            <label for="title" class="title">EVENT TITLE :</label>
-            <input type="text" class="text-title" id="text-title" value="GLOW PAINT RUN">
+        <div class="event-header">Event Information</div>
+        <div class="event-details">
+            <div class="event-form">
+                <div class="form-group">
+                    <label for="text-title" class="form-label">Event Title</label>
+                    <input type="text" class="form-input" name="text-title" id="text-title" value="{{ mains.name }}">
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="form-label">Title Description</label>
+                    <input type="text" class="form-input2" name="text-desc" id="text-desc" value="{{ sub_details.description }}">
+                </div>
+                <div class="form-group">
+                    <label for="date" class="form-label">Event Date</label>
+                    <input type="date" class="form-input" name="text-date" id="text-date" value="{{ mains.date }}">
+                </div>
+                <div class="form-group">
+                    <label for="time1" class="form-label">Start Time</label>
+                    <input type="time" class="form-input3" name="text-time1" id="text-time1" value="{{ mains.time1 }}">
+                    <label for="time2" class="form-label">End Time</label>
+                    <input type="time" class="form-input4" name="text-time2" id="text-time2" value="{{ mains.time2 }}">
+                </div>
+                <div class="form-group">
+                    <label for="venue" class="form-label">Location</label>
+                    <input type="text" class="form-input" name="text-venue" id="text-venue" value="{{ mains.venue }}">
+                </div>
+                <div class="form-group">
+                    <label for="distance" class="form-label">Distance (KM)</label>
+                    <input type="text" class="form-input" name="text-distance" id="text-distance" value="{{ mains.distance }}">
+                </div>
+                <div class="form-group">
+                    <label for="info1" class="form-label">Remarks #1</label>
+                    <input type="text" class="form-input2" name="text-info1" id="text-info1" value="{{ sub_details.info1 }}">
+                </div>
+                <div class="form-group">
+                    <label for="info2" class="form-label">Remarks #2</label>
+                    <input type="text" class="form-input2" name="text-info2" id="text-info2" value="{{ sub_details.info2 }}">
+                </div>
+                <div class="form-group">
+                    <label for="info3" class="form-label">Remarks #3</label>
+                    <input type="text" class="form-input2" name="text-info3" id="text-info3" value="{{ sub_details.info3 }}">
+                </div>
+            </div>
         </div>
-        <div class="event-desc">
-            <label for="desc" class="desc">TITLE DESCRIPTION :</label>
-            <input type="text" class="text-desc" id="text-desc" value="Let’s have a glorious run!">
-        </div>
-        <div class="event-date">
-            <label for="date" class="date">COUNTDOWN / EVENT DATE :</label>
-            <input type="date" class="text-date" id="text-date">
-        </div>
-        <div class="event-time">
-            <label for="time" class="time">TIME :</label>
-            <input type="time" class="text-time" id="text-time"> TO
-            <input type="time" class="text-time" id="text-time">
-        </div>
-        <div class="event-venue">
-            <label for="venue" class="venue">LOCATION :</label>
-            <input type="text" class="text-venue" id="text-venue" value="THE BRICKS, USM">
-        </div>
-        <div class="event-distance">
-            <label for="distance" class="distance">DISTANCE :</label>
-            <input type="text" class="text-distance" id="text-distance" value="5KM ROUTE">
-        </div>
-        <div class="event-info">
-            <label for="info2" class="info2">REMARKS#1 :</label>
-            <input type="text" class="text-info2" id="text-info" value="Medal for TOP 100 participants only!">
-        </div>
-        <div class="event-info">
-            <label for="info2" class="info2">REMARKS#2 :</label>
-            <input type="text" class="text-info2" id="text-info" value="Register now and join us!">
-        </div>
-        <div class="event-info">
-            <label for="info2" class="info2">REMARKS#3 :</label>
-            <input type="text" class="text-info2" id="text-info2" value="MyCSD & E-Cert are provided!">
-        </div>
-    </div>
+        
     <div class="past-event-container">
         <div class="past-event-section">
-            <div class="text4">Past Event</div>
+            <div class="text4">Past Event Gallery</div>
             <div class="carousel">
                 {% for i in range(1, 6) %}
                 <div class="item">
