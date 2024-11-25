@@ -53,17 +53,17 @@
     left: 5vw;
     text-align: center;
     font-family: 'Inter', sans-serif; 
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 1.0px;
     color: white;
     z-index: 2;
 }
 
 .legend-container h2 {
-    font-family: 'Irish Grover', cursive;
-    font-size: 2.5vw;
-    font-weight: 400; 
-    letter-spacing: 2.50px; 
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5vw;
+    font-weight: 600; 
+    letter-spacing: 1px; 
     margin-bottom: 0.8vw;
     color: white;
     text-shadow: 
@@ -76,8 +76,8 @@
 
 .legend-box {
     height: 12.5vw;
-    width: 20.5vw;
-    border: 5px solid transparent; 
+    width: 19vw;
+    border: 3px solid transparent; 
     border-image: linear-gradient(180deg, rgba(216, 160, 255, 0.5) 40%, rgba(155, 77, 255, 0.5) 100%);
     border-image-slice: 1; 
     padding: 5vw;
@@ -93,7 +93,7 @@
     color: red;
     top: 5.5vw;
     left: 2vw;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
 }
 
 .directionpath-icon {
@@ -101,7 +101,7 @@
     color: yellow;
     top: 8vw;
     left: 2vw;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
 }
 
 .startfinish-icon {
@@ -109,12 +109,12 @@
     color: white;
     top: 12.2vw;
     left: 2vw;
-    font-size: 1.05vw;
+    font-size: 0.9vw;
 }
 
 .text1 {
     position: absolute;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     color: white;
     top: 5.7vw;
     left: 6vw;
@@ -122,7 +122,7 @@
 
 .text2 {
     position: absolute;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     color: white;
     top: 9vw;
     left: 6vw;
@@ -130,7 +130,7 @@
 
 .text3 {
     position: absolute;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     color: white;
     top: 12.4vw;
     left: 6vw;
