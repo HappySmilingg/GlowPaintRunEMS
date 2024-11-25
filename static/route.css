@@ -88,7 +88,7 @@
 .mainpoint-icon {
     position: absolute;
     color: red;
-    top: 5.5vw;
+    top: 5vw;
     left: 2vw;
     font-size: 1.1vw;
 }
@@ -96,7 +96,7 @@
 .directionpath-icon {
     position: absolute;
     color: yellow;
-    top: 8vw;
+    top: 7.6vw;
     left: 2vw;
     font-size: 1.1vw;
 }
@@ -104,8 +104,8 @@
 .startfinish-icon {
     position: absolute;
     color: white;
-    top: 12.2vw;
-    left: 2vw;
+    top: 11.7vw;
+    left: 2.2vw;
     font-size: 0.9vw;
 }
 
@@ -113,7 +113,7 @@
     position: absolute;
     font-size: 1.2vw;
     color: white;
-    top: 5.7vw;
+    top: 5.3vw;
     left: 6vw;
 }
 
@@ -121,7 +121,7 @@
     position: absolute;
     font-size: 1.2vw;
     color: white;
-    top: 9vw;
+    top: 8.6vw;
     left: 6vw;
 }
 
@@ -129,7 +129,7 @@
     position: absolute;
     font-size: 1.2vw;
     color: white;
-    top: 12.4vw;
+    top: 12vw;
     left: 6vw;
 }
 
