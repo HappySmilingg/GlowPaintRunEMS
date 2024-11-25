@@ -111,7 +111,6 @@ button:hover {
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
-    border-radius: 5px;
     color: black
   }
   
@@ -271,7 +270,6 @@ button:hover {
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
-    border-radius: 5px;
     color: black
   }
 
@@ -313,7 +311,6 @@ button:hover {
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
-    border-radius: 5px;
     color: black;
     margin-bottom: 20px;
   }
@@ -340,7 +337,6 @@ button:hover {
     background-color: white;
     border: 2px solid transparent; 
     border-image: linear-gradient(0deg, #F508C2 25%, #FFB82B 75%) 1;
-    border-radius: 5px;
     color: black;
     margin-bottom: 20px;
   }
