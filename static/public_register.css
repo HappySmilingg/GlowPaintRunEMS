@@ -19,12 +19,14 @@
 }
 
 .bar-text {
-    font-size: 2.0vw;
-    font-family: 'Irish Grover', cursive;
-    font-weight: 400;
-    color: white;
-    letter-spacing: 2.50px; 
-    margin-left: 210px;
+  font-size: 2.0vw;
+  font-family: 'Irish Grover', cursive;
+  font-weight: 400;
+  color: white;
+  letter-spacing: 2.50px; 
+  flex-grow: 1; 
+  text-align: center; 
+  margin-left: 12vw;
 }
 
 button {

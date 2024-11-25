@@ -24,7 +24,9 @@
   font-weight: 400;
   color: white;
   letter-spacing: 2.50px; 
-  margin-left: 210px;
+  flex-grow: 1; 
+  text-align: center; 
+  margin-left: 10vw;
 }
 
 button {
