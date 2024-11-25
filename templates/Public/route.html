@@ -44,20 +44,6 @@
         <div class="bar-text">RUNNING ROUTE MAP</div>
     </div>
     <div class="container">
-        <div class="listbox">
-            <label for="view">SELECT TO VIEW MAIN POINT PICTURE</label>
-            <select id="view" name="view" onchange="showImage()">
-                <option value="default">--Select Route Picture--</option>
-                <option value="start">START / FINISH</option>
-                <option value="cafe">BUMBLEDEES CAFE</option>
-                <option value="muzium">MUZIUM & GALERI TUANKU FAUZIAH</option>
-                <option value="bukit">BUKIT CINTA</option>
-                <option value="hbp">HBP</option>
-                <option value="fajar">DESASISWA FAJAR</option>
-                <option value="bhepa">BHEPA</option>
-                <option value="kok">PUSAT RANCANGAN KOK</option>
-            </select>
-        </div>
     <div class="img-content">
         <img class="background-img" src="{{ url_for('static', filename='Image/routebg.png') }}" alt="Background Image">
     </div>
@@ -86,6 +72,21 @@
             </div>
         </div>
     </div>    
+
+    <div class="listbox">
+        <label for="view">SELECT TO VIEW MAIN POINT PICTURE</label>
+        <select id="view" name="view" onchange="showImage()">
+            <option value="default">--Select Route Picture--</option>
+            <option value="start">START / FINISH</option>
+            <option value="cafe">BUMBLEDEES CAFE</option>
+            <option value="muzium">MUZIUM & GALERI TUANKU FAUZIAH</option>
+            <option value="bukit">BUKIT CINTA</option>
+            <option value="hbp">HBP</option>
+            <option value="fajar">DESASISWA FAJAR</option>
+            <option value="bhepa">BHEPA</option>
+            <option value="kok">PUSAT RANCANGAN KOK</option>
+        </select>
+    </div>
     
     <!-- Popup Window -->
     <div id="imagePopup" class="popup-window" style="display:none;">
