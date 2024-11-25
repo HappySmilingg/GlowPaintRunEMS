@@ -7,6 +7,35 @@
     align-items: center;
 }
 
+.view-btn {
+    position: fixed;
+    bottom: 3vw;  
+    right: 3vw; 
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(183, 9, 252);
+    border: 2px solid;
+    border-color: rgb(183, 9, 252);
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.2vw;
+    font-weight: 600; 
+    color: white;
+    padding: 0.8vw 1.2vw; 
+    text-align: center;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 100; 
+}
+
+.view-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid;
+    border-color:rgb(183, 9, 252);
+    color: rgb(183, 9, 252);
+}
+
 /* Top Bar */
 .top-bar {
     width: 100%;

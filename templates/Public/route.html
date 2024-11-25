@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <div class="header">
@@ -72,9 +73,12 @@
             </div>
         </div>
     </div>    
+    <button type="button" class="view-btn">
+        View More <i class="material-icons">keyboard_arrow_down</i>
+    </button>
 
     <div class="listbox">
-        <label for="view">SELECT TO VIEW MAIN POINT PICTURE</label>
+        <label id="select-label" for="view">SELECT TO VIEW MAIN POINT PICTURE</label>
         <select id="view" name="view" onchange="showImage()">
             <option value="default">--Select Route Picture--</option>
             <option value="start">START / FINISH</option>
@@ -87,7 +91,7 @@
             <option value="kok">PUSAT RANCANGAN KOK</option>
         </select>
     </div>
-    
+
     <!-- Popup Window -->
     <div id="imagePopup" class="popup-window" style="display:none;">
         <div class="popup-content">
@@ -210,4 +214,27 @@
             popupImage.src = ''; // Clear the image source
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('.view-btn').addEventListener('click', function () {
+        // Target the label
+        const label = document.getElementById('select-label');
+        
+        if (label) {
+            // Get the label's position relative to the viewport
+            const labelPosition = label.getBoundingClientRect().top;
+
+            // Get the current scroll position
+            const offset = 90; // Add a small offset if needed
+            const scrollPosition = window.scrollY + labelPosition - offset;
+
+            // Scroll smoothly to the calculated position
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
 </script>
