@@ -568,24 +568,121 @@ def login():
 @app.route('/Organiser/homepage', methods=['GET', 'POST'])
 def o_homepage():
     db = mysql.connection.cursor()
+    if request.method == 'POST':
+        title = request.form.get('text-title')
+        description = request.form.get('text-desc')
+        date = request.form.get('text-date')
+        time1 = request.form.get('text-time1')
+        time2 = request.form.get('text-time2')
+        venue = request.form.get('text-venue')
+        distance = request.form.get('text-distance')
+        remark1 = request.form.get('text-info1')
+        remark2 = request.form.get('text-info2')
+        remark3 = request.form.get('text-info3')
+        print("sub_details:", title)
+
     
-    for i in range(1, 6): 
-        img_file = request.files.get(f'upload-image-{i}')
+        try:
+            if description or remark1 or remark2 or remark3:
+                db.execute(
+                    """
+                    UPDATE EventDetails
+                    SET detailDescription = JSON_SET(
+                        detailDescription, 
+                        '$.titleDesc', COALESCE(%s, ''),
+                        '$.remark1', COALESCE(%s, ''),
+                        '$.remark2', COALESCE(%s, ''),
+                        '$.remark3', COALESCE(%s, '')
+                    )
+                    WHERE eventDetailId = 21 AND detailName = 'Event Info';
+                    """,
+                    (description, remark1, remark2, remark3)
+                )
+                print("sub_details:", description, remark1, remark2, remark3)
+                mysql.connection.commit()
+                flash('Your changes have been saved!', 'success')
 
-        if img_file:
-            img_data = img_file.read()
-            db.execute(
-                """
-                UPDATE EventDetails
-                SET 
-                    detailPicture = %s
-                WHERE eventDetailId = %s
-                """,
-                (img_data, i)
-            )
+            if title or date or time1 or time2 or venue or distance:
+                time_start = f"{date} {time1}" 
+                time_end = f"{date} {time2}"
 
-            mysql.connection.commit()
-            flash('Your changes have been saved!', 'success')
+                db.execute(
+                    """
+                    UPDATE Event
+                    SET eventName = %s,
+                        eventDate = %s, 
+                        eventStartTime = %s, 
+                        eventEndTime = %s,
+                        eventLocation = %s,
+                        routeDistance = %s;
+                    """,
+                    (title, date, time_start, time_end, venue, distance)
+                )
+                mysql.connection.commit()
+                flash('Your changes have been saved!', 'success')
+                
+            for i in range(1, 6): 
+                img_file = request.files.get(f'upload-image-{i}')
+
+                if img_file:
+                    img_data = img_file.read()
+                    db.execute(
+                        """
+                        UPDATE EventDetails
+                        SET 
+                            detailPicture = %s
+                        WHERE eventDetailId = %s
+                        """,
+                        (img_data, i)
+                    )
+
+                    mysql.connection.commit()
+                    flash('Your changes have been saved!', 'success')
+        except Exception as e:
+            mysql.connection.rollback()
+            flash('Failed to save changes. Please try again.', 'error')
+
+    db.execute("""
+        SELECT eventName, 
+               DATE(eventDate),
+               TIME(eventStartTime),
+               TIME(eventEndTime), 
+               eventLocation, 
+               routeDistance 
+        FROM Event;
+    """)
+    mains = None
+    main = db.fetchall()
+    if main:
+       mains = {
+            'name': main[0][0],
+            'date': main[0][1],
+            'time1': main[0][2],
+            'time2': main[0][3],
+            'venue': main[0][4],
+            'distance': main[0][5]
+        }
+    
+    mains['time1'] = datetime.strptime(str(mains['time1']), "%H:%M:%S").strftime("%H:%M")
+    mains['time2'] = datetime.strptime(str(mains['time2']), "%H:%M:%S").strftime("%H:%M")
+
+    db.execute("""
+        SELECT JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.titleDesc')), 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark1')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark2')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark3')) 
+        FROM eventDetails
+        WHERE eventDetailId = 21 AND detailName = 'Event Info';
+    """)
+    sub_detail = db.fetchall()
+    sub_details = None
+    if sub_detail:
+        sub_details = {
+            'description': sub_detail[0][0] or '',
+            'info1': sub_detail[0][1] or '',
+            'info2': sub_detail[0][2] or '',
+            'info3': sub_detail[0][3] or ''
+        }
 
     db.execute("""
         SELECT eventDetailID, detailPicture 
@@ -602,7 +699,7 @@ def o_homepage():
             "picture": base64.b64encode(image[1]).decode('utf-8') if image[1] else None,
         }
 
-    return render_template('Organiser/homepage.html', images=images)
+    return render_template('Organiser/homepage.html', mains=mains, sub_details=sub_details, images=images)
 
 @app.route('/Organiser/student_participant_list', methods=['GET'])
 def student_participant_list():

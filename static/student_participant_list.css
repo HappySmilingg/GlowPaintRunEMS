@@ -18,7 +18,7 @@
     margin-right: 0.73vw; 
 }
 
-.bar-text {
+.bar-text { 
     font-size: 2.0vw;
     font-family: 'Irish Grover', cursive;
     font-weight: 400;
@@ -86,13 +86,13 @@ button:hover {
 /* Participant Table */
 /* Odd row */
 .participant-table tbody tr:nth-child(odd) {
-    background-color: rgb(226, 226, 226); 
+    background-color: rgb(255, 248, 248); 
     color: black; 
 }
 
 /* Event row */
 .participant-table tbody tr:nth-child(even) {
-    background-color: #ff9c9c; 
+    background-color: #ffcaca;
     color: black; 
 }
 
@@ -113,7 +113,7 @@ button:hover {
 th {
     font-size: 1.17vw;
     font-weight: 600;
-    background-color: #9c0000;
+    background-color: #660000;    
     color: #fff;
 }
 
