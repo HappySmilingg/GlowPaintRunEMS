@@ -79,9 +79,9 @@
 }
 
 .project-director {
-    align-items: center;
     flex-direction: column;
     justify-content: top;
+    align-items: center;
     text-align: center;
     background: transparent;
     border-radius: 8px;
@@ -114,6 +114,8 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pd_pic {
@@ -129,6 +131,8 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .position {
@@ -138,9 +142,8 @@
     border-image: linear-gradient(to right, #cc10f1, #5a03e6) 5;
     border-bottom: 3px solid #ff00ff;
     font-family: 'Inter', sans-serif; 
-    font-size: 1.5vw;
-    font-weight: 400; 
-    letter-spacing: 1.0px;
+    font-size: 1.6vw;
+    font-weight: 600; 
     color: white;
     position: relative;
 }
@@ -149,7 +152,7 @@
     margin-top: 1.2vw;
     margin-bottom: 1.2vw;
     font-family: 'Inter', sans-serif; 
-    font-size: 2vw;
+    font-size: 1.8vw;
     font-weight: 600; 
     letter-spacing: 1.0px;
     color: white;
@@ -160,7 +163,7 @@
     color: white;
     padding-bottom: 1vw;
     background: linear-gradient(to right, #cc10f1, #5a03e6);
-    border-radius: 4vw;
+    border-radius: 3vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     border: 3px solid rgb(155, 10, 212);
 }
@@ -178,7 +181,7 @@
     color: white;
     padding-bottom: 1vw;
     background: linear-gradient(to right, #cc10f1, #5a03e6);
-    border-radius: 4vw;
+    border-radius: 3vw;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     border: 3px solid rgb(155, 10, 212);
 }
@@ -194,14 +197,14 @@
 .sponsor-button-text {
     text-decoration: none;
     font-family: 'Inter', sans-serif; 
-    font-size: 1.2vw;
+    font-size: 1.3vw;
     font-weight: 600; 
 }
 
 .pd-button-text {
     text-decoration: none;
     font-family: 'Inter', sans-serif; 
-    font-size: 1.2vw;
+    font-size: 1.3vw;
     font-weight: 600; 
 }
 /* 2 Card End */
