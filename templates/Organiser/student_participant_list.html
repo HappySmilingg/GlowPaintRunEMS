@@ -118,7 +118,13 @@
                     {{ student.package }}  
                 {% endif %}
               </td>            
-              <td>{{ student.tShirtSize }}</td>
+              <td>
+                {% if student.tShirtSize and student.tShirtSize != 'null' %}
+                  {{ student.tShirtSize }}
+                {% else %}
+                  None
+                {% endif %}
+              </td>                        
               <td>{{ student.totalAmount }}</td>
               <td>
                 {% if student.fileName %} 

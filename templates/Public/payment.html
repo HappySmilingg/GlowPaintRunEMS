@@ -93,7 +93,13 @@
                 </td>
               <tr>
                 <td><strong>Selected Size:</strong></td>
-                <td>{{ t_shirt_size }}</td>
+                <td>
+                    {% if t_shirt_size %}
+                      {{ t_shirt_size }}
+                    {% else %}
+                      None
+                    {% endif %}
+                </td>
               </tr>
               <tr>
                 <td><strong>Package Price:</strong></td>

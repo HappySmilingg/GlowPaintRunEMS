@@ -396,4 +396,19 @@
         transportationField.style.display = "none";
     }
   });
+
+  const packageDropdown = document.getElementById('package-details');
+        const tShirtDropdown = document.getElementById('t-shirt-size');
+
+        // Add an event listener to the package dropdown
+        packageDropdown.addEventListener('change', function () {
+            if (this.value === 'Starter') {
+                // Disable the T-shirt size dropdown and reset its value
+                tShirtDropdown.value = 'default';
+                tShirtDropdown.disabled = true;
+            } else {
+                // Enable the T-shirt size dropdown
+                tShirtDropdown.disabled = false;
+            }
+        });
 </script>

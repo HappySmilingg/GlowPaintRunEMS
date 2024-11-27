@@ -151,14 +151,14 @@ def student_register():
 @app.route('/submit-form', methods=['POST'])
 def submit_form():
     if request.method == 'POST':
-        name = request.form['full-name']
-        matric_number = request.form['matric-number']
-        phone = request.form['phone-number']
-        email = request.form['email']
-        campus = request.form['campus']
-        school = request.form['school']
-        package = request.form['package-details']
-        t_shirt_size = request.form['t-shirt-size']
+        name = request.form.get('full-name')  # Use .get() to avoid KeyError
+        matric_number = request.form.get('matric-number')
+        phone = request.form.get('phone-number')
+        email = request.form.get('email')
+        campus = request.form.get('campus')
+        school = request.form.get('school')
+        package = request.form.get('package-details')
+        t_shirt_size = request.form.get('t-shirt-size')  # Returns None if key is missing
         transportation = request.form.get('transportation')
         
         user_description = {
@@ -198,7 +198,6 @@ def submit_form():
 
         except Exception as e:
             mysql.connection.rollback()
-            print(f"Error inserting user: {e}")
             return "Error occurred while inserting the record."
         finally:
             db.close()
@@ -370,7 +369,6 @@ def submit_payment():
                 return jsonify({"success": True}), 200
 
             except Exception as e:
-                 print(f"Error: {str(e)}")  
                  return jsonify({"success": False, "error": str(e)}), 500
 
         else:
