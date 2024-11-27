@@ -42,6 +42,24 @@ def homepage():
     """)
     events = db.fetchall()
 
+    db.execute("""
+        SELECT JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.titleDesc')), 
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark1')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark2')),
+               JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark3')) 
+        FROM eventDetails
+        WHERE eventDetailId = 21 AND detailName = 'Event Info';
+    """)
+    sub_detail = db.fetchall()
+    sub_details = None
+    if sub_detail:
+        sub_details = {
+            'description': sub_detail[0][0] or '',
+            'info1': sub_detail[0][1] or '',
+            'info2': sub_detail[0][2] or '',
+            'info3': sub_detail[0][3] or ''
+    }
+
     db.execute("SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Past Event Images'")
     past_event_images = db.fetchall()
 
@@ -58,7 +76,7 @@ def homepage():
         event_date = events[0][1]  # second column is eventDate
     else:
         event_date = None
-    return render_template('Public/homepage.html', events=events, event_date=event_date, past_images=past_images)
+    return render_template('Public/homepage.html', events=events, event_date=event_date, sub_details=sub_details, past_images=past_images)
 
 @app.route('/upload_images')
 def upload_images():
@@ -558,7 +576,7 @@ def login():
        email = request.form['email']
        password = request.form['password']
        
-       if email == '123@gmail.com' and password == '123':
+       if email == '3kppusm@gmail.com' and password == '3kpp123':
           return redirect(url_for('o_homepage')) 
        else:
           flash('Invalid email or password.', 'error')
@@ -600,7 +618,6 @@ def o_homepage():
                 )
                 print("sub_details:", description, remark1, remark2, remark3)
                 mysql.connection.commit()
-                flash('Your changes have been saved!', 'success')
 
             if title or date or time1 or time2 or venue or distance:
                 time_start = f"{date} {time1}" 
@@ -619,7 +636,6 @@ def o_homepage():
                     (title, date, time_start, time_end, venue, distance)
                 )
                 mysql.connection.commit()
-                flash('Your changes have been saved!', 'success')
                 
             for i in range(1, 6): 
                 img_file = request.files.get(f'upload-image-{i}')
@@ -637,7 +653,7 @@ def o_homepage():
                     )
 
                     mysql.connection.commit()
-                    flash('Your changes have been saved!', 'success')
+            flash('Your changes have been saved!', 'success')
         except Exception as e:
             mysql.connection.rollback()
             flash('Failed to save changes. Please try again.', 'error')
