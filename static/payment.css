@@ -179,17 +179,21 @@ tr.total-amount-row td:nth-child(2) {
   margin-bottom: 0.8vw;
 }
 
-.details-content p {
-  font-size: 1.1vw;
+.details-content {
+  font-weight: 700;
+  font-size: 1vw;
+  margin-left: 1vw;
   margin: 8px 0;
+  letter-spacing: 1.2px;
 }
 
 .reference-info {
-  font-size: 1.1vw;
+  font-size: 1vw;
   margin-top: 10px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   color: black;
+  letter-spacing: 1.2px;
 }
 
 /* Online Transfer Section End */

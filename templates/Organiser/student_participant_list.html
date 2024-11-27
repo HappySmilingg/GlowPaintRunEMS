@@ -123,7 +123,7 @@
               <td>
                 {% if student.fileName %} 
                   <a href="{{ url_for('download_file', number=student.matricNumber) }}" class="download-link">
-                    Download {{ student.fileName }}
+                    {{ student.fileName }}
                   </a>
                 {% else %}
                   No File
