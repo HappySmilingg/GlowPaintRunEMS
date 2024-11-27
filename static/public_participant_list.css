@@ -93,7 +93,7 @@ button:hover {
 
 /* Event row */
 .participant-table tbody tr:nth-child(even) {
-    background-color: #ffcaca;
+    background-color: rgb(255, 248, 248);
     color: black; 
 }
 
