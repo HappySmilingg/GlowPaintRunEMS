@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='or_packages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header&footer.css')}}">
+    <!-- Icon lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Irish Grover (for title) -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- Inter text (for content) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+  
+<body>
+    <div class="flash-message-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="header">
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        <div class="header-structure-left">
+            <div class="header-item" onclick="window.location.href='/Organiser/homepage'">Event Info</div>
+            <div class="header-item">Participant
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Organiser/student_participant_list'">USM Student</a></li>
+                    <li><a href="#" onclick="window.location.href='/Organiser/public_participant_list'">Public</a></li>
+                </ul>
+            </div>
+            <div class="header-item" onclick="window.location.href='/Organiser/info_list'">Event Route</div>
+            <div class="header-item active" onclick="window.location.href='/Organiser/packages'">Packages</div>
+            <div class="header-item">About Us
+                <i class="fa fa-caret-down"></i>
+                <ul class="header-subitem">
+                    <li><a href="#" onclick="window.location.href='/Organiser/about_us'">About Us</a></li>
+                    <li><a href="#" onclick="window.location.href='/Organiser/contact_us'">Contact Us</a></li>
+                </ul>
+            </div>
+            </div>
+            <div class="header-structure-right">
+                <div class="login-btn" onclick="showLogoutPopup()">
+                    <i class='fas fa-power-off'></i>
+                    <div class="login-text">Log Out</div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- Logout Confirmation Popup -->
+        <div id="logout-popup" class="popup-overlay" style="display: none;">
+            <div class="popup-contents">
+                <p>Do you want to log out?</p>
+                <div class="popup-buttons">
+                    <button class="confirm-btn" onclick="window.location.href='/'">Confirm</button>
+                    <button class="cancel-btn" onclick="closeLogoutPopup()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    <div class="top-bar">   
+        <div class="bar-text">PACKAGES</div>
+    </div>
+    <form method="POST" enctype="multipart/form-data" action="/Organiser/packages">
+        <button type="submit" class="save-btn">Save Changes</button>
+    <!-- T-Shirt Sizes -->
+    <div id="tshirt-section">
+        <h3 class="section-title">T-Shirt Sizes</h3>
+        <div id="tshirt-list" class="card-container">
+            {% for size in tshirt_sizes %}
+            <div class="tshirt-card">
+                <input type="hidden" name="sizes[{{ loop.index0 }}][sizeID]" value="{{ size.sizeID }}">
+                <input type="text" name="sizes[{{ loop.index0 }}][sizeName]" value="{{ size.sizeName }}" readonly class="input-field">
+                <input type="number" name="sizes[{{ loop.index0 }}][sizePrice]" value="{{ size.sizePrice }}" step="1.00" class="input-field">
+                <input type="hidden" name="sizes[{{ loop.index0 }}][delete]" value="0"> 
+                <button type="button" class="remove-size" data-index="{{ loop.index0 }}">Remove</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-tshirt-size" class="add-btn">Add New Size</button>
+    </div>
+        
+        <!-- Items -->
+        <div id="item-section">
+            <h3 class="section-title">Items</h3>
+            <div id="item-list" class="card-container">
+                {% for item in items %}
+                <div class="item-card">
+                    <input type="hidden" name="items[{{ loop.index0 }}][itemID]" value="{{ item.itemID }}">
+                    <input type="text" name="items[{{ loop.index0 }}][itemName]" value="{{ item.itemName }}" class="input-field">
+                    <input type="hidden" name="items[{{ loop.index0 }}][delete]" value="0">
+                    <button type="button" class="remove-item" data-index="{{ loop.index0 }}">Remove</button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="add-item" class="add-btn">Add New Item</button>
+        </div>
+
+        <!-- Package Section -->
+        <div id="package-section">
+            <h3 class="section-title">Packages</h3>
+            <div id="package-list" class="card-container">
+                {% for package_index, package in enumerate(packages) %} 
+                    <div class="package-card" data-package-index="{{ package_index }}">
+                        <input type="hidden" name="packages[{{ package_index }}][packageID]" value="{{ package.packageID }}">
+                        <input type="text" name="packages[{{ package_index }}][packageName]" value="{{ package.packageName }}" placeholder="Package Name" class="input-field">
+                        <input type="number" name="packages[{{ package_index }}][price]" value="{{ package.price }}" placeholder="Price" step="1.00" class="input-field">
+                        <div class="package-items">
+                            <label class="item-label">Items:</label>
+                            <ul>
+                                {% for item_index, item in enumerate(package['items']) %}
+                                    <li class="item-list">
+                                        <span>{{ item['itemName'] }}</span>
+                                        <input type="hidden" 
+                                            name="packages[{{ package_index }}][items][{{ item['itemID'] }}]" 
+                                            value="{{ item['itemName'] }}"> 
+                                        <button type="button" class="remove-package-item" data-package-id="{{ package.packageID }}" data-item-id="{{ item['itemID'] }}">Remove</button>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="add-item-section">
+                            <label class="item-label">Insert New Items:</label>
+                            <div class="item-input-row">
+                            <select class="add-item-dropdown">
+                                <option value="">--Select Item--</option>
+                                {% for item in items %}
+                                    <option value="{{ item.itemID }}">{{ item.itemName }}</option>
+                                {% endfor %}
+                            </select>
+                            <button type="button" class="add-package-item">Add Item</button>
+                            </div>
+                        </div>
+                        <button type="button" class="remove-package">Remove Package</button>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" id="add-package" class="add-btn">Add New Package</button>
+        </div> 
+    </form>
+    
+</body>
+</html>
+
+<script>
+    // The top menu effect function
+    const header = document.querySelector('.header');
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+
+    function toggleMenu() {
+        const leftStructure = document.querySelector('.header-structure-left');
+        const rightStructure = document.querySelector('.header-structure-right');
+        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
+        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    // Function to add a new field
+    const addNewField = (sectionId, template) => {
+        const section = document.getElementById(sectionId);
+        section.insertAdjacentHTML("beforeend", template);
+    };
+
+    // Add T-Shirt Size
+    document.getElementById("add-tshirt-size").addEventListener("click", () => {
+    const index = document.querySelectorAll(".tshirt-card").length;  // Get the number of existing cards
+    const tshirtList = document.getElementById("tshirt-list");
+    tshirtList.insertAdjacentHTML(
+        "beforeend",
+        `<div class="tshirt-card">
+            <input type="text" name="sizes[new][${index}][sizeName]" placeholder="Size Name" class="input-field">
+            <input type="number" name="sizes[new][${index}][sizePrice]" placeholder="Price" step="1.00" class="input-field">
+            <input type="hidden" name="sizes[new][${index}][delete]" value="0">
+            <button type="button" class="remove-size">Remove</button>
+        </div>`
+        );
+    });
+
+    // Remove T-Shirt Size
+    document.getElementById("tshirt-list").addEventListener("click", (e) => {
+        // Check if the clicked element is a "remove-size" button
+        if (e.target.classList.contains("remove-size")) {
+            const sizeCard = e.target.closest(".tshirt-card"); // Find the closest parent .tshirt-card
+            const index = e.target.getAttribute("data-index"); // Get the index from data-index attribute
+            const sizeIDInput = sizeCard.querySelector("input[name^='sizes'][name$='[sizeID]']"); // Find the sizeID input
+            const deleteInput = sizeCard.querySelector("input[name^='sizes'][name$='[delete]']"); // Find the delete input field
+
+            if (sizeIDInput && deleteInput) {
+                // Set the delete flag to 1 for the removed size (marking it for deletion)
+                deleteInput.value = '1';
+                sizeCard.style.display = 'none';
+            } else {
+                // If it's a new size that hasn't been saved yet, just remove the card from the DOM
+                sizeCard.remove();
+            }
+        }
+    });
+
+     // Add Item
+     document.getElementById("add-item").addEventListener("click", () => {
+        const index = document.querySelectorAll(".item-card").length;
+        addNewField(
+            "item-list",
+            `<div class="item-card">
+                <input type="text" name="items[new][${index}][itemName]" placeholder="Item Name" class="input-field">
+                <input type="hidden" name="items[new][${index}][delete]" value="0">
+                <button type="button" class="remove-item">Remove</button>
+            </div>`
+        );
+    });
+
+    // Remove Item
+    document.getElementById("item-list").addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-item")) {
+            const itemCard = e.target.closest(".item-card");
+            const input = itemCard.querySelector("input[name^='items'][name$='[itemID]']");
+            const deleteInput = itemCard.querySelector("input[name^='items'][name$='[delete]']");
+
+            if (input && deleteInput) {
+                // Mark the item for deletion
+                deleteInput.value = '1';
+                // Hide the item card
+                itemCard.style.display = 'none';
+            } else {
+                // Remove unsaved item entries
+                itemCard.remove();
+            }
+        }
+    });
+
+    function updateItemDropdowns() {
+    const allPackages = document.querySelectorAll(".package-card");
+
+    allPackages.forEach((packageCard) => {
+        const packageIndex = packageCard.getAttribute("data-package-index");
+        const dropdown = packageCard.querySelector(".add-item-dropdown");
+        const selectedItems = Array.from(
+            packageCard.querySelectorAll("input[name*='[items]']")
+        ).map((input) => input.getAttribute("name").match(/\[items\]\[(\d+)\]/)[1]);
+
+        // Enable/disable dropdown options based on selected items
+        dropdown.querySelectorAll("option").forEach((option) => {
+            const itemID = option.value;
+            if (selectedItems.includes(itemID)) {
+                option.disabled = true; // Disable if already selected for this package
+            } else {
+                option.disabled = false; // Enable if not selected for this package
+            }
+        });
+
+        // Disable the dropdown if all items are selected
+        const allDisabled = Array.from(dropdown.options).every((option) => option.disabled || option.value === "");
+        dropdown.disabled = allDisabled;
+     });
+    }
+
+
+    // Add new package
+    document.getElementById("add-package").addEventListener("click", () => {
+        const packageList = document.getElementById("package-list");
+        const index = packageList.children.length;
+
+        const newPackage = `
+            <div class="package-card" data-package-index="${index}">
+                <input type="text" name="packages[new][${index}][packageName]" placeholder="Package Name" class="input-field">
+                <input type="number" name="packages[new][${index}][price]" placeholder="Price" step="1.00" class="input-field">
+                <div class="package-items">
+                    <label class="item-label">Items:</label>
+                    <ul></ul>
+                </div>
+                <div class="add-item-section">
+                    <label class="item-label">Insert New Items:</label>
+                    <div class="item-input-row">
+                    <select class="add-item-dropdown">
+                        <option value="">--Select Item--</option>
+                        {% for item in items %}
+                            <option value="{{ item.itemID }}">{{ item.itemName }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="button" class="add-package-item">Add Item</button>
+                    </div>
+                </div>
+                <button type="button" class="remove-package">Remove Package</button>
+            </div>`;
+        packageList.insertAdjacentHTML("beforeend", newPackage);
+        updateItemDropdowns(); // Sync dropdowns
+    });
+
+    // Event delegation for dynamically added elements
+    document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("add-package-item")) {
+            const parent = e.target.closest(".add-item-section");
+            const packageCard = parent.closest(".package-card");
+            const dropdown = parent.querySelector(".add-item-dropdown");
+            const selectedID = dropdown.value; // ItemID
+            const selectedName = dropdown.options[dropdown.selectedIndex].text; // ItemName
+            const packageIndex = packageCard.getAttribute("data-package-index");
+
+            if (selectedID) { // Ensure an item is selected
+                const itemHTML = `
+                    <li>
+                        <span>${selectedName}</span>
+                        <input type="hidden" name="packages[${packageIndex}][items][${selectedID}]" value="${selectedName}">
+                        <button type="button" class="remove-package-item" data-package-id="${packageIndex}" data-item-id="${selectedID}">Remove</button>
+                    </li>`;
+                parent.previousElementSibling.querySelector("ul").insertAdjacentHTML("beforeend", itemHTML);
+                dropdown.value = ""; // Reset dropdown
+                updateItemDropdowns(); // Sync dropdowns
+            }
+        }
+
+        if (e.target.classList.contains("remove-package-item")) {
+            const item = e.target.closest("li");
+            item.remove();
+            updateItemDropdowns(); // Sync dropdowns
+        }
+
+        if (e.target.classList.contains("remove-package")) {
+            const packageCard = e.target.closest(".package-card");
+            packageCard.remove();
+            updateItemDropdowns(); // Sync dropdowns
+        }
+    });
+
+    // Initial call to sync dropdowns
+    updateItemDropdowns();
+        
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach((msg) => {
+            // Fade out effect
+            msg.style.transition = 'opacity 0.5s ease';
+            msg.style.opacity = '0';
+            setTimeout(() => {
+                msg.remove(); // Remove after fade out
+            }, 500);
+            });
+        }, 3000); // Display for 3 seconds
+    });
+
+    function showLogoutPopup() {
+            document.getElementById("logout-popup").style.display = "block";
+        }
+
+    function closeLogoutPopup() {
+        document.getElementById("logout-popup").style.display = "none";
+    }
+</script>

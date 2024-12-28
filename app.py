@@ -1,20 +1,24 @@
 import os
+import re
 from io import BytesIO
 import logging
 logging.basicConfig(level=logging.DEBUG)
 import base64
 from datetime import datetime
 from flask_migrate import Migrate
+from MySQLdb.cursors import DictCursor
 import mimetypes
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import jsonify, json
 from flask import Response
 from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
+from jinja2 import Environment, FileSystemLoader
 
 app = Flask(__name__)
 
 secret_key = os.urandom(24)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Example: 16 MB
 
 app.config['SECRET_KEY'] = secret_key
 app.config['MYSQL_HOST'] = 'localhost'  
@@ -31,6 +35,10 @@ mail = Mail(app)
 
 mysql = MySQL(app)
 migrate = Migrate(app, mysql)
+
+# Create a Jinja2 environment with the 'enumerate' filter
+env = Environment(loader=FileSystemLoader('.'))
+env.filters['enumerate'] = enumerate
 
 @app.route('/')
 def homepage():
@@ -142,23 +150,49 @@ def get_route_image(selected_option):
 
 @app.route('/Public/public_register')
 def public_register():
-    return render_template('Public/public_register.html')
+    db = mysql.connection.cursor()  
+    db.execute("""
+        SELECT sizeName, sizePrice
+        FROM tshirt_size
+        ORDER BY sizeID;
+    """)
+    sizes = db.fetchall()
+    db.close()
+
+    return render_template('Public/public_register.html', sizes=sizes)
+
 
 @app.route('/Public/student_register')
 def student_register():
-    return render_template('Public/student_register.html')
+    db = mysql.connection.cursor()  
+    db.execute("""
+        SELECT distinct packageName, price, hasTShirt
+        FROM packages 
+        WHERE packageStatus = 'active';
+    """)
+    packages = db.fetchall()
+
+    db.execute("""
+        SELECT sizeName, sizePrice
+        FROM tshirt_size
+        ORDER BY sizeID;
+    """)
+    sizes = db.fetchall()
+
+    db.close()
+    return render_template('Public/student_register.html', packages=packages, sizes=sizes)
 
 @app.route('/submit-form', methods=['POST'])
 def submit_form():
     if request.method == 'POST':
-        name = request.form.get('full-name')  # Use .get() to avoid KeyError
+        name = request.form.get('full-name')  
         matric_number = request.form.get('matric-number')
         phone = request.form.get('phone-number')
         email = request.form.get('email')
         campus = request.form.get('campus')
         school = request.form.get('school')
         package = request.form.get('package-details')
-        t_shirt_size = request.form.get('t-shirt-size')  # Returns None if key is missing
+        t_shirt_size = request.form.get('t-shirt-size') 
         transportation = request.form.get('transportation')
         
         user_description = {
@@ -274,6 +308,12 @@ def payment():
         number = ic_number
     elif user_type == 'student':
         number = martic_number
+    
+    first_six_digits = number[:6] if len(number) >= 6 else number
+
+    # Combine with current date in ddmmyy format
+    current_date = datetime.now().strftime('%d%m%y')
+    order_number = f"{first_six_digits}{current_date}"
 
     package_price = {
         'Pro': 50,
@@ -296,7 +336,7 @@ def payment():
 
     return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, 
                        package_price=package_price, additional_price=additional_price, 
-                       total_amount=total_amount, number=number, email=email)
+                       total_amount=total_amount, number=number, email=email, order_number=order_number)
 
 @app.route('/submit_payment', methods=['POST'])
 def submit_payment():
@@ -309,6 +349,7 @@ def submit_payment():
         t_shirt_size = request.form.get('t_shirt_size')
         package_price = request.form.get('package_price')
         additional_price = request.form.get('additional_price')
+        order_number = request.form.get('order_number')
 
         subject = "Order Confirmation - Glow Paint Run 3KPP"
         message_body = f"""
@@ -320,7 +361,7 @@ def submit_payment():
 
                 <p>Here are the details of your order:</p>
 
-                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Order Number:</strong> #123456</p>
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Order Number:</strong> {order_number}</p>
                 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Selected Package:</strong> {package}</p>
                 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Selected T-Shirt Size:</strong> {t_shirt_size}</p>
                 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;Package Amount:</strong> RM {package_price}</p>
@@ -359,10 +400,10 @@ def submit_payment():
                 # Insert file data into the database
                 db = mysql.connection.cursor()
                 query = """
-                    INSERT INTO transaction (userNumber, totalAmount, fileUploaded, fileName)
-                    VALUES (%s, %s, %s, %s)
+                    INSERT INTO payment (orderNumber, userNumber, totalAmount, fileUploaded, fileName)
+                    VALUES (%s, %s, %s, %s, %s)
                 """
-                db.execute(query, (number, total_amount, file_content, file_name))
+                db.execute(query, (order_number, number, total_amount, file_content, file_name))
                 mysql.connection.commit()
                 db.close()
 
@@ -379,7 +420,7 @@ def download_file(number):
     db = mysql.connection.cursor()
     query = '''
         SELECT T.fileUploaded, T.fileName 
-        FROM transaction T
+        FROM payment T
         WHERE T.userNumber = %s
     '''
     db.execute(query, (number,))
@@ -405,7 +446,37 @@ def download_file(number):
         
 @app.route('/Public/packages')
 def packages():
-    return render_template('Public/packages.html')
+    db = mysql.connection.cursor(DictCursor)  # Use DictCursor to fetch rows as dictionaries
+    db.execute("""
+        SELECT P.packageName, P.price, I.itemName
+        FROM packages P
+        LEFT JOIN items I ON I.itemID = P.itemID
+        WHERE P.packageStatus = 'active';
+    """)
+    results = db.fetchall()
+    db.close()
+
+    # Group items by package
+    packages = {}
+    for row in results:
+        package_name = row['packageName']
+        price = row['price']
+        item_name = row['itemName']
+        if package_name not in packages:
+            packages[package_name] = {
+                'price': price,
+                'items': []
+            }
+        packages[package_name]['items'].append(item_name)
+
+    # Add a note for specific packages (example: "Only for USM Student")
+    for package in packages:
+        if package.lower().endswith('lite') or package.lower().endswith('starter'):
+            packages[package]['note'] = '#Only for USM Student'
+        else:
+            packages[package]['note'] = '#Available for USM Student & Public Participant'
+
+    return render_template('Public/packages.html', packages=packages)
 
 @app.route('/Public/about_us')
 def about_us():
@@ -570,15 +641,20 @@ def contact_us():
 
 @app.route('/Organiser/login', methods=['GET', 'POST'])
 def login():
+    db = mysql.connection.cursor(DictCursor)
     if request.method == 'POST':
-       email = request.form['email']
-       password = request.form['password']
-       
-       if email == '3kppusm@gmail.com' and password == '3kpp123':
-          return redirect(url_for('o_homepage')) 
-       else:
-          flash('Invalid email or password.', 'error')
-          return redirect(url_for('login'))
+        email = request.form['email']
+        password = request.form['password']
+
+        db.execute("SELECT userEmail, userPassword FROM users WHERE userType = 'admin' AND userEmail = %s", (email,))
+        user = db.fetchone()
+
+        if user and user['userPassword'] == password:
+            return redirect(url_for('o_homepage'))
+        else:
+            flash('Invalid email or password.', 'error')
+            return redirect(url_for('login'))
+
     return render_template('Organiser/login.html')
 
 @app.route('/Organiser/homepage', methods=['GET', 'POST'])
@@ -734,7 +810,7 @@ def student_participant_list():
             T.fileName,
             JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.transport')) AS transport
         FROM Users U
-        LEFT JOIN transaction T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber'))
+        LEFT JOIN payment T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber'))
         WHERE U.userType = 'student';
     '''
     db.execute(query)
@@ -791,7 +867,7 @@ def public_participant_list():
             T.fileUploaded,
             T.fileName
         FROM Users U
-        LEFT JOIN transaction T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.ICNumber'))
+        LEFT JOIN payment T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.ICNumber'))
         WHERE U.userType = 'public'; 
     '''
     db.execute(query)
@@ -905,9 +981,259 @@ def info_list():
                             location_14=locations.get(14)
                         )
 
-@app.route('/Organiser/response')
-def response():
-    return render_template('Organiser/response.html')
+@app.route('/Organiser/packages', methods=['GET', 'POST'])
+def or_packages():
+    db = mysql.connection.cursor(DictCursor)
+    if request.method == 'POST':
+        print(request.form)
+        # Handle updates for T-shirt sizes
+        tshirt_sizes = []
+        for key in request.form:
+            if key.startswith('sizes['):
+                # Check if it's a new size or existing size
+                if '[new]' in key:
+                    # Handle new sizes
+                    field_name = key.split('[')[3].split(']')[0]
+                    index = key.split('[')[2].split(']')[0]
+
+                    # Ensure tshirt_sizes list has enough entries for new sizes
+                    while len(tshirt_sizes) <= int(index):
+                        tshirt_sizes.append({"is_new": True})
+
+                    tshirt_sizes[int(index)][field_name] = request.form[key]
+                else:
+                    # Handle existing sizes
+                    size_id = key.split('[')[1].split(']')[0]
+                    field_name = key.split('[')[2].split(']')[0]
+
+                    # Ensure tshirt_sizes list has enough entries for existing sizes
+                    while len(tshirt_sizes) <= int(size_id):
+                        tshirt_sizes.append({"sizeID": size_id})
+
+                    tshirt_sizes[int(size_id)][field_name] = request.form[key]
+
+        # Process T-shirt sizes
+        for size in tshirt_sizes:
+            size_id = size.get('sizeID')
+            size_name = size.get('sizeName')
+            size_price = size.get('sizePrice')
+            delete_flag = size.get('delete', '0')
+            if delete_flag == '1' and size_id:
+                db.execute("DELETE FROM Tshirt_size WHERE sizeID = %s", (size_id,))
+                continue
+            if size_id:
+                db.execute(
+                    "UPDATE Tshirt_size SET sizeName = %s, sizePrice = %s WHERE sizeID = %s",
+                    (size_name, size_price, size_id)
+                )
+            elif size.get("is_new"):
+                db.execute(
+                    "INSERT INTO Tshirt_size (sizeName, sizePrice) VALUES (%s, %s)",
+                    (size_name, size_price)
+                )
+
+        # Handle updates for Items
+        items = []
+        for key in request.form:
+            if key.startswith('items['):
+                # Check if this is a new item
+                if '[new]' in key:
+                    # Extract the field name and index for the new item
+                    field_name = key.split('[')[3].split(']')[0]
+                    index = key.split('[')[2].split(']')[0]
+
+                    # Ensure the items list is large enough to accommodate the new item
+                    while len(items) <= int(index):
+                        items.append({"is_new": True})
+
+                    # Assign the value to the respective field in the new item
+                    items[int(index)][field_name] = request.form[key]
+                else:
+                    # Extract item_id and field_name for existing items
+                    item_id = key.split('[')[1].split(']')[0]
+                    field_name = key.split('[')[2].split(']')[0]
+
+                    # Ensure the items list is large enough to accommodate the existing item
+                    while len(items) <= int(item_id):
+                        items.append({"itemID": item_id})
+
+                    # Assign the value to the respective field in the existing item
+                    items[int(item_id)][field_name] = request.form[key]
+
+        # Loop through each item to handle updates or inserts
+        for item in items:
+            item_id = item.get('itemID')
+            item_name = item.get('itemName')
+            delete_flag = item.get('delete')
+
+            # Handle item deletion
+            if delete_flag == '1' and item_id:
+                db.execute("UPDATE Items SET itemStatus = 'deleted' WHERE itemID = %s", (item_id,))
+                continue
+            if item_id:
+                # Update existing item
+                db.execute("UPDATE Items SET itemName = %s WHERE itemID = %s", (item_name, item_id))
+            elif item.get("is_new"):
+                # Insert new item if it's not marked for deletion and has a name
+                db.execute("INSERT INTO Items (itemName, itemStatus) VALUES (%s, 'active')", (item_name,))
+        
+        packages = []
+
+        # Loop through the form data
+        for key in request.form:
+            if key.startswith('packages['):  # We are dealing with packages
+                if '[new]' in key:  # This is a new package
+                    index = key.split('[')[2].split(']')[0]
+
+                    # Ensure the packages list is large enough to accommodate the new package
+                    while len(packages) <= int(index):
+                        packages.append({"is_new": True, "items": []})
+
+                    # Determine if this is a package-level field or an item
+                    if '[items]' in key:  # Handle package items
+                        item_id = key.split('[')[4].split(']')[0]  # Extract itemID
+                        item_name = request.form[key]  # Extract itemName
+                        packages[int(index)]["items"].append({"itemID": item_id, "itemName": item_name})
+                    else:  # Handle package-level fields
+                        field_name = key.split('[')[3].split(']')[0]  # Extract field name (e.g., packageName, price)
+                        packages[int(index)][field_name] = request.form[key]
+
+                else:  # This is an existing package
+                    # Get the submitted package ids
+                    submitted_package_ids = list(set([str(int(key.split('[')[1].split(']')[0]) + 1)]))
+                    # Delete all packages whose packageID is NOT in the submitted list
+                    if submitted_package_ids:
+                        query = f"DELETE FROM Packages WHERE packageID NOT IN ({', '.join(submitted_package_ids)})"
+                        db.execute(query)
+
+                    package_id = key.split('[')[1].split(']')[0]  # Extract package index
+
+                    # Initialize package if not already done
+                    if len(packages) <= int(package_id):
+                        packages.append({
+                            "packageID": request.form.get(f"packages[{package_id}][packageID]"),
+                            "packageName": request.form.get(f"packages[{package_id}][packageName]"),
+                            "price": request.form.get(f"packages[{package_id}][price]"),
+                            "items": []
+                        })
+
+                    # If the key contains 'items', process the item data
+                    if 'items' in key:
+                        # Extract the index of the item (e.g., [1], [2], etc.)
+                        item_index = int(key.split('[')[3].split(']')[0])
+
+                        # Get the item name
+                        item_name = request.form[key]
+
+                        # Add the item directly if it exists
+                        if item_name:
+                            packages[int(package_id)]["items"].append({
+                                "itemID": item_index,
+                                "itemName": item_name
+                            })
+
+        # Print the result for debugging
+        print(f"packages: {packages}")
+
+        # Handle updates for Packages
+        for package in packages:
+            package_id = package.get('packageID')
+            package_name = package.get('packageName')
+            price = package.get('price')
+            items_in_package = package.get('items', [])  
+            has_tshirt = any(item['itemName'].lower() == "t-shirt" for item in items_in_package)
+
+            print("status:", has_tshirt)
+            if package_id:
+                # Update an existing package
+                db.execute(
+                    "UPDATE Packages SET packageName = %s, price = %s WHERE packageID = %s",
+                    (package_name, price, package_id)
+                )
+                print("packageID:", package_id)
+                # Get a list of current item IDs for the package from the database
+                db.execute("SELECT itemID FROM Packages WHERE packageID = %s", (package_id,))
+                current_items = {row['itemID'] for row in db.fetchall()}
+
+                print("Items in package:", items_in_package)
+                print("Current items:", current_items)
+
+                # Determine which items to delete
+                items_to_delete = current_items - {item['itemID'] for item in items_in_package}
+                print("Deleted items:", items_to_delete)
+                # Delete items no longer part of the package
+                for item_id in items_to_delete:
+                    db.execute(
+                        "DELETE FROM Packages WHERE packageID = %s AND itemID = %s",
+                        (package_id, item_id)
+                    )
+
+                # Determine which items to add
+                items_to_add = {item['itemID'] for item in items_in_package} - current_items
+                print("Items to add:", items_to_add)
+                
+                # Add new items to the package
+                for item_id in items_to_add:
+                    db.execute(
+                        "INSERT INTO Packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
+                        (package_id, package_name, price, has_tshirt, item_id)
+                    )
+            elif package.get("is_new"):
+                # Insert the new package and get the new package ID
+                db.execute("SELECT MAX(packageID) + 1 AS new_package_id FROM Packages")
+                new_package_id = db.fetchone()["new_package_id"]
+
+                # Insert a row for each item in the new package
+                for item in package["items"]:
+                    db.execute(
+                        "INSERT INTO Packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
+                        (new_package_id, package["packageName"], package["price"], has_tshirt, item["itemID"])
+                    )
+
+        mysql.connection.commit()
+        flash('Your changes have been saved!', 'success')
+    else:
+        flash('Failed to save changes. Please try again.', 'error')
+
+    # Fetch data for display
+    db.execute("SELECT sizeID, sizeName, sizePrice FROM Tshirt_size ORDER BY sizeID")
+    tshirt_sizes = db.fetchall()
+
+    db.execute("SELECT itemID, itemName FROM Items WHERE itemStatus = 'active' ORDER BY itemID")
+    items = db.fetchall()
+
+    db.execute("SELECT itemID, itemName FROM Items WHERE itemStatus = 'active' ORDER BY itemID")
+
+    # Query to fetch packages and their items
+    db.execute("""
+        SELECT p.packageID, p.packageName, p.price, i.itemID, i.itemName
+        FROM Packages p
+        LEFT JOIN Items i ON i.itemID = p.itemID
+        WHERE p.packageStatus = 'active' AND i.itemStatus = 'active'
+        ORDER BY p.packageID, p.itemID;
+    """)
+    raw_packages = db.fetchall()
+
+    # Organize the data for display
+    packages = {}
+    for row in raw_packages:
+        package_id = row['packageID']
+        if package_id not in packages:
+            # Add new package entry
+            packages[package_id] = {
+                'packageID': package_id,
+                'packageName': row['packageName'],
+                'price': row['price'],
+                'items': []
+            }
+        if row['itemID']:
+            # Append item to the package's item list
+            packages[package_id]['items'].append({
+                'itemID': row['itemID'],
+                'itemName': row['itemName']
+            })
+
+    return render_template('Organiser/packages.html', tshirt_sizes=tshirt_sizes, items=items, packages=list(packages.values()), enumerate=enumerate)
 
 @app.route('/Organiser/about_us', methods=['GET', 'POST'])
 def o_about_us():

@@ -102,15 +102,17 @@
             </div>
             
   
-              <div class="input-group3">
-                <label for="package-details">PACKAGE DETAILS</label>
-                <select id="package-details" name="package-details">
-                  <option value="default">--Select Package--
-                  <option value="Pro">Glow-rious Pro (RM50)</option>
-                  <option value="Lite">Glow-rious Lite (RM35)</option>
-                  <option value="Starter">Glow-rious Starter (RM15)</option>
-                </select>
-              </div>
+            <div class="input-group3">
+              <label for="package-details">PACKAGE DETAILS</label>
+              <select id="package-details" name="package-details">
+                  <option value="default">--Select Package--</option>
+                  {% for package in packages %}
+                      <option value="{{ package[0] }}" data-hasTShirt="{{ package[2] }}">
+                          {{ package[0] }} (RM {{ package[1] }})
+                      </option>
+                  {% endfor %}
+              </select>
+          </div>
 
               <div class="view">
                 <a href="#" class=package-link>VIEW PACKAGES</a>
@@ -182,19 +184,14 @@
                     <label for="t-shirt-size">SIZE SELECTION</label>
                     <select id="t-shirt-size" name="t-shirt-size">
                       <option value="default">--Select Size--</option>
-                      <option value="2XS">2XS</option>
-                      <option value="XS">XS</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="2XL">2XL</option>
-                      <option value="3XL">3XL + (RM 3)</option>
-                      <option value="4XL">4XL + (RM 5)</option>
-                      <option value="5XL">5XL + (RM 7)</option>
-                      <option value="6XL">6XL + (RM 9)</option>
-                      <option value="7XL">7XL + (RM 11)</option>
-                    </select>
+                      {% for size, price in sizes %}
+                          {% if price > 0 %}
+                              <option value="{{ size }}">{{ size }} + (RM {{ price }})</option>
+                          {% else %}
+                              <option value="{{ size }}">{{ size }}</option>
+                          {% endif %}
+                      {% endfor %}
+                  </select>
                 </div>
                 </div>
               </div>      
@@ -398,17 +395,20 @@
   });
 
   const packageDropdown = document.getElementById('package-details');
-        const tShirtDropdown = document.getElementById('t-shirt-size');
+  const tShirtDropdown = document.getElementById('t-shirt-size');
 
-        // Add an event listener to the package dropdown
-        packageDropdown.addEventListener('change', function () {
-            if (this.value === 'Starter') {
-                // Disable the T-shirt size dropdown and reset its value
-                tShirtDropdown.value = 'default';
-                tShirtDropdown.disabled = true;
-            } else {
-                // Enable the T-shirt size dropdown
-                tShirtDropdown.disabled = false;
-            }
-        });
+  // Add an event listener to the package dropdown
+  packageDropdown.addEventListener('change', function () {
+      const selectedOption = packageDropdown.options[packageDropdown.selectedIndex];
+      const hasTShirt = selectedOption.getAttribute('data-hasTShirt');
+
+      // If the package has a T-shirt (hasTShirt = 1), enable the T-shirt size dropdown
+      if (hasTShirt === '1') {
+          tShirtDropdown.disabled = false;
+      } else {
+          // Otherwise, disable the T-shirt size dropdown and reset its value
+          tShirtDropdown.value = 'default';
+          tShirtDropdown.disabled = true;
+      }
+  });
 </script>

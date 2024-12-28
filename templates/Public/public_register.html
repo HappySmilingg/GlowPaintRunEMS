@@ -126,25 +126,18 @@
                   <div class="input-group2">
                     <label for="t-shirt-size">SIZE SELECTION</label>
                     <select id="t-shirt-size" name="t-shirt-size">
-                      <option value="default">--Select Size--</option>
-                      <option value="2XS">2XS</option>
-                      <option value="XS">XS</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="2XL">2XL</option>
-                      <option value="3XL">3XL + (RM 3)</option>
-                      <option value="4XL">4XL + (RM 5)</option>
-                      <option value="5XL">5XL + (RM 7)</option>
-                      <option value="6XL">6XL + (RM 9)</option>
-                      <option value="7XL">7XL + (RM 11)</option>
+                        <option value="default">--Select Size--</option>
+                        {% for size, price in sizes %}
+                            {% if price > 0 %}
+                                <option value="{{ size }}">{{ size }} + (RM {{ price }})</option>
+                            {% else %}
+                                <option value="{{ size }}">{{ size }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
-                </div>
-                </div>
-              </div>      
-
-
+                </div>                
+              </div>
+            </div>      
           </div>
         </div>
       

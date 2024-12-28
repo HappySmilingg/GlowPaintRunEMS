@@ -67,6 +67,7 @@
          <input type="hidden" id="t_shirt_size" name="t_shirt_size" value="{{ t_shirt_size }}">
         <input type="hidden" id="package_price" name="package_price" value="{{ package_price }}">
         <input type="hidden" id="additional_price" name="additional_price" value="{{ additional_price }}">
+        <input type="hidden" id="order_number" name="order_number" value="{{ order_number }}">
 
       <div class="payment-container">
         <div class="section order-details">
@@ -78,7 +79,7 @@
             <table>
               <tr>
                 <td><strong>Order Number:</strong></td>
-                <td>#123456</td>
+                <td>{{ order_number }}</td>
               </tr>
               <td><strong>Selected Package:</strong></td>
                 <td>{% if package == 'Pro' %}

@@ -45,53 +45,20 @@
     </div>
     <div class="kit-package-container">
         <div class="package-cards">
-            <!-- Package Card 1 -->
+            {% for package_name, package_data in packages.items() %}
             <div class="card">
-                <h2 class="package-title">GLOW-RIOUS PRO</h2>
+                <h2 class="package-title">{{ package_name }}</h2>
                 <ul class="package-items">
-                    <li>T-SHIRT</li>
-                    <li>LED STICK</li>
-                    <li>REFRESHMENTS</li>
-                    <li>DRAWING BAG</li>
-                    <li>FACE PAINT SERVICE</li>
-                    <li>LUCKY DRAW TICKET</li>
-                    <li>WRISTBAND</li>
-                    <li>MEDAL</li>
+                    {% for item in package_data['items'] %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
-                <button class="price-button">RM 50</button>
+                <button class="price-button">RM {{ package_data['price'] }}</button>
+                {% if package_data['note'] %}
+                <p class="student-note">{{ package_data['note'] }}</p>
+                {% endif %}
             </div>
-            <!-- Package Card 2 -->
-            <div class="card">
-                <h2 class="package-title">GLOW-RIOUS LITE</h2>
-                <ul class="package-items">
-                    <li>T-SHIRT</li>
-                    <li>LED STICK</li>
-                    <li>REFRESHMENTS</li>
-                    <li>DRAWING BAG</li>
-                    <li>FACE PAINT SERVICE</li>
-                    <li>LUCKY DRAW TICKET</li>
-                    <li>WRISTBAND</li>
-                    <li><li>
-                </ul>
-                <button class="price-button">RM 35</button>
-                <p class="student-note">#Only for USM Student</p>
-            </div>
-            <!-- Package Card 3 -->
-            <div class="card">
-                <h2 class="package-title">GLOW-RIOUS STARTER</h2>
-                <ul class="package-items">
-                    <li>LED STICK</li>
-                    <li>REFRESHMENTS</li>
-                    <li>DRAWING BAG</li>
-                    <li>FACE PAINT SERVICE</li>
-                    <li>LUCKY DRAW TICKET</li>
-                    <li>WRISTBAND</li>
-                    <li><li>
-                    <li><li>
-                </ul>
-                <button class="price-button">RM 15</button>
-                <p class="student-note">#Only for USM Student</p>
-            </div>
+            {% endfor %}
         </div>
         <p class="terms-note">*TNC applied for face paint service</p>
     </div>
