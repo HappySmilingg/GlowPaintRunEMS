@@ -185,158 +185,206 @@ def student_register():
 @app.route('/submit-form', methods=['POST'])
 def submit_form():
     if request.method == 'POST':
-        name = request.form.get('full-name')  
-        matric_number = request.form.get('matric-number')
-        phone = request.form.get('phone-number')
-        email = request.form.get('email')
-        campus = request.form.get('campus')
-        school = request.form.get('school')
-        package = request.form.get('package-details')
-        t_shirt_size = request.form.get('t-shirt-size') 
-        transportation = request.form.get('transportation')
-        
-        user_description = {
-            "matricNumber": matric_number,
-            "package": package,
-            "tShirtSize": t_shirt_size,
-            "campus": campus,
-            "school": school,
-            "transport": transportation
-        }
-
-        now = datetime.now()
-
-        db = mysql.connection.cursor()
         try:
-            query = '''
-                INSERT INTO users (
-                    userName, 
-                    userEmail, 
-                    userPhone, 
-                    userType, 
-                    userStatus, 
-                    userDescription,
-                    registeredDate
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-            '''
-            db.execute(query, (
-                name, 
-                email, 
-                phone, 
-                'student',  
-                'registered', 
-                json.dumps(user_description),
-                now
-            ))
-            mysql.connection.commit()
+            name = request.form.get('full-name')
+            matric_number = request.form.get('matric-number')
+            phone = request.form.get('phone-number')
+            email = request.form.get('email')
+            campus = request.form.get('campus')
+            school = request.form.get('school')
+            package = request.form.get('package-details')
+            t_shirt_size = request.form.get('t-shirt-size')
+            transportation = request.form.get('transportation', '')
+
+            # User description in JSON
+            user_description = {
+                "matricNumber": matric_number,
+                "package": package,
+                "tShirtSize": t_shirt_size,
+                "campus": campus,
+                "school": school,
+                "transport": transportation
+            }
+
+            # Use UTC timestamp
+            now = datetime.now()
+
+            # Database operation
+            with mysql.connection.cursor() as db:
+                query = '''
+                    INSERT INTO users (
+                        userName, 
+                        userEmail, 
+                        userPhone, 
+                        userType, 
+                        userStatus, 
+                        userDescription,
+                        registeredDate
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                '''
+                db.execute(query, (
+                    name, 
+                    email, 
+                    phone, 
+                    'student',  
+                    'registered', 
+                    json.dumps(user_description),
+                    now
+                ))
+                mysql.connection.commit()
 
         except Exception as e:
             mysql.connection.rollback()
-            return "Error occurred while inserting the record."
-        finally:
-            db.close()
+            print(f"Error inserting user: {e}")
+            return "An error occurred. Please try again.", 500
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, matric_number=matric_number, type='student', email=email))
-    
+        return redirect(url_for('payment', type='student'))
+
     return render_template('Public/student_register.html')
 
 
 @app.route('/submit-form2', methods=['POST'])
 def submit_form2():
     if request.method == 'POST':
-        name = request.form['full-name']
-        ic_number = request.form['ic-passport-number']
-        phone = request.form['phone-number']
-        email = request.form['email']
-        package = 'Pro'
-        t_shirt_size = request.form['t-shirt-size']
-        
-        user_description = {
-            "ICNumber": ic_number,
-            "package": package,
-            "tShirtSize": t_shirt_size
-        }
-
-        now = datetime.now()
-
-        db = mysql.connection.cursor()
         try:
-            query = '''
-                INSERT INTO users (
-                    userName, 
-                    userEmail, 
-                    userPhone, 
-                    userType, 
-                    userStatus, 
-                    userDescription,
-                    registeredDate
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-            '''
-            db.execute(query, (
-                name, 
-                email, 
-                phone, 
-                'public',  
-                'registered', 
-                json.dumps(user_description),
-                now
-            ))
-            mysql.connection.commit()
+            name = request.form.get('full-name')
+            ic_number = request.form.get('ic-passport-number')
+            phone = request.form.get('phone-number')
+            email = request.form.get('email')
+            t_shirt_size = request.form.get('t-shirt-size')
+
+            # Fixed package value
+            package = 'Glow-Rious Pro'
+
+            # User description in JSON
+            user_description = {
+                "ICNumber": ic_number,
+                "package": package,
+                "tShirtSize": t_shirt_size
+            }
+
+            # Use UTC timestamp
+            now = datetime.now()
+
+            # Database operation
+            with mysql.connection.cursor() as db:
+                query = '''
+                    INSERT INTO users (
+                        userName, 
+                        userEmail, 
+                        userPhone, 
+                        userType, 
+                        userStatus, 
+                        userDescription,
+                        registeredDate
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+                '''
+                db.execute(query, (
+                    name, 
+                    email, 
+                    phone, 
+                    'public',  
+                    'registered', 
+                    json.dumps(user_description),
+                    now
+                ))
+                mysql.connection.commit()
 
         except Exception as e:
             mysql.connection.rollback()
             print(f"Error inserting user: {e}")
-            return "Error occurred while inserting the record."
-        finally:
-            db.close()
+            return "An error occurred. Please try again.", 500
         
-        return redirect(url_for('payment', package=package, t_shirt_size=t_shirt_size, ic_number=ic_number, type='public', email=email))
-    
+        return redirect(url_for('payment', type='public'))
+
     return render_template('Public/public_register.html')
 
-@app.route('/Public/payment')
+@app.route('/Public/payment', methods=['GET'])
 def payment():
-    package = request.args.get('package')
-    t_shirt_size = request.args.get('t_shirt_size')
     user_type = request.args.get('type')
-    ic_number = request.args.get('ic_number')
-    martic_number = request.args.get('matric_number')
-    email = request.args.get('email')
-    number = 0
+    db = mysql.connection.cursor()
 
-    if user_type == 'public':
-        number = ic_number
-    elif user_type == 'student':
-        number = martic_number
+    # Retrieve active student data
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.matricNumber')) AS matricNumber,
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
+            userEmail AS email
+        FROM users
+        WHERE userType = 'student' AND userStatus = 'registered';
+    """)
+    student = db.fetchall()
+
+    # Retrieve active public user data
+    db.execute("""
+        SELECT 
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.ICNumber')) AS ICNumber,
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
+            JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
+            userEmail AS email
+        FROM users
+        WHERE userType = 'public' AND userStatus = 'registered';
+    """)
+    public = db.fetchall()
+
+    # Initialize variables
+    number = None
+    email = None
+    package = None
+    t_shirt_size = None
+    package_price = 0
+    size_price = 0
+
+    # Process student or public data based on 'type' parameter
+    if user_type == 'public' and public:
+        number = public[0][0]
+        package = student[0][1]
+        t_shirt_size = public[0][2]
+        email = public[0][3]
+    elif user_type == 'student' and student:
+        number = student[0][0]
+        package = student[0][1]
+        t_shirt_size = student[0][2]
+        email = student[0][3]
+
     
-    first_six_digits = number[:6] if len(number) >= 6 else number
+    if number:
+        first_six_digits = number[:6] if len(number) >= 6 else number
+    else:
+        first_six_digits = '000000'  # Default value if 'number' is None
 
     # Combine with current date in ddmmyy format
     current_date = datetime.now().strftime('%d%m%y')
     order_number = f"{first_six_digits}{current_date}"
 
-    package_price = {
-        'Pro': 50,
-        'Lite': 35,
-        'Starter': 15
-    }
-    
-    additional_price = {
-        '3XL': 3,  
-        '4XL': 5,
-        '5XL': 7,  
-        '6XL': 9,  
-        '7XL': 11
-    }
-    
-    package_price = package_price.get(package, 0)
-    additional_price = additional_price.get(t_shirt_size, 0)
-    
-    total_amount = package_price + additional_price
+    # Retrieve package details
+    db.execute("""
+        SELECT packageName, price
+        FROM packages
+        WHERE packageStatus = 'active';
+    """)
+    package_details = db.fetchall()
+
+    # Retrieve t-shirt size details
+    db.execute("""
+        SELECT sizeName, sizePrice
+        FROM tshirt_size
+        ORDER BY sizeID;
+    """)
+    size_details = db.fetchall()
+
+    # Calculate the total amount (assuming you get the right package and size prices)
+    if package_details and size_details:
+        package_price = int(package_details[0][1]) if package_details else 0
+        size_price = int(size_details[0][1]) if size_details else 0
+        total_amount = package_price + size_price
+    else:
+        total_amount = 0
 
     return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, 
-                       package_price=package_price, additional_price=additional_price, 
-                       total_amount=total_amount, number=number, email=email, order_number=order_number)
+                           package_price=package_price, additional_price=size_price, total_amount=total_amount, 
+                           number=number, email=email, order_number=order_number)
 
 @app.route('/submit_payment', methods=['POST'])
 def submit_payment():
