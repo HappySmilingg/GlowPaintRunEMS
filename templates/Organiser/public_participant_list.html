@@ -103,7 +103,7 @@
               <td>{{ public.totalAmount }}</td>
               <td>
                 {% if public.fileName %} 
-                  <a href="{{ url_for('download_file', number=public.ICNumber) }}" class="download-link">
+                  <a href="{{ url_for('organiser.download_file', user_number=public.ICNumber) }}" class="download-link">
                     {{ public.fileName }}
                   </a>
                 {% else %}

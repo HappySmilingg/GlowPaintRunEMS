@@ -129,7 +129,7 @@
               <td>{{ student.totalAmount }}</td>
               <td>
                 {% if student.fileName %} 
-                  <a href="{{ url_for('download_file', number=student.matricNumber) }}" class="download-link">
+                  <a href="{{ url_for('organiser.download_file', user_number=student.matricNumber) }}" class="download-link">
                     {{ student.fileName }}
                   </a>
                 {% else %}

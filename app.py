@@ -24,6 +24,12 @@ def create_app():
     from routes.profile_route import profile_bp
     app.register_blueprint(profile_bp)
 
+    from routes.login_route import login_bp
+    app.register_blueprint(login_bp)
+
+    from routes.organiser_route import organiser_bp
+    app.register_blueprint(organiser_bp)
+
     return app
 
 
