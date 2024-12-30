@@ -5,10 +5,10 @@ from flask_mail import Message
 from models.register_model import UserModel, PaymentModel
 
 class RegisterController:
-    def __init__(self, db_connection):
-        self.db = db_connection
-        self.user_model = UserModel(db_connection)
-        self.payment_model = PaymentModel(db_connection)
+    def __init__(self, db):
+        self.db = db
+        self.user_model = UserModel(db)
+        self.payment_model = PaymentModel(db)
 
     def public_register(self):
         self.db.execute("""
@@ -72,10 +72,10 @@ class RegisterController:
                 }
 
                 if self.user_model.insert_user(user_data):
-                    return redirect(url_for('register.payment', type='student'))
+                    return redirect(url_for('register.payment', matric_number=matric_number, type='student'))
                 else:
                     flash('User registration failed. Please try again.', 'error')
-                    return redirect(url_for('register.public_register'))
+                    return redirect(url_for('register.student_register'))
 
             except Exception as e:
                 print(f"Error in user registration: {e}")
@@ -110,58 +110,56 @@ class RegisterController:
                 }
 
                 if self.user_model.insert_user(user_data):
-                    return redirect(url_for('payment', type='public'))
+                    return redirect(url_for('register.payment', ic_number=ic_number, type='public'))
 
             except Exception as e:
                 print(f"Error in user registration: {e}")
                 return "An error occurred. Please try again.", 500
 
     def payment(self):
-        user_type = request.args.get('type')
+        try:
+            user_type = request.args.get('type')
+            matric = request.args.get('matric_number')
+            IC = request.args.get('ic_number')
 
-        # Retrieve active student and public data
-        self.payment_model.execute("""
-            SELECT JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.matricNumber')) AS matricNumber,
-                   JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
-                   JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
-                   userEmail AS email
-            FROM users
-            WHERE userType = 'student' AND userStatus = 'registered';
-        """)
-        student = self.payment_model.fetchall()
+            # Retrieve active student and public data
+            student_data = self.payment_model.get_active_students(matric)
+            public_data = self.payment_model.get_active_public_users(IC)
 
-        self.db.execute("""
-            SELECT JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.ICNumber')) AS ICNumber,
-                   JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.package')) AS package,
-                   JSON_UNQUOTE(JSON_EXTRACT(userDescription, '$.tShirtSize')) AS tShirtSize,
-                   userEmail AS email
-            FROM users
-            WHERE userType = 'public' AND userStatus = 'registered';
-        """)
-        public = self.payment_model.fetchall()
+            # Determine user type and extract data
+            number, email, package, t_shirt_size = None, None, None, None
+            if user_type == 'public' and public_data:
+                number = public_data[0][0]
+                package = public_data[0][1]
+                t_shirt_size = public_data[0][2]
+                email = public_data[0][3]
+            elif user_type == 'student' and student_data:
+                number = student_data[0][0]
+                package = student_data[0][1]
+                t_shirt_size = student_data[0][2]
+                email = student_data[0][3]
 
-        self.db.close()
+            # Generate order number
+            first_six_digits = number[:6] if number and len(number) >= 6 else '000000'
+            current_date = datetime.now().strftime('%d%m%y')
+            order_number = f"{first_six_digits}{current_date}"
 
-        # Initialize variables
-        number, email, package, t_shirt_size, order_number = None, None, None, None, None
+            # Retrieve package and size details
+            package_details = self.payment_model.get_package_details(package)
+            size_details = self.payment_model.get_tshirt_sizes(t_shirt_size)
 
-        if user_type == 'public' and public:
-            number = public[0][0]
-            package = public[0][1]
-            t_shirt_size = public[0][2]
-            email = public[0][3]
-        elif user_type == 'student' and student:
-            number = student[0][0]
-            package = student[0][1]
-            t_shirt_size = student[0][2]
-            email = student[0][3]
-
-        # Generate order number based on number
-        first_six_digits = number[:6] if number else '000000'
-        current_date = datetime.now().strftime('%d%m%y')
-        order_number = f"{first_six_digits}{current_date}"
+            # Calculate total amount
+            package_price = int(package_details[0][1]) if package_details else 0
+            size_price = int(size_details[0][1]) if size_details else 0
+            total_amount = package_price + size_price
+        
+        except Exception as e:
+            print(f"Error in payment processing: {e}")
+            flash("An error occurred during payment processing. Please try again.", "error")
+            return render_template('Public/homepage.html')
 
         return render_template('Public/payment.html', package=package, t_shirt_size=t_shirt_size, 
+                               package_price=package_price, additional_price=size_price, total_amount=total_amount, 
                                number=number, email=email, order_number=order_number)
     
     def submit_payment(self):

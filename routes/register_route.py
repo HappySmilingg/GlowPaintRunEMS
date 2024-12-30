@@ -16,12 +16,12 @@ def student_register():
 
 @register_bp.route('/submit-form', methods=['POST'])
 def submit_form():
-    register_controller = RegisterController(mysql.connection.cursor())
+    register_controller = RegisterController(mysql.connection)
     return register_controller.submit_form()
 
 @register_bp.route('/submit-form2', methods=['POST'])
 def submit_form2():
-    register_controller = RegisterController(mysql.connection.cursor())
+    register_controller = RegisterController(mysql.connection)
     return register_controller.submit_form2()
 
 @register_bp.route('/Public/payment', methods=['GET'])
@@ -31,5 +31,5 @@ def payment():
 
 @register_bp.route('/submit_payment', methods=['POST'])
 def submit_payment():
-    register_controller = RegisterController(mysql.connection.cursor())
+    register_controller = RegisterController(mysql.connection)
     return register_controller.submit_payment()
