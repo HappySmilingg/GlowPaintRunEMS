@@ -21,7 +21,7 @@ class EventModel:
                JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark2')),
                JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark3')) 
         FROM eventDetails
-        WHERE eventDetailId = 21 AND detailName = 'Event Info';
+        WHERE eventDetailId = 211 AND detailName = 'Event Info';
         """)
         return db.fetchall()
 
