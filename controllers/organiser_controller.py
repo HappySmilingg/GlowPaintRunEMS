@@ -1,7 +1,7 @@
 from datetime import datetime
 import base64
 import mimetypes
-from flask import render_template, flash, request, jsonify, Response
+from flask import render_template, flash, request, jsonify, Response, session
 from models.organiser_model import OrganiserModel
 
 class OrganiserController:

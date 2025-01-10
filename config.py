@@ -1,8 +1,17 @@
 import os
+from datetime import timedelta
 
 class Config:
-    # About MySQL Database
     SECRET_KEY = os.urandom(24)
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=0.05)
+
+    # Session configuration
+    SESSION_COOKIE_NAME = 'session'
+    SESSION_TYPE = 'filesystem'  # Store session data on the server
+    SESSION_FILE_DIR = './flask_session'
+    SESSION_PERMANENT = True
+
+    # About MySQL Database
     MAX_CONTENT_LENGTH = 64 * 1024 * 1024  
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'

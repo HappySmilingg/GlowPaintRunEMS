@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session, jsonify
 from jinja2 import Environment, FileSystemLoader
 from controllers.organiser_controller import OrganiserController
 from app import mysql
+#from app import login_required
 
 # Create a Jinja2 environment with the 'enumerate' filter
 env = Environment(loader=FileSystemLoader('.'))
@@ -11,8 +12,17 @@ organiser_bp = Blueprint('organiser', __name__)
 
 @organiser_bp.route('/Organiser/homepage', methods=['GET', 'POST'])
 def o_homepage():
+    if 'user' not in session:
+        print(f"userrrrr: {user}")
+        return redirect(url_for('login.admin_login'))
+    user = session['user']
+    print(f"Accessing Homepage with Session: {session}")
     controller = OrganiserController(mysql.connection)
     return controller.handle_homepage(request)
+
+@organiser_bp.route('/debug/session', methods=['GET'])
+def debug_session():
+    return jsonify(dict(session))
 
 @organiser_bp.route('/Organiser/student_participant_list', methods=['GET'])
 def student_participant_list():

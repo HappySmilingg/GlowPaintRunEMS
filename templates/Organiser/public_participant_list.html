@@ -232,4 +232,66 @@ function updateStatusInDatabase(ICNumber, status) {
     function closeLogoutPopup() {
         document.getElementById("logout-popup").style.display = "none";
     }
+
+    // Session timeout handling
+    const sessionTimeoutMilliseconds = parseInt('{{ config["PERMANENT_SESSION_LIFETIME"].total_seconds() * 1000 }}', 10);
+    const sessionExpirationTime = new Date().getTime() + sessionTimeoutMilliseconds;
+
+    const checkSessionExpiration = () => {
+        const currentTime = new Date().getTime();
+        if (currentTime >= sessionExpirationTime) {
+            // Display the session expiration alert box
+            showSessionExpiredAlert();
+        }
+    };
+
+    const showSessionExpiredAlert = () => {
+        // Create a div to show the alert box
+        const alertBox = document.createElement('div');
+        alertBox.style.position = 'fixed';
+        alertBox.style.top = '10px';
+        alertBox.style.left = '50%';
+        alertBox.style.transform = 'translateX(-50%)';
+        alertBox.style.backgroundColor = '#f8d7da';
+        alertBox.style.color = '#721c24';
+        alertBox.style.padding = '10px 20px';
+        alertBox.style.borderRadius = '5px';
+        alertBox.style.fontSize = '16px';
+        alertBox.style.zIndex = '9999';
+        alertBox.style.display = 'flex';
+        alertBox.style.alignItems = 'center';
+        alertBox.style.justifyContent = 'space-between';
+        alertBox.innerHTML = 'Your session has expired. Please log in again.';
+
+        // Create the "OK" button
+        const okButton = document.createElement('button');
+        okButton.textContent = 'OK';
+        okButton.style.backgroundColor = '#721c24';
+        okButton.style.color = 'white';
+        okButton.style.border = 'none';
+        okButton.style.padding = '5px 10px';
+        okButton.style.borderRadius = '5px';
+        okButton.style.cursor = 'pointer';
+
+        // Position the "OK" button to the right
+        okButton.style.marginLeft = '20px';
+
+        // Add event listener for "OK" button to close the alert and redirect
+        okButton.addEventListener('click', function() {
+            // Remove the alert box
+            alertBox.remove();
+
+            // Redirect to login page
+            window.location.href = "{{ url_for('login.admin_login') }}";
+        });
+
+        // Append the button to the alert box
+        alertBox.appendChild(okButton);
+
+        // Append the alert box to the body
+        document.body.appendChild(alertBox);
+    };
+
+    // Run the check every 10 seconds
+    setInterval(checkSessionExpiration, 3000);
 </script>
