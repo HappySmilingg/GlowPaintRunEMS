@@ -3,7 +3,7 @@ from datetime import timedelta
 
 class Config:
     SECRET_KEY = os.urandom(24)
-    PERMANENT_SESSION_LIFETIME = timedelta(minutes=0.05)
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=20)
 
     # Session configuration
     SESSION_COOKIE_NAME = 'session'

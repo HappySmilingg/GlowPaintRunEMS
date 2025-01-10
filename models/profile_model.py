@@ -7,7 +7,7 @@ class ProfileModel:
             SELECT detailPicture AS picture, 
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name1')) AS name1,
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name2')) AS name2
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Organiser Profile'
         """
         db = self.db.cursor()
@@ -22,7 +22,7 @@ class ProfileModel:
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName3')) AS linkName3,
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName4')) AS linkName4,
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName5')) AS linkName5
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Social Link'
         """
         db = self.db.cursor()
@@ -80,7 +80,7 @@ class ProfileModel:
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink23')),
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName24')),
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink24'))
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Other Social Link'
         """
         db = self.db.cursor()
@@ -95,7 +95,7 @@ class ProfileModel:
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
-            FROM EventDetails
+            FROM eventdetails
             WHERE eventDetailId = {event_detail_id} AND detailName = 'Contact Us'
         """
         db = self.db.cursor()

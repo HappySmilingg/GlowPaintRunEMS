@@ -120,7 +120,7 @@ class OrganiserModel:
                 T.fileUploaded,
                 T.fileName,
                 JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.transport')) AS transport
-            FROM Users U
+            FROM users U
             LEFT JOIN payment T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.matricNumber'))
             WHERE U.userType = 'student' AND T.fileName IS NOT NULL;
         '''
@@ -153,7 +153,7 @@ class OrganiserModel:
                 T.totalAmount, 
                 T.fileUploaded,
                 T.fileName
-            FROM Users U
+            FROM users U
             LEFT JOIN payment T ON T.userNumber = JSON_UNQUOTE(JSON_EXTRACT(U.userDescription, '$.ICNumber'))
             WHERE U.userType = 'public' AND T.fileName IS NOT NULL; 
         '''
@@ -232,7 +232,7 @@ class OrganiserModel:
     def rollback_transaction(self):
         self.db.rollback()
 
-# Packages Page
+# packages Page
     # Function to handle T-shirt size updates and inserts
     def update_tshirt_sizes(self, form_data):
         db = self.db.cursor(DictCursor)
@@ -264,13 +264,13 @@ class OrganiserModel:
             delete_flag = size.get('delete', '0')
 
             if delete_flag == '1' and size_id:
-                db.execute("DELETE FROM Tshirt_size WHERE sizeID = %s", (size_id,))
+                db.execute("DELETE FROM tshirt_size WHERE sizeID = %s", (size_id,))
                 continue
             if size_id:
-                db.execute("UPDATE Tshirt_size SET sizeName = %s, sizePrice = %s WHERE sizeID = %s",
+                db.execute("UPDATE tshirt_size SET sizeName = %s, sizePrice = %s WHERE sizeID = %s",
                         (size_name, size_price, size_id))
             elif size.get("is_new"):
-                db.execute("INSERT INTO Tshirt_size (sizeName, sizePrice) VALUES (%s, %s)",
+                db.execute("INSERT INTO tshirt_size (sizeName, sizePrice) VALUES (%s, %s)",
                         (size_name, size_price))
 
         self.db.commit()
@@ -306,12 +306,12 @@ class OrganiserModel:
             delete_flag = item.get('delete')
 
             if delete_flag == '1' and item_id:
-                db.execute("UPDATE Items SET itemStatus = 'deleted' WHERE itemID = %s", (item_id,))
+                db.execute("UPDATE items SET itemStatus = 'deleted' WHERE itemID = %s", (item_id,))
                 continue
             if item_id:
-                db.execute("UPDATE Items SET itemName = %s WHERE itemID = %s", (item_name, item_id))
+                db.execute("UPDATE items SET itemName = %s WHERE itemID = %s", (item_name, item_id))
             elif item.get("is_new"):
-                db.execute("INSERT INTO Items (itemName, itemStatus) VALUES (%s, 'active')", (item_name,))
+                db.execute("INSERT INTO items (itemName, itemStatus) VALUES (%s, 'active')", (item_name,))
 
         self.db.commit()
 
@@ -337,7 +337,14 @@ class OrganiserModel:
                         field_name = key.split('[')[3].split(']')[0]
                         packages[index][field_name] = form_data[key]
                 else:
-                    package_id = key.split('[')[1].split(']')[0]
+                    # Get the submitted package ids
+                    submitted_package_ids = list(set([str(int(key.split('[')[1].split(']')[0]) + 1)]))
+                    # Delete all packages whose packageID is NOT in the submitted list
+                    if submitted_package_ids:
+                        query = f"DELETE FROM Packages WHERE packageID NOT IN ({', '.join(submitted_package_ids)})"
+                        db.execute(query)
+
+                    package_id = key.split('[')[1].split(']')[0]  # Extract package index
 
                     if len(packages) <= int(package_id):
                         packages.append({
@@ -365,27 +372,28 @@ class OrganiserModel:
             has_tshirt = any(item['itemName'].lower() == "t-shirt" for item in items_in_package)
 
             if package_id:
-                db.execute("UPDATE Packages SET packageName = %s, price = %s WHERE packageID = %s",
+                db.execute("UPDATE packages SET packageName = %s, price = %s WHERE packageID = %s",
                         (package_name, price, package_id))
 
-                db.execute("SELECT itemID FROM Packages WHERE packageID = %s", (package_id,))
+                db.execute("SELECT itemID FROM packages WHERE packageID = %s", (package_id,))
                 current_items = {row['itemID'] for row in db.fetchall()}
 
                 items_to_delete = current_items - {item['itemID'] for item in items_in_package}
                 for item_id in items_to_delete:
-                    db.execute("DELETE FROM Packages WHERE packageID = %s AND itemID = %s",
+                    db.execute("DELETE FROM packages WHERE packageID = %s AND itemID = %s",
                             (package_id, item_id))
 
                 items_to_add = {item['itemID'] for item in items_in_package} - current_items
                 for item_id in items_to_add:
-                    db.execute("INSERT INTO Packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
+                    db.execute("INSERT INTO packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
                             (package_id, package_name, price, has_tshirt, item_id))
+            
             elif package.get("is_new"):
-                db.execute("SELECT MAX(packageID) + 1 AS new_package_id FROM Packages")
+                db.execute("SELECT MAX(packageID) + 1 AS new_package_id FROM packages")
                 new_package_id = db.fetchone()["new_package_id"]
 
                 for item in package["items"]:
-                    db.execute("INSERT INTO Packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
+                    db.execute("INSERT INTO packages (packageID, packageName, price, hasTShirt, itemID) VALUES (%s, %s, %s, %s, %s)",
                             (new_package_id, package["packageName"], package["price"], has_tshirt, item["itemID"]))
 
         self.db.commit()
@@ -393,13 +401,13 @@ class OrganiserModel:
     # Function to fetch T-shirt sizes
     def get_tshirt_sizes(self):
         db = self.db.cursor(DictCursor)
-        db.execute("SELECT sizeID, sizeName, sizePrice FROM Tshirt_size ORDER BY sizeID")
+        db.execute("SELECT sizeID, sizeName, sizePrice FROM tshirt_size ORDER BY sizeID")
         return db.fetchall()
 
     # Function to fetch active items
     def get_items(self):
         db = self.db.cursor(DictCursor)
-        db.execute("SELECT itemID, itemName FROM Items WHERE itemStatus = 'active' ORDER BY itemID")
+        db.execute("SELECT itemID, itemName FROM items WHERE itemStatus = 'active' ORDER BY itemID")
         return db.fetchall()
 
     # Function to fetch active packages and their items
@@ -407,8 +415,8 @@ class OrganiserModel:
         db = self.db.cursor(DictCursor)
         db.execute("""
             SELECT p.packageID, p.packageName, p.price, i.itemID, i.itemName
-            FROM Packages p
-            LEFT JOIN Items i ON i.itemID = p.itemID
+            FROM packages p
+            LEFT JOIN items i ON i.itemID = p.itemID
             WHERE p.packageStatus = 'active' AND i.itemStatus = 'active'
             ORDER BY p.packageID, p.itemID;
         """)

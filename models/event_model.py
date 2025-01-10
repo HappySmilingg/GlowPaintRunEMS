@@ -9,7 +9,7 @@ class EventModel:
         db = self.db.cursor()
         db.execute("""
             SELECT eventName, eventDate, eventStartTime, eventEndTime, eventLocation, routeDistance 
-            FROM Event
+            FROM event
         """)
         return db.fetchall()
     
@@ -20,8 +20,8 @@ class EventModel:
                JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark1')),
                JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark2')),
                JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark3')) 
-        FROM eventDetails
-        WHERE eventDetailId = 21 AND detailName = 'Event Info';
+        FROM eventdetails
+        WHERE eventDetailId = 21 AND detailName = 'event Info';
         """)
         return db.fetchall()
 
@@ -30,14 +30,14 @@ class EventModel:
         db = self.db.cursor()
         db.execute("""
             SELECT detailPicture 
-            FROM EventDetails 
-            WHERE eventID = 1 AND detailName = 'Past Event Images'
+            FROM eventdetails 
+            WHERE eventID = 1 AND detailName = 'Past event Images'
         """)
         return db.fetchall()
 
     def get_route_images(self):
         """ Retrieve route images for the event."""
-        query = "SELECT detailPicture FROM EventDetails WHERE eventID = 1 AND detailName = 'Route Images'"
+        query = "SELECT detailPicture FROM eventdetails WHERE eventID = 1 AND detailName = 'Route Images'"
         db = self.db.cursor()
         db.execute(query)
         route_images = db.fetchall()
