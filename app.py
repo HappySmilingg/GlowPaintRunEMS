@@ -71,8 +71,9 @@ def create_app():
 
         # Check last activity timestamp
         if 'last_activity' in session:
-            session_lifetime = app.permanent_session_lifetime  # Dynamically fetch from config
+            session_lifetime = app.permanent_session_lifetime  
             if datetime.now() - session['last_activity'] > session_lifetime:
+                print(f"expired!!!!")
                 session.clear()
                 flash('Session expired. Please log in again.', 'error')
                 return redirect(url_for('login.admin_login'))

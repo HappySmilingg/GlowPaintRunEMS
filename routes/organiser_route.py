@@ -64,8 +64,6 @@ def o_packages():
         # Process the POST data (handle updates and inserts)
         controller.process_packages_and_items(request.form)
         flash('Your changes have been saved!', 'success')
-    else:
-        flash('Failed to save changes. Please try again.', 'error')
     
     # Fetch data for display
     return render_template('Organiser/packages.html', **controller.process_packages_and_items(request.form, is_get=True), enumerate=enumerate)
