@@ -6,7 +6,6 @@ class Config:
     PERMANENT_SESSION_LIFETIME = timedelta(minutes=10)
 
     # Session configuration
-    SESSION_COOKIE_NAME = 'session'
     SESSION_TYPE = 'filesystem'  # Store session data on the server
     SESSION_FILE_DIR = './flask_session'
     SESSION_PERMANENT = True

@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, render_template, Response, jsonify, flash
+from flask import request, redirect, url_for, render_template, make_response, jsonify, flash
 from datetime import datetime
 from app import mail  
 from flask_mail import Message
@@ -72,7 +72,10 @@ class RegisterController:
                 }
 
                 if self.user_model.insert_user(user_data):
-                    return redirect(url_for('register.payment', matric_number=matric_number, type='student'))
+                    resp = make_response(redirect(url_for('register.payment')))
+                    resp.set_cookie('matric_number', matric_number)
+                    resp.set_cookie('user_type', 'student')
+                    return resp
                 else:
                     flash('User registration failed. Please try again.', 'error')
                     return redirect(url_for('register.student_register'))
@@ -110,7 +113,10 @@ class RegisterController:
                 }
 
                 if self.user_model.insert_user(user_data):
-                    return redirect(url_for('register.payment', ic_number=ic_number, type='public'))
+                    resp = make_response(redirect(url_for('register.payment')))
+                    resp.set_cookie('ic_number', ic_number)
+                    resp.set_cookie('user_type', 'public')
+                    return resp
 
             except Exception as e:
                 print(f"Error in user registration: {e}")
@@ -118,9 +124,9 @@ class RegisterController:
 
     def payment(self):
         try:
-            user_type = request.args.get('type')
-            matric = request.args.get('matric_number')
-            IC = request.args.get('ic_number')
+            user_type = request.cookies.get('user_type')
+            matric = request.cookies.get('matric_number')
+            IC = request.cookies.get('ic_number')
 
             # Retrieve active student and public data
             student_data = self.payment_model.get_active_students(matric)

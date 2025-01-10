@@ -20,22 +20,51 @@ def create_app():
     Session(app)
 
     @app.before_request
-    def check_session_expiration():
+    def handle_before_request():
+         # Rewrite URL if a matching rule exists
+        original_path = request.path
+        if original_path.startswith('/static'):
+            return
+        print(f"Original path: {original_path}")  # Print the original path
+
+        # Apply URL rewriting rules
+        rewrite_rules = {
+        '/': '/dashboard',  
+        '/Public/public_register': '/public_register',
+        '/Public/student_register': '/student_register',
+        '/Public/payment': '/payment',
+        '/Public/route': '/route', 
+        '/Public/packages': '/packages',  
+        '/Public/contact_us': '/contact_us',
+        '/Public/about_us': '/about_us',
+        }
+
+        if original_path in rewrite_rules:
+            rewritten_path = rewrite_rules[original_path]
+            if original_path != rewritten_path:  
+                print(f"Rewriting URL: {original_path} -> {rewritten_path}")
+                request.environ['PATH_INFO'] = rewritten_path
+        print(f"Rewritten path: {request.path}")
         print(f"Current request endpoint: {request.endpoint}")
         
         # Define public endpoints that don't require session validation
         public_endpoints = [
             'static',
             'login.admin_login',
+            'login.logout'
             'event.homepage',
             'event.route',
+            'event.homepage',
             'event.get_route_image',
             'event.packages',
             'profile.about_us',
             'profile.contact_us',
             'register.public_register',
             'register.student_register',
+            'register.submit_form',
+            'register.submit_form2',
             'register.payment',
+            'register.submit_payment',
         ]
 
         # Skip session check for public endpoints
@@ -45,6 +74,7 @@ def create_app():
         # Check if the user session exists
         if 'user' not in session:
             flash('Session expired. Please log in again.', 'error')
+            session.clear()
             return redirect(url_for('login.admin_login'))
 
         # Check last activity timestamp

@@ -4,12 +4,12 @@ from app import mysql
 
 register_bp = Blueprint('register', __name__)
 
-@register_bp.route('/Public/public_register')
+@register_bp.route('/public_register')
 def public_register():
     register_controller = RegisterController(mysql.connection.cursor())
     return register_controller.public_register()
 
-@register_bp.route('/Public/student_register')
+@register_bp.route('/student_register')
 def student_register():
     register_controller = RegisterController(mysql.connection.cursor())
     return register_controller.student_register()
@@ -24,7 +24,7 @@ def submit_form2():
     register_controller = RegisterController(mysql.connection)
     return register_controller.submit_form2()
 
-@register_bp.route('/Public/payment', methods=['GET'])
+@register_bp.route('/payment', methods=['GET'])
 def payment():
     register_controller = RegisterController(mysql.connection.cursor())
     return register_controller.payment()

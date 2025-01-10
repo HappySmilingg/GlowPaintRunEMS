@@ -4,12 +4,12 @@ from app import mysql
 
 profile_bp = Blueprint('profile', __name__)
 
-@profile_bp.route('/Public/about_us')
+@profile_bp.route('/about_us')
 def about_us():
     controller = ProfileController(mysql.connection)
     return controller.about_us()
 
-@profile_bp.route('/Public/contact_us')
+@profile_bp.route('/contact_us')
 def contact_us():
     controller = ProfileController(mysql.connection)
     return controller.contact_us()
