@@ -10,28 +10,6 @@ from config import Config
 mysql = MySQL()
 mail = Mail()
 
-# def login_required(f):
-#     @wraps(f)
-#     def decorated_function(*args, **kwargs):
-#         # Check if the session has expired based on last_activity
-#         if 'last_activity' in session:
-#             last_activity = session['last_activity']
-#             if datetime.now() - last_activity > timedelta(minutes=30):  # Timeout after 30 minutes
-#                 flash("Session expired. Please log in again.", "error")
-#                 session.clear()  # Clear the session
-#                 return redirect(url_for('login.admin_login'))
-
-#         if "user" not in session:
-#             flash("Please log in to access this page.", "error")
-#             return redirect(url_for("login.admin_login"))
-
-#         # Update the last_activity to current time
-#         session['last_activity'] = datetime.now()
-
-#         return f(*args, **kwargs)
-    
-#     return decorated_function
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
