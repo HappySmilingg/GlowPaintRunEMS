@@ -36,21 +36,21 @@
                 </div>
             </div>
             {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <div class="flash-messages">
-                        {% for category, message in messages %}
-                            {% if loop.index == 1 %}
-                                <div class="flash {{ category }}">
-                                    {% if category == 'error' %}
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    {% endif %}
-                                    {{ message }}
-                                </div>
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">
+                            {% if category == 'error' %}
+                                <i class="fas fa-exclamation-circle"></i>
+                            {% elif category == 'success' %}
+                                <i class="fas fa-check-circle"></i>
                             {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}        
     
             <form action="{{ url_for('login.admin_login') }}" method="POST">
                 <div class="form-group">

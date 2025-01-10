@@ -222,3 +222,15 @@
 .flash i {
     color: white;
 }
+
+.flash.success {
+    background-color: #28a745;  /* Green color for success */
+}
+
+.flash.success i {
+    font-size: 1.15vw;
+}
+
+.flash i {
+    color: white;
+}
