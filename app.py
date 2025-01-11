@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, redirect, url_for, session, flash, jsonify
 from flask_mysqldb import MySQL
 from flask_mail import Mail
 from flask_session import Session
@@ -60,37 +60,18 @@ def create_app():
         return redirect(url_for('static', filename='favicon.ico'))
     
     @app.before_request
-    def handle_before_request():
-        print(f"Current request endpoint: {request.endpoint}")
-        
+    def handle_before_request():        
         # Define public endpoints that don't require session validation
-        public_endpoints = [
-            'check_session',
-            'check_cookies',
-            'static',
-            'favicon',
-            'login.admin_login',
-            'login.logout',
-            'event.homepage',
-            'event.route',
-            'event.get_route_image',
-            'event.packages',
-            'profile.about_us',
-            'profile.contact_us',
-            'register.public_register',
-            'register.student_register',
-            'register.submit_form',
-            'register.submit_form2',
-            'register.payment',
-            'register.submit_payment',
-        ]
+        public_endpoints = ['check_session', 'check_cookies', 'static', 'favicon', 
+                            'login.admin_login', 'login.logout', 
+                            'event.homepage', 'event.route', 'event.get_route_image', 'event.packages',
+                            'profile.about_us', 'profile.contact_us', 
+                            'register.public_register', 'register.student_register', 'register.submit_form',
+                            'register.submit_form2', 'register.payment', 'register.submit_payment',]
 
         # Skip session check for public endpoints
         if request.endpoint in public_endpoints:
             return
-        
-        print(f"Skip request endpoint: {request.endpoint}")
-        print(f"Session at app.py: {dict(session)}")
 
         # Check if the user session exists
         if 'user' not in session:

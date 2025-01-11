@@ -11,7 +11,6 @@ class Config:
     SESSION_PERMANENT = True
 
     # Session cookie settings
-    SESSION_COOKIE_NAME = 'admin_session'
     SESSION_COOKIE_SECURE = False  # Send cookies over HTTPS only
     SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access to cookies
     SESSION_COOKIE_SAMESITE = 'Lax' 
