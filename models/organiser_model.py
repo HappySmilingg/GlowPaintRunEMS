@@ -6,12 +6,12 @@ class OrganiserModel:
         self.db = db
 
 # Homepage
-    def update_event_details(self, form_data):
+    def update_event(self, form_data):
         db = self.db.cursor()
         if form_data['description'] or form_data['remark1'] or form_data['remark2'] or form_data['remark3']:
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET detailDescription = JSON_SET(
                     detailDescription, 
                     '$.titleDesc', COALESCE(%s, ''),
@@ -30,7 +30,7 @@ class OrganiserModel:
 
             db.execute(
                 """
-                UPDATE Event
+                UPDATE event
                 SET eventName = %s,
                     eventDate = %s, 
                     eventStartTime = %s, 
@@ -46,7 +46,7 @@ class OrganiserModel:
         db = self.db.cursor()
         db.execute(
             """
-            UPDATE EventDetails
+            UPDATE eventdetails
             SET detailPicture = %s
             WHERE eventDetailId = %s
             """,
@@ -63,7 +63,7 @@ class OrganiserModel:
                    TIME(eventEndTime), 
                    eventLocation, 
                    routeDistance 
-            FROM Event;
+            FROM event;
         """)
         result = db.fetchone()
         return {
@@ -82,7 +82,7 @@ class OrganiserModel:
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark1')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark2')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.remark3')) 
-            FROM eventDetails
+            FROM eventdetails
             WHERE eventDetailId = 21 AND detailName = 'Event Info';
         """)
         result = db.fetchone()
@@ -97,7 +97,7 @@ class OrganiserModel:
         db = self.db.cursor()
         db.execute("""
             SELECT eventDetailID, detailPicture 
-            FROM EventDetails 
+            FROM eventdetails 
             WHERE eventDetailID BETWEEN 1 AND 5 AND detailName = 'Past Event Images';
         """)
         return db.fetchall()
@@ -188,7 +188,7 @@ class OrganiserModel:
     def update_route_detail_with_image(self, event_id, img_data, img_name):
             db = self.db.cursor()
             query = """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailPicture = %s,
                     detailDescription = CASE
@@ -205,7 +205,7 @@ class OrganiserModel:
     def update_route_name(self, event_id, img_name):
         db = self.db.cursor()
         query = """
-            UPDATE EventDetails
+            UPDATE eventdetails
             SET detailDescription = CASE
                 WHEN JSON_CONTAINS_PATH(detailDescription, 'one', '$.imgName') THEN
                     JSON_SET(detailDescription, '$.imgName', %s)
@@ -221,7 +221,7 @@ class OrganiserModel:
         db = self.db.cursor()
         query = """
             SELECT eventDetailId, detailPicture, JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.imgName')) AS detailDescription
-            FROM EventDetails
+            FROM eventdetails
             WHERE eventDetailId BETWEEN 6 AND 14 AND detailName = 'Route Images'
         """
         db.execute(query)
@@ -341,7 +341,7 @@ class OrganiserModel:
                     submitted_package_ids = list(set([str(int(key.split('[')[1].split(']')[0]) + 1)]))
                     # Delete all packages whose packageID is NOT in the submitted list
                     if submitted_package_ids:
-                        query = f"DELETE FROM Packages WHERE packageID NOT IN ({', '.join(submitted_package_ids)})"
+                        query = f"DELETE FROM packages WHERE packageID NOT IN ({', '.join(submitted_package_ids)})"
                         db.execute(query)
 
                     package_id = key.split('[')[1].split(']')[0]  # Extract package index
@@ -451,7 +451,7 @@ class OrganiserModel:
             img_data = profile_file.read()
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailPicture = %s,
                     detailDescription = JSON_SET(detailDescription, '$.name1', %s),
@@ -463,7 +463,7 @@ class OrganiserModel:
         else:
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailDescription = JSON_SET(detailDescription, '$.name1', %s),
                     detailDescription = JSON_SET(detailDescription, '$.name2', %s)
@@ -483,7 +483,7 @@ class OrganiserModel:
         db = self.db.cursor()
         db.execute(
             """
-            UPDATE EventDetails
+            UPDATE eventdetails
             SET 
                 detailDescription = JSON_SET(detailDescription, '$.linkName1', %s),
                 detailDescription = JSON_SET(detailDescription, '$.linkName2', %s),
@@ -507,7 +507,7 @@ class OrganiserModel:
         db = self.db.cursor()
         db.execute(
             """
-            UPDATE EventDetails
+            UPDATE eventdetails
             SET 
                 detailDescription = JSON_SET(detailDescription, '$.eventName1', %s),
                 detailDescription = JSON_SET(detailDescription, '$.linkName1', %s),
@@ -546,7 +546,7 @@ class OrganiserModel:
             SELECT detailPicture AS picture, 
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name1')) AS name1,
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name2')) AS name2
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Organiser Profile'
         """)
         return db.fetchall()
@@ -560,7 +560,7 @@ class OrganiserModel:
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName3')) AS linkName3,
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName4')) AS linkName4,
                 JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.linkName5')) AS linkName5
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Social Link'
         """)
         return db.fetchall()
@@ -617,7 +617,7 @@ class OrganiserModel:
             JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink23')),
             JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventName24')),
             JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.eventLink24'))
-            FROM EventDetails
+            FROM eventdetails
             WHERE detailName = 'Other Social Link'
         """)
         return db.fetchall()
@@ -639,7 +639,7 @@ class OrganiserModel:
             img_data = img_file.read()
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailPicture = %s,
                     detailDescription = JSON_SET(detailDescription, '$.message', %s),
@@ -654,7 +654,7 @@ class OrganiserModel:
         else:
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailDescription = JSON_SET(detailDescription, '$.message', %s),
                     detailDescription = JSON_SET(detailDescription, '$.title', %s),
@@ -677,7 +677,7 @@ class OrganiserModel:
             img_data2 = img_file2.read()
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailPicture = %s,
                     detailDescription = JSON_SET(detailDescription, '$.title', %s),
@@ -691,7 +691,7 @@ class OrganiserModel:
         else:
             db.execute(
                 """
-                UPDATE EventDetails
+                UPDATE eventdetails
                 SET 
                     detailDescription = JSON_SET(detailDescription, '$.title', %s),
                     detailDescription = JSON_SET(detailDescription, '$.position', %s),
@@ -714,7 +714,7 @@ class OrganiserModel:
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
                    JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
-            FROM EventDetails
+            FROM eventdetails
             WHERE eventDetailId = 19 AND detailName = 'Contact Us'
         """)
         return db.fetchall()
@@ -728,7 +728,7 @@ class OrganiserModel:
                     JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.position')),
                     JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.name')),
                     JSON_UNQUOTE(JSON_EXTRACT(detailDescription, '$.contact'))
-                FROM EventDetails
+                FROM eventdetails
                 WHERE eventDetailId = 20 AND detailName = 'Contact Us'
             """)
             return db.fetchall()

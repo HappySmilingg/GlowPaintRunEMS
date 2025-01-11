@@ -26,7 +26,8 @@ class OrganiserController:
                     'remark2': request.form.get('text-info2'),
                     'remark3': request.form.get('text-info3'),
                 }
-                self.organiser_model.update_event_details(form_data)
+                print(f"event:", form_data)
+                self.organiser_model.update_event(form_data)
 
                 # Handle file uploads
                 for i in range(1, 6):

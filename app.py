@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, flash, jsonify
+from flask import Flask, redirect, url_for, session, flash, jsonify, request
 from flask_mysqldb import MySQL
 from flask_mail import Mail
 from flask_session import Session
@@ -34,8 +34,6 @@ def create_app():
                 "message": "No active session found."
             }), 401
     
-    from flask import jsonify, request
-
     @app.route('/check_cookies', methods=['GET'])
     def check_cookies():
         # Get the session cookies (example: session_id and session_user)
