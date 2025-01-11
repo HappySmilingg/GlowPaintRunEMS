@@ -4,7 +4,7 @@ from app import mysql
 
 event_bp = Blueprint('event', __name__)
 
-@event_bp.route('/dashboard')
+@event_bp.route('/')
 def homepage():
     controller = EventController(mysql.connection)
     data = controller.get_event_details()

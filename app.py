@@ -21,30 +21,6 @@ def create_app():
 
     @app.before_request
     def handle_before_request():
-         # Rewrite URL if a matching rule exists
-        original_path = request.path
-        if original_path.startswith('/static'):
-            return
-        print(f"Original path: {original_path}")  # Print the original path
-
-        # Apply URL rewriting rules
-        rewrite_rules = {
-        '/': '/dashboard',  
-        '/Public/public_register': '/public_register',
-        '/Public/student_register': '/student_register',
-        '/Public/payment': '/payment',
-        '/Public/route': '/route', 
-        '/Public/packages': '/packages',  
-        '/Public/contact_us': '/contact_us',
-        '/Public/about_us': '/about_us',
-        }
-
-        if original_path in rewrite_rules:
-            rewritten_path = rewrite_rules[original_path]
-            if original_path != rewritten_path:  
-                print(f"Rewriting URL: {original_path} -> {rewritten_path}")
-                request.environ['PATH_INFO'] = rewritten_path
-        print(f"Rewritten path: {request.path}")
         print(f"Current request endpoint: {request.endpoint}")
         
         # Define public endpoints that don't require session validation
