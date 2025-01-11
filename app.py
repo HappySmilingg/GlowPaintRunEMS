@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, session, flash
+from flask import Flask, request, redirect, url_for, session, flash, jsonify
 from flask_mysqldb import MySQL
 from flask_mail import Mail
 from flask_session import Session
@@ -19,6 +19,42 @@ def create_app():
     mail.init_app(app)
     Session(app)
 
+    @app.route('/check_session', methods=['GET'])
+    def check_session():
+        # Check if session exists and contains user data
+        if "session_id" in session and "user" in session:
+            return jsonify({
+                "status": "active",
+                "session_id": session.get("session_id"),
+                "user": session.get("user")
+            }), 200
+        else:
+            return jsonify({
+                "status": "inactive",
+                "message": "No active session found."
+            }), 401
+    
+    from flask import jsonify, request
+
+    @app.route('/check_cookies', methods=['GET'])
+    def check_cookies():
+        # Get the session cookies (example: session_id and session_user)
+        cookie_session_id = request.cookies.get("session_id")
+        cookie_session_user = request.cookies.get("session_user")
+
+        # Check if both cookies exist
+        if cookie_session_id and cookie_session_user:
+            return jsonify({
+                "status": "cookies_found",
+                "session_id": cookie_session_id,
+                "user": cookie_session_user
+            }), 200
+        else:
+            return jsonify({
+                "status": "cookies_not_found",
+                "message": "Cookies not found or expired."
+            }), 401
+
     @app.route('/favicon.ico')
     def favicon():
         return redirect(url_for('static', filename='favicon.ico'))
@@ -29,6 +65,8 @@ def create_app():
         
         # Define public endpoints that don't require session validation
         public_endpoints = [
+            'check_session',
+            'check_cookies',
             'static',
             'favicon',
             'login.admin_login',
@@ -52,7 +90,7 @@ def create_app():
             return
         
         print(f"Skip request endpoint: {request.endpoint}")
-        print(f"Session: {dict(session)}")
+        print(f"Session at app.py: {dict(session)}")
 
         # Check if the user session exists
         if 'user' not in session:

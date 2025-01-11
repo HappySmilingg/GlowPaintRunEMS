@@ -12,20 +12,13 @@ organiser_bp = Blueprint('organiser', __name__)
 
 @organiser_bp.route('/Organiser/homepage', methods=['GET', 'POST'])
 def o_homepage():
-    if 'user' not in session:
-        print(f"userrrrr: {user}")
-        return redirect(url_for('login.admin_login'))
-    user = session['user']
     print(f"Accessing Homepage with Session: {session}")
     controller = OrganiserController(mysql.connection)
     return controller.handle_homepage(request)
 
-@organiser_bp.route('/debug/session', methods=['GET'])
-def debug_session():
-    return jsonify(dict(session))
-
 @organiser_bp.route('/Organiser/student_participant_list', methods=['GET'])
 def student_participant_list():
+    print(f"Accessing List with Session: {session}")
     controller = OrganiserController(mysql.connection)
     return controller.student_participant_list()
 

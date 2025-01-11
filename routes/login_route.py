@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session, flash
+from flask import Blueprint, render_template, redirect, url_for, request, session, flash, make_response
 from controllers.login_controller import LoginController
 from app import mysql
 
@@ -11,9 +11,12 @@ def admin_login():
 
 @login_bp.route('/Organiser/logout', methods=['GET'])
 def logout():
-    session.clear()  
-    flash('You have been logged out.', 'success')
-    return redirect(url_for('login.admin_login'))
+    resp = make_response(redirect(url_for('login.admin_login')))
+    session.clear()
+    resp.delete_cookie("session_id")
+    resp.delete_cookie("session_user")
+    flash('Logged out successfully.', 'success')
+    return resp
 
 @login_bp.route('/Organiser/update-password', methods=['POST'])
 def update_password():
