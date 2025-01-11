@@ -11,8 +11,7 @@ def admin_login():
 
 @login_bp.route('/Organiser/logout', methods=['GET'])
 def logout():
-    session["name"] = None
-    session.clear()  # Clear all session data
+    session.clear()  
     flash('You have been logged out.', 'success')
     return redirect(url_for('login.admin_login'))
 

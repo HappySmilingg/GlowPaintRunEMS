@@ -19,6 +19,10 @@ def create_app():
     mail.init_app(app)
     Session(app)
 
+    @app.route('/favicon.ico')
+    def favicon():
+        return redirect(url_for('static', filename='favicon.ico'))
+    
     @app.before_request
     def handle_before_request():
         print(f"Current request endpoint: {request.endpoint}")
@@ -26,11 +30,11 @@ def create_app():
         # Define public endpoints that don't require session validation
         public_endpoints = [
             'static',
+            'favicon',
             'login.admin_login',
-            'login.logout'
+            'login.logout',
             'event.homepage',
             'event.route',
-            'event.homepage',
             'event.get_route_image',
             'event.packages',
             'profile.about_us',
@@ -46,6 +50,9 @@ def create_app():
         # Skip session check for public endpoints
         if request.endpoint in public_endpoints:
             return
+        
+        print(f"Skip request endpoint: {request.endpoint}")
+        print(f"Session: {dict(session)}")
 
         # Check if the user session exists
         if 'user' not in session:
