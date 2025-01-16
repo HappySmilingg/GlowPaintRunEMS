@@ -450,4 +450,30 @@ button:hover {
     color: black;
   }
   /* Popup Window End */
+
+  /* Error Message */
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: none;
+}
+
+#full-name-error,
+#matric-number-error,
+#phone-number-error,
+#email-error{
+    margin-left: 4vw;
+}
+
+input.error, select.error {
+    border: 1px solid red !important;
+}
+
+.extra-input-group4.error {
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 4px;
+}
+/* Error Message End */
   

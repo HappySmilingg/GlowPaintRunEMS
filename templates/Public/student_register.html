@@ -48,29 +48,33 @@
             <button class="bar-button" onclick="window.location.href='/Public/public_register'">REGISTER AS PUBLIC</button>
        </div>
 
-      <form method="POST" action="/submit-form"> 
-       <div class="form-container">
+       <form method="POST" action="/submit-form" id="registrationForm" onsubmit="return validateForm(event)">
+        <div class="form-container">
         <div class="form-row">
           <!-- Left Column (Personal Details) -->
           <div class="column-left">
             <div class="input-group">
               <label for="full-name">FULL NAME</label>
               <input type="text" id="full-name" name="full-name" placeholder="FULL NAME AS IN NRIC / PASSPORT" />
+              <div class="error-message" id="full-name-error"></div>
             </div>
       
             <div class="input-group">
               <label for="matric-number">MATRIC NUMBER</label>
               <input type="text" id="matric-number" name="matric-number" placeholder="(Eg. 123456)" />
+              <div class="error-message" id="matric-number-error"></div>
             </div>
       
             <div class="input-group">
               <label for="phone-number">PHONE NUMBER</label>
               <input type="tel" id="phone-number" name="phone-number" placeholder="(Eg. 012-3456789)" />
+              <div class="error-message" id="phone-number-error"></div>
             </div>
 
             <div class="input-group">
                 <label for="email">EMAIL</label>
                 <input type="email" id="email" name="email" placeholder="(Eg. abc@gmail.com)" />
+                <div class="error-message" id="email-error"></div>
               </div>
 
               <div class="input-group4">
@@ -81,6 +85,7 @@
                     <option value="health">Health Campus</option>
                     <option value="engineering">Engineering Campus</option>
                 </select>
+                <div class="error-message" id="campus-error"></div>
             </div>
 
             <!-- Hidden transportation option, will be shown only when "Engineering Campus" is selected -->
@@ -92,6 +97,7 @@
               <label for="no">
                   <input type="radio" id="no" name="transportation" value="no"> No
               </label>
+              <div class="error-message" id="transportation-option-error"></div>
             </div>
             
             <div class="input-group3">
@@ -99,6 +105,7 @@
                 <select id="school" name="school" disabled>
                     <option value="">--Select School--</option>
                 </select>
+                <div class="error-message" id="school-error"></div>
             </div>
             
   
@@ -112,6 +119,7 @@
                       </option>
                   {% endfor %}
               </select>
+              <div class="error-message" id="package-details-error"></div>
           </div>
 
               <div class="view">
@@ -192,6 +200,7 @@
                           {% endif %}
                       {% endfor %}
                   </select>
+                  <div class="error-message" id="t-shirt-size-error"></div>
                 </div>
                 </div>
               </div>      
@@ -199,7 +208,7 @@
         </div>
       
         <div class="proceed-button">
-          <button class="btn-proceed" onclick="window.location.href='/payment'">Proceed to Payment</button>
+          <button type="submit" class="btn-proceed">Proceed to Payment</button>
         </div>
       </div>      
     </form>
@@ -268,147 +277,249 @@
       <p>&copy; 2024 CMT 322 (Group 21). All rights reserved.</p>
   </div>
 </footer> 
-
 </html>
-
 <script>
-    // The top menu effect function
+    // Header menu effect
     const header = document.querySelector('.header');
-  
-    // Add scroll event listener
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 0) {
-        header.classList.add('shrink');
-      } else {
-        header.classList.remove('shrink');
-      }
+        if (window.scrollY > 0) {
+            header.classList.add('shrink');
+        } else {
+            header.classList.remove('shrink');
+        }
     });
 
     function toggleMenu() {
         const leftStructure = document.querySelector('.header-structure-left');
         const rightStructure = document.querySelector('.header-structure-right');
-        leftStructure.classList.toggle('menu-open'); // Toggle the visibility of the left structure
-        rightStructure.classList.toggle('menu-open'); // Toggle the visibility of the right structure
+        leftStructure.classList.toggle('menu-open');
+        rightStructure.classList.toggle('menu-open');
     }
-    
-    function goBack() {
+
+  function goBack() {
       window.history.back(); 
-    }
+  }
 
+    // Campus and School dropdowns
     document.addEventListener("DOMContentLoaded", () => {
-    const campusDropdown = document.getElementById("campus");
-    const schoolDropdown = document.getElementById("school");
+        const campusDropdown = document.getElementById("campus");
+        const schoolDropdown = document.getElementById("school");
 
-    // Mapping campuses to their respective schools
-    const schoolOptions = {
-        "main": [
-            { value: "hbp", text: "School of Housing, Building and Planning" },
-            { value: "it", text: "School of Industrial Technology" },
-            { value: "pharm", text: "School of Pharmaceutical Science" },
-            { value: "computer-science", text: "School of Computer Science" },
-            { value: "educational", text: "School of Educational Studies" },
-            { value: "management", text: "School of Management" },
-            { value: "gsb", text: "Graduate School of Business (GSB)" },
-            { value: "comm", text: "School of Communication" },
-            { value: "arts", text: "School of the Art" },
-            { value: "sollat", text: "School of Language, Literacies and Translation" },
-            { value: "human", text: "School of Humanities" },
-            { value: "social", text: "School of Social Sciences" },
-            { value: "bio", text: "School of Biological Sciences" },
-            { value: "chem", text: "School of Chemical Sciences" },
-            { value: "mathematics", text: "School of Mathematical Sciences" },
-            { value: "phy", text: "School of Physics" },
-            { value: "dedu", text: "School of Distance Education" },
-            { value: "post", text: "Institute of Postgraduate Studies" },
-        ],
-        "health": [
-            { value: "health", text: "School of Health Sciences" },
-            { value: "medical", text: "School of Medical Sciences" },
-            { value: "dental", text: "School of Dental Sciences" },
-        ],
-        "engineering": [
-            { value: "ee", text: "School of Electrical and Electronic Engineering" },
-            { value: "mmre", text: "School of Materials and Mineral Resources Engineering" },
-            { value: "ae", text: "School of Aerospace Engineering" },
-            { value: "che", text: "School of Chemical Engineering" },
-            { value: "ce", text: "School of Civil Engineering" },
-            { value: "me", text: "School of Mechanical Engineering" },
-        ],
-    };
+        const schoolOptions = {
+            "main": [
+        { value: "hbp", text: "School of Housing, Building and Planning" },
+        { value: "it", text: "School of Industrial Technology" },
+        { value: "pharm", text: "School of Pharmaceutical Science" },
+        { value: "computer-science", text: "School of Computer Science" },
+        { value: "educational", text: "School of Educational Studies" },
+        { value: "management", text: "School of Management" },
+        { value: "gsb", text: "Graduate School of Business (GSB)" },
+        { value: "comm", text: "School of Communication" },
+        { value: "arts", text: "School of the Art" },
+        { value: "sollat", text: "School of Language, Literacies and Translation" },
+        { value: "human", text: "School of Humanities" },
+        { value: "social", text: "School of Social Sciences" },
+        { value: "bio", text: "School of Biological Sciences" },
+        { value: "chem", text: "School of Chemical Sciences" },
+        { value: "mathematics", text: "School of Mathematical Sciences" },
+        { value: "phy", text: "School of Physics" },
+        { value: "dedu", text: "School of Distance Education" },
+        { value: "post", text: "Institute of Postgraduate Studies" },
+    ],
+    "health": [
+        { value: "health", text: "School of Health Sciences" },
+        { value: "medical", text: "School of Medical Sciences" },
+        { value: "dental", text: "School of Dental Sciences" },
+    ],
+    "engineering": [
+        { value: "ee", text: "School of Electrical and Electronic Engineering" },
+        { value: "mmre", text: "School of Materials and Mineral Resources Engineering" },
+        { value: "ae", text: "School of Aerospace Engineering" },
+        { value: "che", text: "School of Chemical Engineering" },
+        { value: "ce", text: "School of Civil Engineering" },
+        { value: "me", text: "School of Mechanical Engineering" },
+    ],
+  };
 
-    // Event listener for Campus dropdown change
-    campusDropdown.addEventListener("change", () => {
-        const selectedCampus = campusDropdown.value;
+        campusDropdown.addEventListener("change", () => {
+            const selectedCampus = campusDropdown.value;
+            schoolDropdown.innerHTML = '<option value="">--Select School--</option>';
+            schoolDropdown.disabled = true;
 
-        // Clear and disable School dropdown
-        schoolDropdown.innerHTML = '<option value="">--Select School--</option>';
-        schoolDropdown.disabled = true;
+            if (selectedCampus && schoolOptions[selectedCampus]) {
+                schoolOptions[selectedCampus].forEach(school => {
+                    const option = document.createElement("option");
+                    option.value = school.value;
+                    option.textContent = school.text;
+                    schoolDropdown.appendChild(option);
+                });
+                schoolDropdown.disabled = false;
+            }
 
-        // Populate School dropdown if a valid campus is selected
-        if (selectedCampus && schoolOptions[selectedCampus]) {
-            schoolOptions[selectedCampus].forEach(school => {
-                const option = document.createElement("option");
-                option.value = school.value;
-                option.textContent = school.text;
-                schoolDropdown.appendChild(option);
-            });
-
-            // Enable School dropdown
-            schoolDropdown.disabled = false;
+            // Show/hide transportation option
+            const transportationField = document.getElementById("transportation-option");
+            if (selectedCampus === "engineering") {
+                transportationField.style.display = "block";
+            } else {
+                transportationField.style.display = "none";
             }
         });
     });
 
+    // Package popup
     document.addEventListener("DOMContentLoaded", function () {
-    const packageLink = document.querySelector(".package-link");
-    const popup = document.getElementById("packagePopup");
+        const packageLink = document.querySelector(".package-link");
+        const popup = document.getElementById("packagePopup");
+        const closePopup = document.getElementById("closePopup");
 
-    packageLink.addEventListener("click", function (event) {
-        event.preventDefault(); 
-        popup.style.display = "flex"; 
-    });
+        packageLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            popup.style.display = "flex";
+        });
 
-    closePopup.addEventListener("click", function () {
-        popup.style.display = "none"; 
-    });
+        closePopup.addEventListener("click", function () {
+            popup.style.display = "none";
+        });
 
-    window.addEventListener("click", function (event) {
-        if (event.target === popup) {
-            popup.style.display = "none"; 
-        }
+        window.addEventListener("click", function (event) {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
         });
     });
 
-    document.getElementById("campus").addEventListener("change", function() {
-    // Get the selected value from the campus dropdown
-    var selectedCampus = this.value;
+    // T-shirt size handling
+    const packageDropdown = document.getElementById('package-details');
+    const tShirtDropdown = document.getElementById('t-shirt-size');
 
-    // Get the transportation field
-    var transportationField = document.getElementById("transportation-option");
+    packageDropdown.addEventListener('change', function () {
+        const selectedOption = packageDropdown.options[packageDropdown.selectedIndex];
+        const hasTShirt = selectedOption.getAttribute('data-hasTShirt');
 
-    // If "engineering" is selected, show the transportation options
-    if (selectedCampus === "engineering") {
-        transportationField.style.display = "block";
-    } else {
-        transportationField.style.display = "none";
+        if (hasTShirt === '1') {
+            tShirtDropdown.disabled = false;
+        } else {
+            tShirtDropdown.value = 'default';
+            tShirtDropdown.disabled = true;
+        }
+    });
+
+  function validateForm(event) {
+  let isValid = true;
+
+  // Reset all error states
+  document.querySelectorAll('.error-message').forEach(elem => {
+    elem.style.display = 'none';
+  });
+  document.querySelectorAll('input, select').forEach(elem => {
+    elem.classList.remove('error');
+  });
+
+  // Validate Full Name
+  const fullName = document.getElementById('full-name').value.trim();
+  if (fullName === '') {
+    showError('full-name', 'Please enter your full name');
+    isValid = false;
+  }
+
+  // Validate Matric Number
+  const matricNumber = document.getElementById('matric-number').value.trim();
+  if (!matricNumber.match(/^\d{6}$/)) {
+    showError('matric-number', 'Please enter a valid 6-digit matric number');
+    isValid = false;
+  }
+
+  // Validate Phone Number
+  const phoneNumber = document.getElementById('phone-number').value.trim();
+  if (!phoneNumber.match(/^\d{3}-\d{7,8}$/)) {
+    showError('phone-number', 'Please enter a valid phone number (eg: 012-3456789)');
+    isValid = false;
+  }
+
+  // Validate Email
+  const email = document.getElementById('email').value.trim();
+  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    showError('email', 'Please enter a valid email address');
+    isValid = false;
+  }
+
+  // Validate Campus
+  const campus = document.getElementById('campus').value;
+  if (campus === '') {
+    showError('campus', 'Please select your campus');
+    isValid = false;
+  }
+
+  // Validate School (only if campus is selected)
+  const school = document.getElementById('school');
+  if (!school.disabled && school.value === '') {
+    showError('school', 'Please select your school');
+    isValid = false;
+  }
+
+  // Validate Package Details
+  const packageDetails = document.getElementById('package-details').value;
+  if (packageDetails === '' || packageDetails === 'default') {
+    showError('package-details', 'Please select a package');
+    isValid = false;
+  }
+
+  // Validate T-shirt Size (only if package includes t-shirt)
+  const selectedPackage = document.getElementById('package-details');
+  const selectedOption = selectedPackage.options[selectedPackage.selectedIndex];
+  const hasTShirt = selectedOption?.getAttribute('data-hasTShirt') === '1';
+
+  if (hasTShirt) {
+    const tShirtSize = document.getElementById('t-shirt-size').value;
+    if (tShirtSize === '' || tShirtSize === 'default') {
+      showError('t-shirt-size', 'Please select a t-shirt size');
+      isValid = false;
+    }
+  }
+
+  // If engineering campus is selected, validate transportation option
+  if (campus === 'engineering') {
+    const transportationYes = document.getElementById('yes');
+    const transportationNo = document.getElementById('no');
+    if (!transportationYes.checked && !transportationNo.checked) {
+      showError('transportation-option', 'Please select a transportation option');
+      isValid = false;
+    }
+  }
+
+  if (!isValid) {
+    event.preventDefault(); // Only stop submission if validation fails
+    console.log('Form validation failed. Stopping navigation.');
+    return false;
+  }
+  console.log('Form is valid. Redirecting...');
+  window.location.href = '/payment';
+}
+
+function showError(fieldId, message) {
+  const errorElement = document.getElementById(`${fieldId}-error`);
+  const inputElement = document.getElementById(fieldId);
+
+  if (errorElement) {
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+  }
+
+  if (inputElement) {
+    inputElement.classList.add('error');
+  }
+}
+
+// Add real-time validation
+document.querySelectorAll('input, select').forEach(element => {
+  element.addEventListener('input', function() {
+    // Remove error styling when user starts typing
+    this.classList.remove('error');
+    const errorElement = document.getElementById(`${this.id}-error`);
+    if (errorElement) {
+      errorElement.style.display = 'none';
     }
   });
+});
 
-  const packageDropdown = document.getElementById('package-details');
-  const tShirtDropdown = document.getElementById('t-shirt-size');
-
-  // Add an event listener to the package dropdown
-  packageDropdown.addEventListener('change', function () {
-      const selectedOption = packageDropdown.options[packageDropdown.selectedIndex];
-      const hasTShirt = selectedOption.getAttribute('data-hasTShirt');
-
-      // If the package has a T-shirt (hasTShirt = 1), enable the T-shirt size dropdown
-      if (hasTShirt === '1') {
-          tShirtDropdown.disabled = false;
-      } else {
-          // Otherwise, disable the T-shirt size dropdown and reset its value
-          tShirtDropdown.value = 'default';
-          tShirtDropdown.disabled = true;
-      }
-  });
 </script>

@@ -1,4 +1,4 @@
-from flask import request, redirect, url_for, render_template, make_response, jsonify, flash
+from flask import request, redirect, url_for, render_template, make_response, jsonify, flash, session
 from datetime import datetime
 from app import mail  
 from flask_mail import Message
@@ -231,8 +231,13 @@ class RegisterController:
 
                     # Save payment to the database using the model function
                     self.payment_model.save_payment(order_number, number, total_amount, file_content, file_name)
-
-                    return jsonify({"success": True}), 200
+                    session.clear()
+                    resp = make_response(jsonify({"success": True}))
+                    resp.delete_cookie("user_type")
+                    resp.delete_cookie("matric_number")
+                    resp.delete_cookie("ic_number")
+                    
+                    return resp
                 except Exception as e:
                     print(f"Error saving payment: {e}")
                     return jsonify({"success": False, "error": str(e)}), 500

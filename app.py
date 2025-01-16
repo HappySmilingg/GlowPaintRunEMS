@@ -58,7 +58,8 @@ def create_app():
         return redirect(url_for('static', filename='favicon.ico'))
     
     @app.before_request
-    def handle_before_request():        
+    def handle_before_request():  
+        print(f"Endpoint", request.endpoint)
         # Define public endpoints that don't require session validation
         public_endpoints = ['check_session', 'check_cookies', 'static', 'favicon', 
                             'login.admin_login', 'login.logout', 
@@ -70,7 +71,7 @@ def create_app():
         # Skip session check for public endpoints
         if request.endpoint in public_endpoints:
             return
-
+        print(f"No skip Endpoint", request.endpoint)
         # Check if the user session exists
         if 'user' not in session:
             flash('Session expired. Please log in again.', 'error')
